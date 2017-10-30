@@ -120,7 +120,7 @@
                         </div>
                     </li>
                 </ul>
-                <div class="am_news_load"><span><i  class="am-icon-spinner am-icon-spin"></i> 更多萌宠照片</span></div>
+                <div class="am_news_load"><span><i  class="am-icon-spinner am-icon-spin"></i> 更多更新</span></div>
             </div>
         </div>
         <div data-tab-panel-3 class="am-tab-panel ">
@@ -142,7 +142,7 @@
                         </div>
                     </li>
                 </ul>
-                <div class="am_news_load"><span><i  class="am-icon-spinner am-icon-spin"></i> 更多萌宠照片</span></div>
+                <div class="am_news_load"><span><i  class="am-icon-spinner am-icon-spin"></i> 更多更新</span></div>
             </div>
         </div>
         <div data-tab-panel-4 class="am-tab-panel ">
@@ -164,7 +164,7 @@
                         </div>
                     </li>
                 </ul>
-                <div class="am_news_load"><span><i  class="am-icon-spinner am-icon-spin"></i> 更多萌宠照片</span></div>
+                <div class="am_news_load"><span><i  class="am-icon-spinner am-icon-spin"></i> 更多更新</span></div>
             </div>
         </div>
     </div>

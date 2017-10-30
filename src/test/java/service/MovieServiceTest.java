@@ -1,7 +1,6 @@
-package dao;
+package service;
 
-import com.yunziru.dao.UserDao;
-import com.yunziru.entity.User;
+import com.yunziru.movie.service.MovieService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,19 +15,13 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations={"classpath:applicationContext.xml"})
-public class UserDaoTest {
+public class MovieServiceTest {
 
     @Autowired
-    private UserDao userDao;
+    private MovieService movieService;
 
     @Test
     public void baseTest() {
-        User user = new User();
-
-        user.setId(1);
-        user.setName("guoyanlei");
-        user.setPwd("111");
-
-        userDao.save(user);
+        System.out.println(movieService.find(1L));
     }
 }

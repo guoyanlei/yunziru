@@ -2,6 +2,7 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:aop="http://www.springframework.org/schema/aop"
+       default-lazy-init="true"
        xmlns:tx="http://www.springframework.org/schema/tx"
        xmlns:context="http://www.springframework.org/schema/context"
        xmlns:jpa="http://www.springframework.org/schema/data/jpa"
@@ -22,13 +23,13 @@
     <context:component-scan base-package="com.yunziru"/>
 
     <!-- service包 -->
-    <context:component-scan base-package="com.yunziru.service" />
+    <context:component-scan base-package="com.yunziru.movie.service" />
     <!-- 使用cglib进行动态代理 -->
     <aop:aspectj-autoproxy proxy-target-class="true" />
     <!-- 支持注解方式声明式事务 -->
     <tx:annotation-driven transaction-manager="transactionManager" proxy-target-class="true" />
     <!-- dao -->
-    <jpa:repositories base-package="com.yunziru.dao" repository-impl-postfix="Impl" entity-manager-factory-ref="entityManagerFactory" transaction-manager-ref="transactionManager" />
+    <jpa:repositories base-package="com.yunziru.movie.dao" repository-impl-postfix="Impl" entity-manager-factory-ref="entityManagerFactory" transaction-manager-ref="transactionManager" />
 
 
     <!-- Jpa Entity Manager 配置 -->
@@ -36,7 +37,7 @@
         <property name="dataSource" ref="dataSource" />
         <property name="packagesToScan">
             <list>
-                <value>com.yunziru.entity</value>
+                <value>com.yunziru.movie.entity</value>
             </list>
         </property>
         <property name="jpaProperties">
@@ -90,7 +91,7 @@
     </tx:advice>
     <!-- 事务入口 -->
     <aop:config>
-        <aop:pointcut id="allServiceMethod" expression="execution(* com.yunziru.service.*.*(..))" />
+        <aop:pointcut id="allServiceMethod" expression="execution(* com.yunziru.movie.service.*.*(..))" />
         <aop:advisor pointcut-ref="allServiceMethod" advice-ref="txAdvice" />
     </aop:config>
 

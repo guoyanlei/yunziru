@@ -155,7 +155,6 @@
             <groupId>javax.servlet</groupId>
             <artifactId>jstl</artifactId><!-- JSTL标签依赖-->
             <version>${jstl.version}</version>
-            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>javax.validation</groupId>
@@ -258,6 +257,11 @@
           <version>${junit.version}</version>
           <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-test</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
         <!-- 单元测试框架 end -->
 
         <dependency>
@@ -274,9 +278,6 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-install-plugin</artifactId>
-                <configuration>
-                    <skip>true</skip>
-                </configuration>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>

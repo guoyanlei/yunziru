@@ -1,6 +1,8 @@
 package com.yunziru.entity;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
 /**
@@ -13,10 +15,14 @@ import javax.persistence.Table;
 @Table(name = "yunziru_user")
 public class User {
 
+    @Id
     private Integer id;
+
     private String name;
+
     private String pwd;
 
+    @Column
     public Integer getId() {
         return id;
     }
@@ -25,6 +31,7 @@ public class User {
         this.id = id;
     }
 
+    @Column
     public String getName() {
         return name;
     }
@@ -33,6 +40,7 @@ public class User {
         this.name = name;
     }
 
+    @Column
     public String getPwd() {
         return pwd;
     }

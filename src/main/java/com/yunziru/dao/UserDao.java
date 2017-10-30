@@ -3,6 +3,7 @@ package com.yunziru.dao;
 import com.yunziru.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.NoRepositoryBean;
+import org.springframework.stereotype.Repository;
 
 /**
  * Created by guoyanlei
@@ -10,6 +11,6 @@ import org.springframework.data.repository.NoRepositoryBean;
  * time：18:27
  * description：
  */
-@NoRepositoryBean
+@Repository
 public interface UserDao extends JpaRepository<User, Integer>{
 }

@@ -95,47 +95,23 @@
     </aop:config>
 
     <!-- local development环境 -->
-    <beans profile="development">
-        <!-- 数据库连接 -->
-        <context:property-placeholder location="classpath:application.development.properties" ignore-unresolvable="true" />
-        <!-- 数据源 -->
-        <!-- 数据源配置, 使用Tomcat JDBC连接池 -->
-        <bean id="dataSource" class="org.apache.tomcat.jdbc.pool.DataSource" destroy-method="close">
-            <!-- Connection Info -->
-            <property name="driverClassName" value="${jdbc.driver}" />
-            <property name="url" value="${jdbc.url}" />
-            <property name="username" value="${jdbc.username}" />
-            <property name="password" value="${jdbc.password}" />
+    <!-- 数据库连接 -->
+    <context:property-placeholder location="classpath:application.development.properties" ignore-unresolvable="true" />
+    <!-- 数据源 -->
+    <!-- 数据源配置, 使用Tomcat JDBC连接池 -->
+    <bean id="dataSource" class="org.apache.tomcat.jdbc.pool.DataSource" destroy-method="close">
+        <!-- Connection Info -->
+        <property name="driverClassName" value="${jdbc.driver}" />
+        <property name="url" value="${jdbc.url}" />
+        <property name="username" value="${jdbc.username}" />
+        <property name="password" value="${jdbc.password}" />
 
-            <!-- Connection Pooling Info -->
-            <property name="maxActive" value="${jdbc.pool.maxActive}" />
-            <property name="maxIdle" value="${jdbc.pool.maxIdle}" />
-            <property name="minIdle" value="0" />
-            <property name="defaultAutoCommit" value="false" />
-            <property name="validationQuery" value="select 1" />
-        </bean>
-    </beans>
-
-    <!-- production环境 -->
-    <beans profile="development">
-        <!-- 数据库连接 -->
-        <context:property-placeholder location="classpath:application.production.properties" ignore-unresolvable="true" />
-        <!-- 数据源 -->
-        <!-- 数据源配置, 使用Tomcat JDBC连接池 -->
-        <bean id="dataSource" class="org.apache.tomcat.jdbc.pool.DataSource" destroy-method="close">
-            <!-- Connection Info -->
-            <property name="driverClassName" value="${jdbc.driver}" />
-            <property name="url" value="${jdbc.url}" />
-            <property name="username" value="${jdbc.username}" />
-            <property name="password" value="${jdbc.password}" />
-
-            <!-- Connection Pooling Info -->
-            <property name="maxActive" value="${jdbc.pool.maxActive}" />
-            <property name="maxIdle" value="${jdbc.pool.maxIdle}" />
-            <property name="minIdle" value="0" />
-            <property name="defaultAutoCommit" value="false" />
-            <property name="validationQuery" value="select 1" />
-        </bean>
-    </beans>
+        <!-- Connection Pooling Info -->
+        <property name="maxActive" value="${jdbc.pool.maxActive}" />
+        <property name="maxIdle" value="${jdbc.pool.maxIdle}" />
+        <property name="minIdle" value="0" />
+        <property name="defaultAutoCommit" value="false" />
+        <property name="validationQuery" value="select 1" />
+    </bean>
 
 </beans>

@@ -8,8 +8,8 @@ import java.io.Serializable;
 
 /**
  * 基础Dao接口定义
- * @author Jeff Xu
- * @since 2015-12-09
+ * @author guoyanlei
+ * @since 2017-10-30
  */
 @NoRepositoryBean
 public interface CommonDao<E,ID extends Serializable>  extends JpaRepository<E,ID>, JpaSpecificationExecutor<E> {

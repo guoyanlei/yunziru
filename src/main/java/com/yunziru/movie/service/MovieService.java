@@ -7,9 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
- * @author xujianfang
+ * @author guoyanlei
  * @desc MovieService类 
- * @date 2017-03-16
+ * @date 2017-10-30
  */
 @Service
 public class MovieService extends CommonService<Movie, Long> {
@@ -19,6 +19,8 @@ public class MovieService extends CommonService<Movie, Long> {
 
     @Autowired
     public void setMovieDao(MovieDao movieDao){
-      super.setCommonDao(movieDao);
+        super.setCommonDao(movieDao);
     }
+
+
 }

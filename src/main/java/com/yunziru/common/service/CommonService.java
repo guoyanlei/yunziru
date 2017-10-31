@@ -12,8 +12,8 @@ import java.util.List;
 
 /**
  * 基础Service的定义
- * @author Jeff Xu
- * @since 2015-12-09
+ * @author guoyanlei
+ * @since 2017-10-30
  * @param <E>
  * @param <ID>
  */
@@ -31,8 +31,6 @@ public abstract class CommonService<E,ID extends Serializable>  {
 	
 	/**
 	 * 根据ID获取某个Entity
-	 * @param id
-	 * @return
 	 */
 	public E get(ID id) {
 		return commonDao.getOne(id);
@@ -40,8 +38,6 @@ public abstract class CommonService<E,ID extends Serializable>  {
 
 	/**
 	 * 根据ID查找某个Entity（建议使用）
-	 * @param id
-	 * @return
 	 */
 	public E find(ID id) {
 		return commonDao.findOne(id);
@@ -49,7 +45,6 @@ public abstract class CommonService<E,ID extends Serializable>  {
 
 	/**
 	 * 获取所有的Entity列表
-	 * @return
 	 */
 	public List<E> getAll() {
 		return commonDao.findAll();
@@ -57,7 +52,6 @@ public abstract class CommonService<E,ID extends Serializable>  {
 	
 	/**
 	 * 获取Entity的总数
-	 * @return
 	 */
 	public Long getTotalCount() {
 		return commonDao.count();
@@ -65,8 +59,6 @@ public abstract class CommonService<E,ID extends Serializable>  {
 
 	/**
 	 * 保存Entity
-	 * @param entity
-	 * @return
 	 */
 	public E save(E entity) {
 		return commonDao.save(entity);
@@ -74,8 +66,6 @@ public abstract class CommonService<E,ID extends Serializable>  {
 
 	/**
 	 * 修改Entity
-	 * @param entity
-	 * @return
 	 */
 	public E update(E entity) {
 		return commonDao.save(entity);
@@ -83,7 +73,6 @@ public abstract class CommonService<E,ID extends Serializable>  {
 	
 	/**
 	 * 删除Entity
-	 * @param entity
 	 */
 	public void delete(E entity) {
 		commonDao.delete(entity);
@@ -91,7 +80,6 @@ public abstract class CommonService<E,ID extends Serializable>  {
 
 	/**
 	 * 根据Id删除某个Entity
-	 * @param id
 	 */
 	public void delete(ID id) {
 		commonDao.delete(id);
@@ -99,7 +87,6 @@ public abstract class CommonService<E,ID extends Serializable>  {
 
 	/**
 	 * 删除Entity的集合类
-	 * @param entities
 	 */
 	public void delete(Collection<E> entities) {
 		commonDao.delete(entities);
@@ -114,8 +101,6 @@ public abstract class CommonService<E,ID extends Serializable>  {
 	
 	/**
 	 * 根据查询信息获取某个Entity的列表
-	 * @param spec
-	 * @return
 	 */
 	public List<E> findAll(Specification<E> spec) {
 		return commonDao.findAll(spec);
@@ -123,8 +108,6 @@ public abstract class CommonService<E,ID extends Serializable>  {
 	
 	/**
 	 * 获取Entity的分页信息
-	 * @param pageable
-	 * @return
 	 */
 	public Page<E> findAll(Pageable pageable){
 		return commonDao.findAll(pageable);
@@ -132,9 +115,6 @@ public abstract class CommonService<E,ID extends Serializable>  {
 	
 	/**
 	 * 根据查询条件和分页信息获取某个结果的分页信息
-	 * @param spec
-	 * @param pageable
-	 * @return
 	 */
 	public Page<E> findAll(Specification<E> spec, Pageable pageable) {
 		return commonDao.findAll(spec, pageable);
@@ -142,9 +122,6 @@ public abstract class CommonService<E,ID extends Serializable>  {
 	
 	/**
 	 * 根据查询条件和排序条件获取某个结果集列表
-	 * @param spec
-	 * @param sort
-	 * @return
 	 */
 	public List<E> findAll(Specification<E> spec, Sort sort) {
 		return commonDao.findAll(spec);
@@ -152,8 +129,6 @@ public abstract class CommonService<E,ID extends Serializable>  {
 	
 	/**
 	 * 查询某个条件的结果数集
-	 * @param spec
-	 * @return
 	 */
 	public long count(Specification<E> spec) {
 		return commonDao.count(spec);

@@ -1,10 +1,11 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ include file="header.jsp"%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <div class="am_ziyuan">
     <div class="am_ziyuan_user">
         <div class="am_ziyuan_user_info">
-            <div class="am_ziyuan_user_info_name">《布希维克/全境警戒》720p. BD高清中英双字 百度云网盘下载</div>
+            <div class="am_ziyuan_user_info_name">${movie.title}</div>
             <div class="am_ziyuan_user_info_coordinate"><span class="am_ziyuan_user_info_time">15分钟前</span>
                 <span class="am-icon-tag">2017  美国  剧情</span>
             </div>
@@ -15,14 +16,11 @@
         <div class="am_ziyuan_content_l">
             <div data-am-widget="slider" class="am-slider am-slider-default" data-am-slider='{}' >
                 <ul class="am-slides">
-                    <li>
-                        <img src="${pageContext.request.contextPath}/static/img/083816a1eanxbt11nlx4a8.jpg" alt="《布希维克/全境警戒》">
-
-                    </li>
-                    <li>
-                        <img src="${pageContext.request.contextPath}/static/img/083816a1eanxbt11nlx4a8.jpg" alt="《布希维克/全境警戒》">
-
-                    </li>
+                    <c:forEach items="${movie.images}" var="image">
+                        <li>
+                            <img src="${image}" alt="">
+                        </li>
+                    </c:forEach>
                 </ul>
             </div>
 
@@ -31,17 +29,7 @@
                     <h3 class="am-panel-title">简介</h3>
                 </header>
                 <div class="am-panel-bd" style="font-size: 14px;">
-                    导演: 加里·穆利昂 / 乔纳森·米洛特<br/>
-                    编剧: 尼克·丹米奇 / 格雷厄姆·瑞斯尼克<br/>
-                    主演: 戴夫·巴蒂斯塔 / 布兰特妮·斯诺 / 阿图罗·卡斯特罗 / 克里斯蒂安·纳瓦罗 / 安吉利·赞巴拉娜 / 杰雷米·哈里斯 / 迈拉·卢克利希亚·泰勒 / 杰夫·利马 / 利奥·米纳亚 / 帕特里克·M·沃尔什 / 亚历克斯·布鲁 / 杰伊·赫农 / 昆西·查德 / 阿格妮塔·撒克 / 贾斯汀·L·威尔逊<br/>
-                    类型: 动作 / 冒险<br/>
-                    制片国家/地区: 美国<br/>
-                    语言: 英语<br/>
-                    上映日期: 2017-01-21(圣丹斯电影节) / 2017-08-25(美国网络)<br/>
-                    片长: 94分钟<br/>
-                    又名: 全境警戒(台)<br/>
-                    布希维克的剧情简介 · · · · · ·<br/>
-                    片名“布希维克”本是美国纽约一个区的区名，故事也发生在这个地区。《布希维克》，男女主人公来到布希维克，本来轻松愉悦的两人却突然遭遇恐怖袭击，枪战、爆炸遍布城市，紧张窒息的情绪扑面而来。<br/>
+                    ${movie.summary}
                 </div>
             </section>
 
@@ -50,7 +38,11 @@
                     <h3 class="am-panel-title">下载区</h3>
                 </header>
                 <div class="am-panel-bd" style="font-size: 14px;">
-                    网盘链接： http://pan.baidu.com/s/1eS2EuEA  密码：7pq3
+                    网盘链接： ${movie.baiduLink}  密码：${movie.baiduPwd} <br/>
+                    其他下载：
+                    <c:forEach var="entry" items="${ movie.ed2kLinks}">
+                        <a href="${entry.key}">${entry.value}</a> <br/>
+                    </c:forEach>
                 </div>
             </div>
         </div>

@@ -41,7 +41,7 @@
     </div>
 </div>
 <script>
-    var page     = 1;
+    var page     = 0;
     var pageSize = 20;
     var datalist = 'indexrecommendlist';
 
@@ -71,7 +71,7 @@
             for( var i = 0 ; i < data.data.content.length ; i++ ){
                 indexListImgHtml += "<li>\n" +
                         "                <div class=\"am-gallery-item\">\n" +
-                        "                    <a href=\"detail\" class=\"\">\n" +
+                        "                    <a href=\"movies/"+ data.data.content[i].id + "/detail\" class=\"\">\n" +
                         "                        <img class=\"am_img animated\" alt=\"\"\n" +
                         "                             src=\"${pageContext.request.contextPath}/static/img/loading.gif\"\n" +
                         "                             data-original=\"" + data.data.content[i].poster + "\" />\n" +

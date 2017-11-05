@@ -25,9 +25,9 @@ public class IndexController {
 	@Resource
 	private MovieService movieService;
 
-	@RequestMapping("/index")
+	@RequestMapping("/")
 	public String login(ModelMap modelMap){
-		return "index";
+		return "new";
 	}
 
 	@RequestMapping(value = "movies/list", method = RequestMethod.GET, headers = "Accept=application/json")

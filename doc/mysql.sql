@@ -1,0 +1,21 @@
+CREATE TABLE `yunziru_movie` (
+  `id` bigint(20) NOT NULL auto_increment,
+  `title` varchar(100) default NULL,
+  `poster` varchar(255) default NULL,
+  `name` varchar(100) default NULL,
+  `trans_name` varchar(100) default NULL,
+  `year` int(11) default NULL,
+  `location` varchar(200) default NULL,
+  `type` varchar(200) default NULL,
+  `language` varchar(100) default NULL,
+  `release_time` varchar(200) default NULL,
+  `length_mins` int(11) default NULL,
+  `summary` text,
+  `screenshot` text,
+  `ed2k_link` text,
+  `baidu_link` text,
+  `baidu_pwd` varchar(200) default NULL,
+  `tid` int(20) default NULL,
+  PRIMARY KEY  (`id`),
+  UNIQUE KEY `TID` (`tid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;

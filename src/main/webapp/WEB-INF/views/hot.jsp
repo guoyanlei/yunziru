@@ -20,9 +20,9 @@
 <div class="banner_navbg">
     <div class="am-g">
         <div class="banner_nav"><span class="am-icon-caret-right">  筛选：</span>
-            <a href="index" title="编辑推荐" target="_self" class="click_bjtj">编辑推荐</a>
+            <a href="${pageContext.request.contextPath}" title="最新发布" target="_self"  class="click_rqzg">最新发布</a>
+            <a href="recommend" title="编辑推荐" target="_self" class="click_bjtj">编辑推荐</a>
             <a href="hot" title="人气最高" target="_self"  class="click_rqzg  banner_hover">人气最高</a>
-            <a href="new" title="最新发布" target="_self"  class="click_rqzg">最新发布</a>
             </div>
     </div>
 </div>

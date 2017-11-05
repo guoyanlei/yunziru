@@ -12,6 +12,7 @@ public class MovieDetailDTO {
 
     private Long id;
     private String title;
+    private String poster;
     private String summary;
     private List<String> images;
     private String baiduLink;
@@ -32,6 +33,14 @@ public class MovieDetailDTO {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public String getPoster() {
+        return poster;
+    }
+
+    public void setPoster(String poster) {
+        this.poster = poster;
     }
 
     public String getSummary() {

@@ -25,12 +25,21 @@
     <base target="_blank" />
     <script src="${pageContext.request.contextPath}/static/js/countUp.min.js"></script>
     <script src="${pageContext.request.contextPath}/static/js/amazeui.lazyload.min.js"></script>
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?fe42b49c11a22004b71d818e77633f3d";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
 </head>
 <body>
 <header class="am-topbar am-topbar-inverse">
     <div class="amz-container">
         <h1 class="am-topbar-brand">
-            <a href="index" class="am-topbar-logo">
+            <a href="${pageContext.request.contextPath}" class="am-topbar-logo">
                 <img src="${pageContext.request.contextPath}/static/img/logo.png?1" alt="云自如">
             </a>
         </h1>
@@ -49,7 +58,7 @@
         <div class="am-collapse am-topbar-collapse" id="doc-topbar-collapse-5">
             <ul class="am-nav am-nav-pills am-topbar-nav pet_filter">
                 <li class="am-active">
-                    <a href="index" title="云自如" target="_self">
+                    <a href="${pageContext.request.contextPath}" title="云自如" target="_self">
                         首页
                     </a>
                 </li>
@@ -61,18 +70,18 @@
                     </a>
                     <ul class="am-dropdown-content">
                         <li>
-                            <a href="index" title="编辑推荐" target="_self">
+                            <a href="${pageContext.request.contextPath}" title="最新发布" target="_self">
+                                最新发布
+                            </a>
+                        </li>
+                        <li>
+                            <a href="recommend" title="编辑推荐" target="_self">
                                 编辑推荐
                             </a>
                         </li>
                         <li>
                             <a href="hot" title="人气排行" target="_self">
                                 人气排行
-                            </a>
-                        </li>
-                        <li>
-                            <a href="new" title="最新发布" target="_self">
-                                最新发布
                             </a>
                         </li>
                     </ul>

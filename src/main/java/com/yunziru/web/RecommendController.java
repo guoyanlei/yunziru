@@ -4,11 +4,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-public class NewController {
+public class RecommendController {
 	
-	@RequestMapping("/new")
+	@RequestMapping("/recommend")
 	public String login(){
-		return "new";
+		return "recommend";
 	}
 
 }

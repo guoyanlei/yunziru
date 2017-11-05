@@ -3,8 +3,6 @@ package com.yunziru.movie.service;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.TypeReference;
-import com.google.common.collect.Lists;
-import com.google.common.collect.Maps;
 import com.yunziru.common.service.CommonService;
 import com.yunziru.movie.dao.MovieDao;
 import com.yunziru.movie.dto.MovieDetailDTO;
@@ -39,10 +37,9 @@ public class MovieService extends CommonService<Movie, Long> {
         MovieDetailDTO detailDTO = new MovieDetailDTO();
         detailDTO.setId(movie.getId());
         detailDTO.setTitle(movie.getTitle());
-        detailDTO.setSummary(movie.getSummary().replaceAll("&lt;br /&gt;", "<br />"));
-        List<String> images = Lists.newArrayList();
-        images.add(movie.getPoster());
-        images.addAll(JSON.parseArray(movie.getScreenshot(), String.class));
+        detailDTO.setPoster(movie.getPoster());
+        detailDTO.setSummary(movie.getSummary());
+        List<String> images = JSON.parseArray(movie.getScreenshot(), String.class);
         detailDTO.setImages(images);
 
         if (StringUtils.isNoneEmpty(movie.getBaiduLink())) {

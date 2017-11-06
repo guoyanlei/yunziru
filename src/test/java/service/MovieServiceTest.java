@@ -24,4 +24,15 @@ public class MovieServiceTest {
     public void baseTest() {
         System.out.println(movieService.find(1L));
     }
+
+    @Test
+    public void getListTest() {
+        System.out.println(movieService.getMovieList());
+    }
+
+
+    @Test
+    public void getList2Test() {
+        System.out.println(movieService.getSimpleMovieList());
+    }
 }

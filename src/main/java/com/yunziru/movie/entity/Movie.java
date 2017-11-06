@@ -33,6 +33,11 @@ public class Movie {
     private String baiduPwd;
     private Integer tid;
 
+    public Movie(Long id, String title, String poster) {
+        this.id = id;
+        this.title = title;
+        this.poster = poster;
+    }
 
     public Long getId() {
         return id;

@@ -5,7 +5,9 @@ import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.TypeReference;
 import com.yunziru.common.service.CommonService;
 import com.yunziru.movie.dao.MovieDao;
+import com.yunziru.movie.dao.MovieDaoImpl;
 import com.yunziru.movie.dto.MovieDetailDTO;
+import com.yunziru.movie.dto.MovieSimpleDTO;
 import com.yunziru.movie.entity.Movie;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,8 +28,19 @@ public class MovieService extends CommonService<Movie, Long> {
     private MovieDao movieDao;
 
     @Autowired
+    private MovieDaoImpl movieDaoImpl;
+
+    @Autowired
     public void setMovieDao(MovieDao movieDao){
         super.setCommonDao(movieDao);
+    }
+
+    public List<MovieSimpleDTO> getMovieList() {
+        return movieDaoImpl.getMovielist();
+    }
+
+    public List<MovieSimpleDTO> getSimpleMovieList() {
+        return movieDaoImpl.getMovieEntity();
     }
 
     public MovieDetailDTO getMovieDetailInfo(Long movieId) {

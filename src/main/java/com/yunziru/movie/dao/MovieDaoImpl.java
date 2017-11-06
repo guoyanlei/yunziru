@@ -25,10 +25,12 @@ public class MovieDaoImpl {
 
     public List<MovieSimpleDTO> getMovielist() {
 
-        String hql = "select new com.yunziru.movie.dto.MovieSimpleDTO(id,title,poster) from Movie where id = :id order by id desc";
+        String hql = "select new com.yunziru.movie.dto.MovieSimpleDTO(id,title,poster) from Movie order by id desc";
 
         TypedQuery<MovieSimpleDTO> query = em.createQuery(hql, MovieSimpleDTO.class);
-        query.setParameter("id", 2L);
+//        query.setParameter("id", 2L);
+        query.setFirstResult(2);
+        query.setMaxResults(10);
         return query.getResultList();
     }
 

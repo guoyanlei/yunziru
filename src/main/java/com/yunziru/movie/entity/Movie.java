@@ -32,12 +32,10 @@ public class Movie {
     private String baiduLink;
     private String baiduPwd;
     private Integer tid;
-
-    public Movie(Long id, String title, String poster) {
-        this.id = id;
-        this.title = title;
-        this.poster = poster;
-    }
+    private Integer priseCount; //点赞数
+    private Integer hotCount;   //访问热度
+    private Long createTime;
+    private Long updateTime;
 
     public Long getId() {
         return id;
@@ -191,6 +189,42 @@ public class Movie {
         this.tid = tid;
     }
 
+    @Column(name = "prise_count")
+    public Integer getPriseCount() {
+        return priseCount;
+    }
+
+    public void setPriseCount(Integer priseCount) {
+        this.priseCount = priseCount;
+    }
+
+    @Column(name = "hot_count")
+    public Integer getHotCount() {
+        return hotCount;
+    }
+
+    public void setHotCount(Integer hotCount) {
+        this.hotCount = hotCount;
+    }
+
+    @Column(name = "create_time")
+    public Long getCreateTime() {
+        return createTime;
+    }
+
+    @Column(name = "create_time")
+    public void setCreateTime(Long createTime) {
+        this.createTime = createTime;
+    }
+
+    public Long getUpdateTime() {
+        return updateTime;
+    }
+
+    public void setUpdateTime(Long updateTime) {
+        this.updateTime = updateTime;
+    }
+
     @Override
     public String toString() {
         return "Movie{" +
@@ -211,6 +245,8 @@ public class Movie {
                 ", baiduLink='" + baiduLink + '\'' +
                 ", baiduPwd='" + baiduPwd + '\'' +
                 ", tid=" + tid +
+                ", createTime=" + createTime +
+                ", updateTime=" + updateTime +
                 '}';
     }
 }

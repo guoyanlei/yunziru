@@ -8,39 +8,48 @@ import java.util.Map;
  * Date：2017/11/2
  * Description：
  */
-public class MovieDetailDTO {
+public class MovieDetailDTO extends MovieSimpleDTO{
 
-    private Long id;
-    private String title;
-    private String poster;
+    private Integer hotCount;
+    private Integer year;
+    private String location;
+    private String type;
     private String summary;
     private List<String> images;
     private String baiduLink;
     private String baiduPwd;
     private Map<String, String> ed2kLinks;
 
-    public Long getId() {
-        return id;
+    public Integer getHotCount() {
+        return hotCount;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setHotCount(Integer hotCount) {
+        this.hotCount = hotCount;
     }
 
-    public String getTitle() {
-        return title;
+    public Integer getYear() {
+        return year;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setYear(Integer year) {
+        this.year = year;
     }
 
-    public String getPoster() {
-        return poster;
+    public String getLocation() {
+        return location;
     }
 
-    public void setPoster(String poster) {
-        this.poster = poster;
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 
     public String getSummary() {

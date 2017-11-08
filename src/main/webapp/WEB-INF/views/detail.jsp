@@ -6,8 +6,9 @@
     <div class="am_ziyuan_user">
         <div class="am_ziyuan_user_info">
             <div class="am_ziyuan_user_info_name">${movie.title}</div>
-            <div class="am_ziyuan_user_info_coordinate"><span class="am_ziyuan_user_info_time">15分钟前</span>
-                <span class="am-icon-tag">2017  美国  剧情</span>
+            <div class="am_ziyuan_user_info_coordinate">
+                &nbsp; <span class="am-icon-leaf"> &nbsp; ${movie.year} </span> &nbsp;&nbsp;
+                <span class="am-icon-tag"> ${movie.location}  ${movie.type}</span>
             </div>
         </div>
     </div>
@@ -48,10 +49,16 @@
         </div>
         <div class="am_ziyuan_content_r">
             <ul class="am_ziyuan_r_info">
-                <li><i class="am-icon-heart"></i><span>10 人喜欢</span></li>
-                <li><i class="am-icon-eye"></i><span>126 次查看</span></li>
-                <li><i class="am-icon-share-square-o"></i><span>12 次分享资源</span></li>
-                <li><i class="am-icon-clock-o"></i><span>发布 2015.08.12</span></li>
+                <li><i class="am-icon-heart"></i><span> ${movie.priseCount} 人喜欢</span></li>
+                <li><i class="am-icon-eye"></i><span> ${movie.hotCount} 次查看</span></li>
+                <li><i class="am-icon-clock-o"></i><span>发布
+                    <script>
+                        var d = new Date(${movie.createTime});
+                        var date = (d.getFullYear()) + "-" +
+                                (d.getMonth() + 1) + "-" +
+                                (d.getDate());
+                        document.write(date);
+                    </script></span></li>
             </ul>
             <ul class="am_ziyuan_share">
                 <button type="button" class="am-btn am-btn-success am-radius"><i class="am-icon-heart"></i>

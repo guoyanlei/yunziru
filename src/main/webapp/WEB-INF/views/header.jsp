@@ -22,6 +22,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/animate.min.css">
     <script src="${pageContext.request.contextPath}/static/js/jquery.min.js"></script>
     <script src="${pageContext.request.contextPath}/static/js/amazeui.min.js"></script>
+    <script src="${pageContext.request.contextPath}/static/js/yunziru.js"></script>
     <base target="_blank" />
     <script src="${pageContext.request.contextPath}/static/js/countUp.min.js"></script>
     <script src="${pageContext.request.contextPath}/static/js/amazeui.lazyload.min.js"></script>

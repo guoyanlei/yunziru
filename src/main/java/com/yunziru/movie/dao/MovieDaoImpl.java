@@ -23,14 +23,18 @@ public class MovieDaoImpl {
     @Autowired
     private EntityManager em;
 
-    public List<MovieSimpleDTO> getMovielist() {
+    /**
+     * 获取电影概览信息
+     * @param offset 偏移
+     * @param limit 取的个数
+     */
+    public List<MovieSimpleDTO> getMovielist(int offset, int limit) {
 
-        String hql = "select new com.yunziru.movie.dto.MovieSimpleDTO(id,title,poster) from Movie order by id desc";
+        String hql = "select new com.yunziru.movie.dto.MovieSimpleDTO(id,title,poster,priseCount,createTime) from Movie order by id desc";
 
         TypedQuery<MovieSimpleDTO> query = em.createQuery(hql, MovieSimpleDTO.class);
-//        query.setParameter("id", 2L);
-        query.setFirstResult(2);
-        query.setMaxResults(10);
+        query.setFirstResult(offset);
+        query.setMaxResults(limit);
         return query.getResultList();
     }
 
@@ -38,11 +42,10 @@ public class MovieDaoImpl {
         String sql = "select t.id, t.title, t.poster from yunziru_movie t order by id desc limit 0,10";
         Query query = em.createNativeQuery(sql);
         query.unwrap(SQLQuery.class)
-                // 这里是设置字段的数据类型，有几点注意，首先这里的字段名要和目标实体的字段名相同，然后 sql 语句中的名称（别名）得与实体的相同
-                .addScalar("id", StandardBasicTypes.LONG)
-                .addScalar("title", StandardBasicTypes.STRING)
-                .addScalar("poster", StandardBasicTypes.STRING)
-                .setResultTransformer(Transformers.aliasToBean(MovieSimpleDTO.class));
+             .addScalar("id", StandardBasicTypes.LONG)
+             .addScalar("title", StandardBasicTypes.STRING)
+             .addScalar("poster", StandardBasicTypes.STRING)
+             .setResultTransformer(Transformers.aliasToBean(MovieSimpleDTO.class));
         return query.getResultList();
     }
 }

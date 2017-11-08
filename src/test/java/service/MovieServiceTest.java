@@ -27,7 +27,7 @@ public class MovieServiceTest {
 
     @Test
     public void getListTest() {
-        System.out.println(movieService.getMovieList());
+        System.out.println(movieService.getMovieList(2, 10));
     }
 
 

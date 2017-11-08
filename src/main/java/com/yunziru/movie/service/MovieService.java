@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.TypeReference;
 import com.yunziru.common.service.CommonService;
+import com.yunziru.common.util.PageUtil;
 import com.yunziru.movie.dao.MovieDao;
 import com.yunziru.movie.dao.MovieDaoImpl;
 import com.yunziru.movie.dto.MovieDetailDTO;
@@ -35,12 +36,13 @@ public class MovieService extends CommonService<Movie, Long> {
         super.setCommonDao(movieDao);
     }
 
-    public List<MovieSimpleDTO> getMovieList() {
-        return movieDaoImpl.getMovielist();
-    }
-
-    public List<MovieSimpleDTO> getSimpleMovieList() {
-        return movieDaoImpl.getMovieEntity();
+    /**
+     * 获取电影概览信息
+     * @param page 当前页数
+     * @param size 每页大小
+     */
+    public List<MovieSimpleDTO> getMovieList(int page, int size) {
+        return movieDaoImpl.getMovielist(PageUtil.getOffset(page, size), size);
     }
 
     public MovieDetailDTO getMovieDetailInfo(Long movieId) {
@@ -50,8 +52,15 @@ public class MovieService extends CommonService<Movie, Long> {
         MovieDetailDTO detailDTO = new MovieDetailDTO();
         detailDTO.setId(movie.getId());
         detailDTO.setTitle(movie.getTitle());
-        detailDTO.setPoster(movie.getPoster());
-        detailDTO.setSummary(movie.getSummary());
+        detailDTO.setPriseCount(movie.getPriseCount());
+        detailDTO.setCreateTime(movie.getCreateTime());
+        if (movie.getYear() > 0) {
+            detailDTO.setYear(movie.getYear());
+        }
+        detailDTO.setHotCount(movie.getHotCount());
+        detailDTO.setLocation(movie.getLocation());
+        detailDTO.setType(movie.getType());
+        detailDTO.setSummary(movie.getSummary().replaceAll("\n\n", "<br/>"));
         List<String> images = JSON.parseArray(movie.getScreenshot(), String.class);
         detailDTO.setImages(images);
 

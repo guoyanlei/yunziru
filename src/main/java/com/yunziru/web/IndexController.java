@@ -36,9 +36,7 @@ public class IndexController {
 								   @RequestParam(defaultValue = "20", required = true) int size,
 								   ModelMap modelMap){
 		AjaxResult ajaxResult = new AjaxResult();
-		PageRequest pageRequest = new PageRequest(page, size);
-		Page<Movie> movies = this.movieService.findAll(pageRequest);
-		ajaxResult.setData(movies);
+		ajaxResult.setData(this.movieService.getMovieList(page, size));
 		ajaxResult.setSuccess(true);
 		return ajaxResult;
 	}

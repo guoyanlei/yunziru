@@ -41,8 +41,8 @@
     </div>
 </div>
 <script>
-    var page     = 0;
-    var pageSize = 20;
+    var page     = 1;
+    var pageSize = 24;
     var datalist = 'indexrecommendlist';
 
     $(function(){
@@ -68,21 +68,21 @@
                 console.log(data.msg);
                 return false;
             }
-            for( var i = 0 ; i < data.data.content.length ; i++ ){
+            for( var i = 0 ; i < data.data.length ; i++ ){
                 indexListImgHtml += "<li>\n" +
-                        "                <div class=\"am-gallery-item\">\n" +
-                        "                    <a href=\"movies/"+ data.data.content[i].id + "/detail\" class=\"\">\n" +
-                        "                        <img class=\"am_img animated\" alt=\"\"\n" +
-                        "                             src=\"${pageContext.request.contextPath}/static/img/loading.gif\"\n" +
-                        "                             data-original=\"" + data.data.content[i].poster + "\" />\n" +
-                        "                        <div class=\"am_listimg_info\">\n" +
-                        "                            <span class=\"am-icon-heart\">27</span>\n" +
-                        "                            <span class=\"am-icon-tag\">2天前</span>\n" +
-                        "                        </div>\n" +
-                        "                        <div class=\"am-gallery-desc\" style=\"padding-top: 5px;\">" + data.data.content[i].title + "</div>\n" +
-                        "                    </a>\n" +
-                        "                </div>\n" +
-                        "            </li>";
+                "                <div class=\"am-gallery-item\">\n" +
+                "                    <a href=\"movies/"+ data.data[i].id + "/detail\" class=\"\">\n" +
+                "                        <img class=\"am_img animated\" alt=\"\"\n" +
+                "                             src=\"${pageContext.request.contextPath}/static/img/loading.gif\"\n" +
+                "                             data-original=\"" + data.data[i].poster + "\"/>\n" +
+                "                        <div class=\"am_listimg_info\">\n" +
+                "                            <span class=\"am-icon-heart\">" + data.data[i].priseCount + "</span>\n" +
+                "                            <span class=\"am-icon-tag\">" + getDateDiff(data.data[i].createTime) + "</span>\n" +
+                "                        </div>\n" +
+                "                        <div class=\"am-gallery-desc\" style=\"padding-top: 5px;\">" + data.data[i].title + "</div>\n" +
+                "                    </a>\n" +
+                "                </div>\n" +
+                "            </li>";
             }
             $('.am_index_addimglist').append(indexListImgHtml);
             // 懒加载
@@ -93,9 +93,7 @@
             // 点击加载更多
             $('.am_news_load_index').on('click',function(){
                 $('.am-icon-spinner').show();
-                if(data.data.number < data.data.totalPages ){
-                    load_more(page,pageSize);
-                }
+                load_more(page,pageSize);
             });
             page++;
         },'json');

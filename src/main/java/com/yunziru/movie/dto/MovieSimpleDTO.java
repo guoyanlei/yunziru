@@ -9,15 +9,19 @@ public class MovieSimpleDTO {
 
     private Long id;
     private String title;
-    private String poster;      //海报
+    private String poster;
+    private Integer priseCount;
+    private Long createTime;
 
     public MovieSimpleDTO() {
     }
 
-    public MovieSimpleDTO(Long id, String title, String poster) {
+    public MovieSimpleDTO(Long id, String title, String poster,Integer priseCount, Long createTime) {
         this.id = id;
         this.title = title;
         this.poster = poster;
+        this.priseCount = priseCount;
+        this.createTime = createTime;
     }
 
     public Long getId() {
@@ -44,12 +48,30 @@ public class MovieSimpleDTO {
         this.poster = poster;
     }
 
+    public Integer getPriseCount() {
+        return priseCount;
+    }
+
+    public void setPriseCount(Integer priseCount) {
+        this.priseCount = priseCount;
+    }
+
+    public Long getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Long createTime) {
+        this.createTime = createTime;
+    }
+
     @Override
     public String toString() {
         return "MovieSimpleDTO{" +
                 "id=" + id +
                 ", title='" + title + '\'' +
                 ", poster='" + poster + '\'' +
+                ", priseCount=" + priseCount +
+                ", createTime=" + createTime +
                 '}';
     }
 }

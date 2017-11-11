@@ -1,25 +1,9 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <%@ include file="header.jsp"%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ include file="banner.jsp"%>
 
-<div class="get">
-    <div class="am-g">
-        <div class="am-u-lg-12">
-            <div class="get-title">
-                <div class="get_font_left"><img src="${pageContext.request.contextPath}/static/img/font_yjy.png" alt=""></div>
-                <div class="get_font_center" id="banner_num"></div>
-                <div class="get_font_rigth"><img src="${pageContext.request.contextPath}/static/img/font_zty.png" alt=""></div>
-            </div>
-
-            <div class="font_line"><img src="${pageContext.request.contextPath}/static/img/font_line.png" alt=""></div>
-            <p>
-                <a href="https://itunes.apple.com/us/app/chong-wu-xiu/id976605844?l=zh&ls=1&mt=8" title="宠物App store版" class="am-btn am-btn-sm get-btn  am-radius banner_ios am-icon-refresh " rel="nofollow"> Refresh</a> <a
-                    href="http://android.myapp.com/myapp/detail.htm?apkName=com.staffy.pet" title="宠物秀安卓版" class="am-btn am-btn-sm  am-radius get-btn banner_android am-icon-cloud-upload" rel="nofollow"> Upload</a>
-            </p>
-        </div>
-    </div>
-</div>
 <div class="banner_navbg">
     <div class="am-g">
         <div class="banner_nav"><span class="am-icon-caret-right">  筛选：</span>
@@ -34,14 +18,38 @@
     <ul data-am-widget="gallery" class="am-gallery am-avg-sm-2
   am-avg-md-3 am-avg-lg-6 am-gallery-imgbordered am_index_addimglist" data-am-gallery="{  }" >
 
+        <c:forEach var="movie" items="${movies}">
+            <li>
+                <div class="am-gallery-item">
+                    <a href="movies/${movie.id}/detail" class="">
+                        <img class="am_img animated" alt="${movie.title}"
+                             src="${pageContext.request.contextPath}/static/img/loading.gif"
+                             data-original="${movie.poster}"/>
+                        <div class="am_listimg_info">
+                            <span class="am-icon-heart">${movie.priseCount}</span>
+                            <span class="am-icon-tag">
+                                <script>
+                                    var d = new Date(${movie.createTime});
+                                    var date = (d.getFullYear()) + "-" +
+                                            (d.getMonth() + 1) + "-" +
+                                            (d.getDate());
+                                    document.write(date);
+                                </script>
+                            </span>
+                        </div>
+                        <div class="am-gallery-desc" style="padding-top: 5px;">${movie.title}</div>
+                    </a>
+                </div>
+            </li>
+        </c:forEach>
     </ul>
     <div class="am_news_load am_news_load_index">
-            <span><i class="am-icon-spinner am-icon-spin"></i>加载更多云资源
+            <span><i class="am-icon-spinner am-icon-spin"></i>加载更多推荐资源
             </span>
     </div>
 </div>
 <script>
-    var page     = 0;
+    var page     = 2;
     var pageSize = 20;
     var datalist = 'indexrecommendlist';
 
@@ -59,7 +67,7 @@
 
         var indexListImgHtml = '';
         $('.am_news_load_index').unbind('click');
-        $.get('movies/list?page='+ page + '&size=' + pageSize,function(data){
+        $.get('recommend/movies/list?page='+ page + '&size=' + pageSize,function(data){
 
             $('.am-icon-spinner').hide();
             // 数据异常
@@ -68,21 +76,21 @@
                 console.log(data.msg);
                 return false;
             }
-            for( var i = 0 ; i < data.data.content.length ; i++ ){
+            for( var i = 0 ; i < data.data.length ; i++ ){
                 indexListImgHtml += "<li>\n" +
-                        "                <div class=\"am-gallery-item\">\n" +
-                        "                    <a href=\"movies/"+ data.data.content[i].id + "/detail\" class=\"\">\n" +
-                        "                        <img class=\"am_img animated\" alt=\"\"\n" +
-                        "                             src=\"${pageContext.request.contextPath}/static/img/loading.gif\"\n" +
-                        "                             data-original=\"" + data.data.content[i].poster + "\" />\n" +
-                        "                        <div class=\"am_listimg_info\">\n" +
-                        "                            <span class=\"am-icon-heart\">27</span>\n" +
-                        "                            <span class=\"am-icon-tag\">2天前</span>\n" +
-                        "                        </div>\n" +
-                        "                        <div class=\"am-gallery-desc\" style=\"padding-top: 5px;\">" + data.data.content[i].title + "</div>\n" +
-                        "                    </a>\n" +
-                        "                </div>\n" +
-                        "            </li>";
+                "                <div class=\"am-gallery-item\">\n" +
+                "                    <a href=\"movies/"+ data.data[i].id + "/detail\" class=\"\">\n" +
+                "                        <img class=\"am_img animated\" alt=\"\"\n" +
+                "                             src=\"${pageContext.request.contextPath}/static/img/loading.gif\"\n" +
+                "                             data-original=\"" + data.data[i].poster + "\"/>\n" +
+                "                        <div class=\"am_listimg_info\">\n" +
+                "                            <span class=\"am-icon-heart\">" + data.data[i].priseCount + "</span>\n" +
+                "                            <span class=\"am-icon-tag\">" + getDateDiff(data.data[i].createTime) + "</span>\n" +
+                "                        </div>\n" +
+                "                        <div class=\"am-gallery-desc\" style=\"padding-top: 5px;\">" + data.data[i].title + "</div>\n" +
+                "                    </a>\n" +
+                "                </div>\n" +
+                "            </li>";
             }
             $('.am_index_addimglist').append(indexListImgHtml);
             // 懒加载

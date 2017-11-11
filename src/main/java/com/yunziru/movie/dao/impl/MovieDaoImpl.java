@@ -1,12 +1,10 @@
-package com.yunziru.movie.dao;
+package com.yunziru.movie.dao.impl;
 
 import com.yunziru.movie.dto.MovieSimpleDTO;
-import com.yunziru.movie.entity.Movie;
 import org.hibernate.SQLQuery;
 import org.hibernate.transform.Transformers;
 import org.hibernate.type.StandardBasicTypes;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.PageRequest;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
@@ -30,7 +28,25 @@ public class MovieDaoImpl {
      */
     public List<MovieSimpleDTO> getMovielist(int offset, int limit) {
 
-        String hql = "select new com.yunziru.movie.dto.MovieSimpleDTO(id,title,poster,priseCount,createTime) from Movie order by id desc";
+        String hql = "select new com.yunziru.movie.dto.MovieSimpleDTO(id,title,name,poster,priseCount,createTime) from Movie order by id desc";
+
+        return this.getListByHql(hql, offset, limit);
+    }
+
+    /**
+     * 获取r热门电影概览信息
+     * @param offset 偏移
+     * @param limit 取的个数
+     */
+    public List<MovieSimpleDTO> getHotMovielist(int offset, int limit) {
+
+        String hql = "select new com.yunziru.movie.dto.MovieSimpleDTO(id,title,name,poster,priseCount,createTime) from Movie order by hotCount desc";
+
+        return this.getListByHql(hql, offset, limit);
+
+    }
+
+    public List<MovieSimpleDTO> getListByHql(String hql, int offset, int limit) {
 
         TypedQuery<MovieSimpleDTO> query = em.createQuery(hql, MovieSimpleDTO.class);
         query.setFirstResult(offset);

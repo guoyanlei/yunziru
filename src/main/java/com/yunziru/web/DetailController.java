@@ -20,6 +20,7 @@ public class DetailController {
 	public String getDetail(@PathVariable Long id,
 							ModelMap modelMap){
 
+		modelMap.put("hotMovies", movieService.getRandomHotMovie());
 		modelMap.put("movie", movieService.getMovieDetailInfo(id));
 		return "detail";
 	}

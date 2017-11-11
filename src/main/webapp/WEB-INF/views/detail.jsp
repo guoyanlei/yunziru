@@ -77,46 +77,31 @@
             </ul>
             <div class="page_hot">
                 <div class="page_hot_title">人气资源</div>
-                <div class="page_hot_list"><div class="page_hot_block">
-                    <dl>
-                        <dt>
-                            <a href="/21712.html">
-                            <img src="https://img.alicdn.com/imgextra/i1/2539261409/TB2s0WIbvY85uJjSZFzXXc93VXa_!!2539261409.png" alt=""></a></dt>
-                        <dd>
-                            <i>极寒之城.美版</i>
-                            <em>2天前</em>
-                            <div class="hot_block_info">
-                                <div class="hot_info_l am-icon-heart">16</div>
-                            </div>
-                        </dd>
-                    </dl>
-                </div>
-                    <div class="page_hot_block">
+                <div class="page_hot_list">
+                    <c:forEach var="hotMovie" items="${hotMovies}">
+                        <div class="page_hot_block">
                         <dl>
-                            <dt><a href="/19866.html">
-                                <img src="${pageContext.request.contextPath}/static/img/075357imgjyylc0yxmgmpc.jpg" alt=""></a></dt>
+                            <dt>
+                                <a href="movies/${hotMovie.id}/detail">
+                                <img src="${hotMovie.poster}" alt=""></a></dt>
                             <dd>
-                                <i>昨日重现</i>
-                                <em>2天前</em>
+                                <i>${hotMovie.name}</i>
+                                <em>
+                                    <script>
+                                        var d = new Date(${movie.createTime});
+                                        var date = (d.getFullYear()) + "-" +
+                                                (d.getMonth() + 1) + "-" +
+                                                (d.getDate());
+                                        document.write(date);
+                                    </script>
+                                </em>
                                 <div class="hot_block_info">
-                                    <div class="hot_info_l am-icon-heart">14</div>
+                                    <div class="hot_info_l am-icon-heart">${hotMovie.priseCount}</div>
                                 </div>
                             </dd>
                         </dl>
-                    </div>
-                    <div class="page_hot_block">
-                        <dl>
-                            <dt><a href="/23083.html">
-                                <img src="${pageContext.request.contextPath}/static/img/145212w5rkka5xc1m2dsj0.jpg" alt=""></a></dt>
-                            <dd>
-                                <i>赛车总动员3:极速挑战</i>
-                                <em>12天前</em>
-                                <div class="hot_block_info">
-                                    <div class="hot_info_l am-icon-heart">13</div>
-                                </div>
-                            </dd>
-                        </dl>
-                    </div>
+                        </div>
+                    </c:forEach>
                 </div>
             </div>
         </div>

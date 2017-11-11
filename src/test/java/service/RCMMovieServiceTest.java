@@ -1,6 +1,6 @@
 package service;
 
-import com.yunziru.movie.service.MovieService;
+import com.yunziru.movie.service.RecommendMovieService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,19 +15,14 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations={"classpath:applicationContext.xml"})
-public class MovieServiceTest {
+public class RCMMovieServiceTest {
 
     @Autowired
-    private MovieService movieService;
+    private RecommendMovieService recommendMovieService;
 
     @Test
     public void baseTest() {
-        System.out.println(movieService.find(1L));
-    }
-
-    @Test
-    public void getListTest() {
-        System.out.println(movieService.getMovieList(2, 10));
+        System.out.println(recommendMovieService.getRCMMovielist(0,10));
     }
 
 }

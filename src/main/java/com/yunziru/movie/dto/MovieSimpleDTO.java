@@ -9,6 +9,7 @@ public class MovieSimpleDTO {
 
     private Long id;
     private String title;
+    private String name;
     private String poster;
     private Integer priseCount;
     private Long createTime;
@@ -16,9 +17,10 @@ public class MovieSimpleDTO {
     public MovieSimpleDTO() {
     }
 
-    public MovieSimpleDTO(Long id, String title, String poster,Integer priseCount, Long createTime) {
+    public MovieSimpleDTO(Long id, String title, String name, String poster,Integer priseCount, Long createTime) {
         this.id = id;
         this.title = title;
+        this.name = name;
         this.poster = poster;
         this.priseCount = priseCount;
         this.createTime = createTime;
@@ -30,6 +32,14 @@ public class MovieSimpleDTO {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getTitle() {
@@ -64,11 +74,16 @@ public class MovieSimpleDTO {
         this.createTime = createTime;
     }
 
+    public static MovieSimpleDTO of(Long id, String title, String name, String poster,Integer priseCount, Long createTime) {
+        return new MovieSimpleDTO(id, title, name, poster, priseCount, createTime);
+    }
+
     @Override
     public String toString() {
         return "MovieSimpleDTO{" +
                 "id=" + id +
                 ", title='" + title + '\'' +
+                ", name='" + name + '\'' +
                 ", poster='" + poster + '\'' +
                 ", priseCount=" + priseCount +
                 ", createTime=" + createTime +

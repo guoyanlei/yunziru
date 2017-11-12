@@ -28,6 +28,7 @@ import java.util.Random;
 public class MovieService extends CommonService<Movie, Long> {
 
     private final static int RANDOM_COUNT = 5;
+    private final static int ULIKE_COUNT = 4;
 
     @Autowired
     private MovieDao movieDao;
@@ -85,7 +86,7 @@ public class MovieService extends CommonService<Movie, Long> {
         detailDTO.setHotCount(movie.getHotCount());
         detailDTO.setLocation(movie.getLocation());
         detailDTO.setType(movie.getType());
-        detailDTO.setSummary(movie.getSummary().replaceAll("\n\n", "<br/>"));
+        detailDTO.setSummary(StringUtils.isNoneEmpty(movie.getSummary()) ? movie.getSummary().replaceAll("\n\n", "<br/>") : "");
         List<String> images = JSON.parseArray(movie.getScreenshot(), String.class);
         detailDTO.setImages(images);
 
@@ -109,6 +110,24 @@ public class MovieService extends CommonService<Movie, Long> {
         List<MovieSimpleDTO> result = Lists.newArrayList();
         Random rand = new Random();
         int size = movieSimpleDTOs.size() < RANDOM_COUNT ? movieSimpleDTOs.size() : RANDOM_COUNT;
+
+        for (int i = 0; i< size; i++) {
+            int randomNum=rand.nextInt(movieSimpleDTOs.size());
+            result.add(movieSimpleDTOs.get(randomNum));
+            movieSimpleDTOs.remove(randomNum);
+        }
+        return result;
+    }
+
+    /**
+     * 随机获取N个猜你喜欢电影
+     */
+    public List<MovieSimpleDTO> getULikeMovie() {
+        List<MovieSimpleDTO> movieSimpleDTOs = movieDaoImpl.getULikeMovielist(0, 100);
+
+        List<MovieSimpleDTO> result = Lists.newArrayList();
+        Random rand = new Random();
+        int size = movieSimpleDTOs.size() < ULIKE_COUNT ? movieSimpleDTOs.size() : ULIKE_COUNT;
 
         for (int i = 0; i< size; i++) {
             int randomNum=rand.nextInt(movieSimpleDTOs.size());

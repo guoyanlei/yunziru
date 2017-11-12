@@ -34,13 +34,26 @@ public class MovieDaoImpl {
     }
 
     /**
-     * 获取r热门电影概览信息
+     * 获取N热门电影概览信息
      * @param offset 偏移
      * @param limit 取的个数
      */
     public List<MovieSimpleDTO> getHotMovielist(int offset, int limit) {
 
         String hql = "select new com.yunziru.movie.dto.MovieSimpleDTO(id,title,name,poster,priseCount,createTime) from Movie order by hotCount desc";
+
+        return this.getListByHql(hql, offset, limit);
+
+    }
+
+    /**
+     * 获取N猜你喜欢热门电影概览信息
+     * @param offset 偏移
+     * @param limit 取的个数
+     */
+    public List<MovieSimpleDTO> getULikeMovielist(int offset, int limit) {
+
+        String hql = "select new com.yunziru.movie.dto.MovieSimpleDTO(id,title,name,poster,priseCount,createTime) from Movie order by createTime desc";
 
         return this.getListByHql(hql, offset, limit);
 

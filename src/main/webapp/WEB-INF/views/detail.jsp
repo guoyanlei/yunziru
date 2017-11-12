@@ -82,10 +82,13 @@
                         <div class="page_hot_block">
                         <dl>
                             <dt>
-                                <a href="movies/${hotMovie.id}/detail">
+                                <a href="${pageContext.request.contextPath}/movies/${hotMovie.id}/detail">
                                 <img src="${hotMovie.poster}" alt=""></a></dt>
                             <dd>
-                                <i>${hotMovie.name}</i>
+                                <i>
+                                    <a href="${pageContext.request.contextPath}/movies/${hotMovie.id}/detail">
+                                    ${hotMovie.name}</a>
+                                </i>
                                 <em>
                                     <script>
                                         var d = new Date(${movie.createTime});
@@ -112,56 +115,30 @@
     <div class="am-g am-imglist">
         <ul data-am-widget="gallery" class="am-gallery am-avg-sm-2
   am-avg-md-3 am-avg-lg-4 am-gallery-imgbordered" data-am-gallery="{  }" >
-            <li>
-                <div class="am-gallery-item">
-                    <a href="detail" class="">
-                        <img class="am_img animated" alt="米斯特苏  的宠物猫宠物狗"
-                             src="${pageContext.request.contextPath}/static/img/loading.gif"
-                             data-original="${pageContext.request.contextPath}/static/img/083816a1eanxbt11nlx4a8.jpg" />
-                        <div class="am_listimg_info">
-                            <span class="am-icon-heart">27</span>
-                            <span class="am-icon-tag">2天前</span>
-                        </div>
-                        <div class="am-gallery-desc" style="padding-top: 5px;">《布希维克/全境警戒》720p. BD高清中英双字 百度云网盘下载</div>
-                    </a>
-                </div>
-            </li>
-            <li>
-                <div class="am-gallery-item">
-                    <a href="http://s.amazeui.org/media/i/demos/bing-2.jpg" class="">
-                        <img src="https://img.alicdn.com/imgextra/i1/2539261409/TB2s0WIbvY85uJjSZFzXXc93VXa_!!2539261409.png"  alt="某天 也许会相遇 相遇在这个好地方"/>
-                        <div class="am_listimg_info">
-                            <span class="am-icon-heart">27</span>
-                            <span class="am-icon-tag">2天前</span>
-                        </div>
-                        <div class="am-gallery-desc">《极寒之城.美版》720p.HD高清中英双字 百度云网盘下载</div>
-                    </a>
-                </div>
-            </li>
-            <li>
-                <div class="am-gallery-item">
-                    <a href="http://s.amazeui.org/media/i/demos/bing-3.jpg" class="">
-                        <img src="${pageContext.request.contextPath}/static/img/075357imgjyylc0yxmgmpc.jpg"  alt="不要太担心 只因为我相信"/>
-                        <div class="am_listimg_info">
-                            <span class="am-icon-heart">27</span>
-                            <span class="am-icon-tag">2天前</span>
-                        </div>
-                        <div class="am-gallery-desc">《昨日重现》720p.HD高清中字 百度云网盘下载</div>
-                    </a>
-                </div>
-            </li>
-            <li>
-                <div class="am-gallery-item">
-                    <a href="http://s.amazeui.org/media/i/demos/bing-4.jpg" class="">
-                        <img src="${pageContext.request.contextPath}/static/img/145212w5rkka5xc1m2dsj0.jpg"  alt="终会走过这条遥远的道路"/>
-                        <div class="am_listimg_info">
-                            <span class="am-icon-heart">27</span>
-                            <span class="am-icon-tag">2天前</span>
-                        </div>
-                        <div class="am-gallery-desc">《赛车总动员3：极速挑战》1080p.国英双语.HD高清中字 百度云网盘下载</div>
-                    </a>
-                </div>
-            </li>
+            <c:forEach var="movie" items="${ulikeMovies}">
+                <li>
+                    <div class="am-gallery-item">
+                        <a href="${pageContext.request.contextPath}/movies/${movie.id}/detail" class="">
+                            <img class="am_img animated" alt="${movie.title}"
+                                 src="${pageContext.request.contextPath}/static/img/loading.gif"
+                                 data-original="${movie.poster}"/>
+                            <div class="am_listimg_info">
+                                <span class="am-icon-heart">${movie.priseCount}</span>
+                            <span class="am-icon-tag">
+                                <script>
+                                    var d = new Date(${movie.createTime});
+                                    var date = (d.getFullYear()) + "-" +
+                                            (d.getMonth() + 1) + "-" +
+                                            (d.getDate());
+                                    document.write(date);
+                                </script>
+                            </span>
+                            </div>
+                            <div class="am-gallery-desc" style="padding-top: 5px;">${movie.title}</div>
+                        </a>
+                    </div>
+                </li>
+            </c:forEach>
         </ul>
     </div>
 

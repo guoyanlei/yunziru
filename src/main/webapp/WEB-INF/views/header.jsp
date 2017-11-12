@@ -65,7 +65,7 @@
                 </li>
                 <li class="am-dropdown" data-am-dropdown="">
                     <a class="am-dropdown-toggle" data-am-dropdown-toggle="" href="javascript:;" target="_self">
-                        影视资源
+                        电影资源
                         <span class="am-icon-caret-down">
                         </span>
                     </a>

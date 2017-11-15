@@ -11,12 +11,12 @@
     <div class="article_nr_content">
         <p class=paragraph-default-p>什么都别说，先来看看这双泛红的眼睛… </p>
         <p>这双眼睛来自[行尸走肉]的男主角瑞克，美剧迷和丧尸粉再熟悉不过的男人。</p>
-        <p><img src="${pageContext.request.contextPath}/static/img/640.jpg"></p>
+        <p><img src="${pageContext.request.contextPath}/static/front/img/640.jpg"></p>
         <p>他曾被妻子欺骗、朋友背叛、敌手凌辱，因此每当他伤心欲绝时那双无助眼睛总令人心酸。在[行尸走肉]第七季首播中，面对格伦和魂斗罗的死瑞克曾露出过这样无助的表情…</p>
-        <p><img src="${pageContext.request.contextPath}/static/img/641.jpg"></p>
+        <p><img src="${pageContext.request.contextPath}/static/front/img/641.jpg"></p>
         <p>这双戳心的泪眼，如今又出现在第八季的首播！</p>
         <p>探长我不想说，但 —— </p>
-        <p><img src="${pageContext.request.contextPath}/static/img/642.jpg"></p>
+        <p><img src="${pageContext.request.contextPath}/static/front/img/642.jpg"></p>
         <p>而[行尸走肉]迎来百集时，已经没人关注丧尸了…</p>
         <p>因为最大的威胁早已不是丧尸，而是求生的人们在极端环境下你死我活的生存争斗。</p>
     </div>

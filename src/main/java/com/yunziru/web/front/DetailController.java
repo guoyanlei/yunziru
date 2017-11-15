@@ -1,4 +1,4 @@
-package com.yunziru.web;
+package com.yunziru.web.front;
 
 import com.yunziru.movie.service.MovieService;
 import org.springframework.stereotype.Controller;
@@ -23,7 +23,7 @@ public class DetailController {
 		modelMap.put("ulikeMovies", movieService.getULikeMovie());
 		modelMap.put("hotMovies", movieService.getRandomHotMovie());
 		modelMap.put("movie", movieService.getMovieDetailInfo(id));
-		return "detail";
+		return "front/detail";
 	}
 
 }

@@ -16,16 +16,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <link rel="shortcut icon" href="${pageContext.request.contextPath}/static/img/footdon.png">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/amazeui.min.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/yunziru.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/static/css/animate.min.css">
-    <script src="${pageContext.request.contextPath}/static/js/jquery.min.js"></script>
-    <script src="${pageContext.request.contextPath}/static/js/amazeui.min.js"></script>
-    <script src="${pageContext.request.contextPath}/static/js/yunziru.js"></script>
+    <link rel="shortcut icon" href="${pageContext.request.contextPath}/static/front/img/footdon.png">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/static/front/css/amazeui.min.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/static/front/css/yunziru.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/static/front/css/animate.min.css">
+    <script src="${pageContext.request.contextPath}/static/front/js/jquery.min.js"></script>
+    <script src="${pageContext.request.contextPath}/static/front/js/amazeui.min.js"></script>
+    <script src="${pageContext.request.contextPath}/static/front/js/yunziru.js"></script>
     <base target="_blank" />
-    <script src="${pageContext.request.contextPath}/static/js/countUp.min.js"></script>
-    <script src="${pageContext.request.contextPath}/static/js/amazeui.lazyload.min.js"></script>
+    <script src="${pageContext.request.contextPath}/static/front/js/countUp.min.js"></script>
+    <script src="${pageContext.request.contextPath}/static/front/js/amazeui.lazyload.min.js"></script>
     <script>
         var _hmt = _hmt || [];
         (function() {
@@ -41,7 +41,7 @@
     <div class="amz-container">
         <h1 class="am-topbar-brand">
             <a href="${pageContext.request.contextPath}" class="am-topbar-logo">
-                <img src="${pageContext.request.contextPath}/static/img/logo.png?1" alt="云自如">
+                <img src="${pageContext.request.contextPath}/static/front/img/logo.png?1" alt="云自如">
             </a>
         </h1>
         <button class="am-topbar-btn am-topbar-toggle am-btn am-btn-sm am-btn-success am-show-sm-only"

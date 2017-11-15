@@ -1,4 +1,4 @@
-package com.yunziru.web;
+package com.yunziru.web.front;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -8,7 +8,7 @@ public class FreshController {
 	
 	@RequestMapping("/fresh")
 	public String login(){
-		return "fresh";
+		return "front/fresh";
 	}
 
 }

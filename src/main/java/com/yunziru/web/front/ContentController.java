@@ -1,4 +1,4 @@
-package com.yunziru.web;
+package com.yunziru.web.front;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -8,7 +8,7 @@ public class ContentController {
 	
 	@RequestMapping("/content")
 	public String login(){
-		return "content";
+		return "front/content";
 	}
 
 }

@@ -1,4 +1,4 @@
-package com.yunziru.web;
+package com.yunziru.web.front;
 
 import com.yunziru.common.dto.AjaxResult;
 import com.yunziru.movie.MovieConfig;
@@ -26,7 +26,7 @@ public class IndexController {
 
 		modelMap.put("movies", movieService.getIndexMovieList(1, MovieConfig.INDEX_DEFAULT_SIZE));
 		modelMap.put("totalCount", movieService.getTotalCount());
-		return "index_new";
+		return "front/index_new";
 	}
 
 	@RequestMapping(value = "movies/list", method = RequestMethod.GET, headers = "Accept=application/json")

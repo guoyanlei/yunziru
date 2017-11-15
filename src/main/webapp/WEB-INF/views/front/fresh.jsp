@@ -26,7 +26,7 @@
                     <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left am_list_li">
                         <div class="am-u-sm-3 am-list-thumb am_list_thumb">
                             <a href="content" class="">
-                                <img src="${pageContext.request.contextPath}/static/img/f5157870c0aa018d.jpg" class="am_news_list_img"/>
+                                <img src="${pageContext.request.contextPath}/static/front/img/f5157870c0aa018d.jpg" class="am_news_list_img"/>
                             </a>
                         </div>
                         <div class=" am-u-sm-9 am-list-main am_list_main">
@@ -39,7 +39,7 @@
                     <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left am_list_li">
                         <div class="am-u-sm-3 am-list-thumb am_list_thumb">
                             <a href="###" class="">
-                                <img src="${pageContext.request.contextPath}/static/img/c5a0782329595fab.jpg" class="am_news_list_img"/>
+                                <img src="${pageContext.request.contextPath}/static/front/img/c5a0782329595fab.jpg" class="am_news_list_img"/>
                             </a>
                         </div>
                         <div class=" am-u-sm-9 am-list-main am_list_main">
@@ -59,7 +59,7 @@
                     <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left am_list_li">
                         <div class="am-u-sm-3 am-list-thumb am_list_thumb">
                             <a href="###" class="">
-                                <img src="${pageContext.request.contextPath}/static/img/d05e3e74fccb222b.jpg" class="am_news_list_img"/>
+                                <img src="${pageContext.request.contextPath}/static/front/img/d05e3e74fccb222b.jpg" class="am_news_list_img"/>
                             </a>
                         </div>
                         <div class=" am-u-sm-9 am-list-main am_list_main">
@@ -72,7 +72,7 @@
                     <li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-left am_list_li">
                         <div class="am-u-sm-3 am-list-thumb am_list_thumb">
                             <a href="###" class="">
-                                <img src="${pageContext.request.contextPath}/static/img/5b126267bf2a0b38.jpg" class="am_news_list_img"/>
+                                <img src="${pageContext.request.contextPath}/static/front/img/5b126267bf2a0b38.jpg" class="am_news_list_img"/>
                             </a>
                         </div>
                         <div class=" am-u-sm-9 am-list-main am_list_main">

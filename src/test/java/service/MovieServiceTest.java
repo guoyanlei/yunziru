@@ -27,7 +27,18 @@ public class MovieServiceTest {
 
     @Test
     public void getListTest() {
-        System.out.println(movieService.getMovieList(2, 10));
+        System.out.println(movieService.getHotMovieList(2, 10));
+    }
+
+
+    @Test
+    public void testUpdate() {
+        System.out.println(movieService.updatePriseCount(1L));
+    }
+
+    @Test
+    public void testUpdateHotCount() {
+        System.out.println(movieService.updateHotCount(1L));
     }
 
 }

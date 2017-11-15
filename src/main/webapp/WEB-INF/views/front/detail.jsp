@@ -61,7 +61,7 @@
                     </script></span></li>
             </ul>
             <ul class="am_ziyuan_share">
-                <button type="button" class="am-btn am-btn-success am-radius"><i class="am-icon-heart"></i>
+                <button type="button" onclick="prise()" class="am-btn am-btn-success am-radius"><i class="am-icon-heart"></i>
                     喜欢
                 </button> &nbsp;&nbsp;
                 <button type="button" class="am-btn am-btn-warning am-radius"><i class="am-icon-share-square-o"></i>
@@ -144,4 +144,25 @@
 
 
 </div>
+<script>
+
+    $.post('hot',function(data){
+        if(!data.success)
+        {
+            console.log(data.msg);
+            return false;
+        }
+    },'json');
+
+    function prise(){
+
+        $.post('prise',function(data){
+            if(!data.success)
+            {
+                console.log(data.msg);
+                return false;
+            }
+        },'json');
+    }
+</script>
 <%@ include file="footer.jsp"%>

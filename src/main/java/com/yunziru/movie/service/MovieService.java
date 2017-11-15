@@ -42,6 +42,20 @@ public class MovieService extends CommonService<Movie, Long> {
     }
 
     /**
+     * 对电影点赞
+     */
+    public boolean updatePriseCount(Long id) {
+        return movieDao.updatePriseCountById(id)> 0;
+    }
+
+    /**
+     * 浏览电影
+     */
+    public boolean updateHotCount(Long id) {
+        return movieDao.updateHotCountById(id)> 0;
+    }
+
+    /**
      * 获取资源总数
      */
     public Long getTotalCount() {

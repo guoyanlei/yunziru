@@ -5,6 +5,8 @@ import org.hibernate.SQLQuery;
 import org.hibernate.transform.Transformers;
 import org.hibernate.type.StandardBasicTypes;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.data.repository.query.Param;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
@@ -20,6 +22,7 @@ public class MovieDaoImpl {
 
     @Autowired
     private EntityManager em;
+
 
     /**
      * 获取电影概览信息

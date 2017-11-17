@@ -92,6 +92,7 @@ public class MovieService extends CommonService<Movie, Long> {
         MovieDetailDTO detailDTO = new MovieDetailDTO();
         detailDTO.setId(movie.getId());
         detailDTO.setTitle(movie.getTitle());
+        detailDTO.setPoster(movie.getPoster());
         detailDTO.setPriseCount(movie.getPriseCount());
         detailDTO.setCreateTime(movie.getCreateTime());
         if (movie.getYear() > 0) {

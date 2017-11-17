@@ -31,7 +31,7 @@ public class MovieDaoImpl {
      */
     public List<MovieSimpleDTO> getMovielist(int offset, int limit) {
 
-        String hql = "select new com.yunziru.movie.dto.MovieSimpleDTO(id,title,name,poster,priseCount,createTime) from Movie order by id desc";
+        String hql = "select new com.yunziru.movie.dto.MovieSimpleDTO(id,title,name,poster,priseCount,hotCount,createTime) from Movie order by id desc";
 
         return this.getListByHql(hql, offset, limit);
     }
@@ -43,7 +43,7 @@ public class MovieDaoImpl {
      */
     public List<MovieSimpleDTO> getHotMovielist(int offset, int limit) {
 
-        String hql = "select new com.yunziru.movie.dto.MovieSimpleDTO(id,title,name,poster,priseCount,createTime) from Movie order by hotCount desc";
+        String hql = "select new com.yunziru.movie.dto.MovieSimpleDTO(id,title,name,poster,priseCount,hotCount,createTime) from Movie order by hotCount desc";
 
         return this.getListByHql(hql, offset, limit);
 
@@ -56,7 +56,7 @@ public class MovieDaoImpl {
      */
     public List<MovieSimpleDTO> getULikeMovielist(int offset, int limit) {
 
-        String hql = "select new com.yunziru.movie.dto.MovieSimpleDTO(id,title,name,poster,priseCount,createTime) from Movie order by createTime desc";
+        String hql = "select new com.yunziru.movie.dto.MovieSimpleDTO(id,title,name,poster,priseCount,hotCount,createTime) from Movie order by createTime desc";
 
         return this.getListByHql(hql, offset, limit);
 

@@ -10,7 +10,6 @@ import java.util.Map;
  */
 public class MovieDetailDTO extends MovieSimpleDTO{
 
-    private Integer hotCount;
     private Integer year;
     private String location;
     private String type;
@@ -19,14 +18,6 @@ public class MovieDetailDTO extends MovieSimpleDTO{
     private String baiduLink;
     private String baiduPwd;
     private Map<String, String> ed2kLinks;
-
-    public Integer getHotCount() {
-        return hotCount;
-    }
-
-    public void setHotCount(Integer hotCount) {
-        this.hotCount = hotCount;
-    }
 
     public Integer getYear() {
         return year;

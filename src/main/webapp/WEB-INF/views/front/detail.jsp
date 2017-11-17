@@ -32,6 +32,8 @@
                 <div class="am-panel-bd" style="font-size: 14px;">
                     ${movie.summary}
                 </div>
+
+
             </section>
 
             <div class="am-panel am-panel-success">
@@ -44,6 +46,16 @@
                     <c:forEach var="entry" items="${ movie.ed2kLinks}">
                         <a href="${entry.key}">${entry.value}</a> <br/>
                     </c:forEach>
+                </div>
+
+                <div class="bdsharebuttonbox" style="float: right">
+                    <a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a>
+                    <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+                    <a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a>
+                    <a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"></a>
+                    <a href="#" class="bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+                    <a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+                    <a href="#" class="bds_more" data-cmd="more"></a>
                 </div>
             </div>
         </div>
@@ -61,12 +73,12 @@
                     </script></span></li>
             </ul>
             <ul class="am_ziyuan_share">
-                <button type="button" onclick="prise()" class="am-btn am-btn-success am-radius"><i class="am-icon-heart"></i>
-                    喜欢
-                </button> &nbsp;&nbsp;
-                <button type="button" class="am-btn am-btn-warning am-radius"><i class="am-icon-share-square-o"></i>
-                    &nbsp;分享
-                </button>
+                <div class="opera">
+                    <span id="btn" onclick="prise()">
+                        <i class="iconfont">&#xe602;</i> 感觉不错，赞一个
+                    </span>
+                </div>
+
             </ul>
             <ul class="am_ziyuan_tag">
                 <li><span class="am_ziyuan_tag_title">TAG</span></li>
@@ -100,6 +112,7 @@
                                 </em>
                                 <div class="hot_block_info">
                                     <div class="hot_info_l am-icon-heart">${hotMovie.priseCount}</div>
+                                    <div class="hot_info_l am-icon-eye">&nbsp;&nbsp;${hotMovie.hotCount}</div>
                                 </div>
                             </dd>
                         </dl>
@@ -120,7 +133,7 @@
                     <div class="am-gallery-item">
                         <a href="${pageContext.request.contextPath}/movies/${movie.id}/detail" class="">
                             <img class="am_img animated" alt="${movie.title}"
-                                 src="${pageContext.request.contextPath}/static/img/loading.gif"
+                                 src="${pageContext.request.contextPath}/static/front/img/loading.gif"
                                  data-original="${movie.poster}"/>
                             <div class="am_listimg_info">
                                 <span class="am-icon-heart">${movie.priseCount}</span>
@@ -146,6 +159,29 @@
 </div>
 <script>
 
+    window._bd_share_config = {
+        "common": {
+            "bdSnsKey": {},
+            "bdText": "自如分享分享自如，最自如的云资源分享",
+            "bdDesc": "${movie.title}",
+            "bdMini": "2",
+            "bdMiniList": false,
+            "bdPic": "${movie.poster}",
+            "bdStyle": "1",
+            "bdSize": "24"
+        },
+        "share": {},
+        "slide" : [{
+            "bdImg" : 0,
+            "bdPos" : "right",
+            "bdTop" : 100
+        }]
+    };
+    with(document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=' + ~ ( - new Date() / 36e5)];
+
+</script>
+<script>
+
     $.post('hot',function(data){
         if(!data.success)
         {
@@ -157,8 +193,7 @@
     function prise(){
 
         $.post('prise',function(data){
-            if(!data.success)
-            {
+            if(!data.success) {
                 console.log(data.msg);
                 return false;
             }

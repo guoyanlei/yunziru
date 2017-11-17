@@ -19,7 +19,10 @@
     <link rel="shortcut icon" href="${pageContext.request.contextPath}/static/front/img/footdon.png">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/front/css/amazeui.min.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/front/css/yunziru.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/static/front/css/self.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/front/css/animate.min.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/static/front/css/animate.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/static/front/css/iconfont/iconfont.css">
     <script src="${pageContext.request.contextPath}/static/front/js/jquery.min.js"></script>
     <script src="${pageContext.request.contextPath}/static/front/js/amazeui.min.js"></script>
     <script src="${pageContext.request.contextPath}/static/front/js/yunziru.js"></script>

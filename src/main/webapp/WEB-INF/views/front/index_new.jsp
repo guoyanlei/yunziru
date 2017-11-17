@@ -29,10 +29,7 @@
                             <span class="am-icon-tag">
                                 <script>
                                     var d = new Date(${movie.createTime});
-                                    var date = (d.getFullYear()) + "-" +
-                                            (d.getMonth() + 1) + "-" +
-                                            (d.getDate());
-                                    document.write(date);
+                                    document.write((d.getFullYear()) + "-" + (d.getMonth() + 1) + "-" + (d.getDate()));
                                 </script>
                             </span>
                         </div>
@@ -84,7 +81,7 @@
                 "                             data-original=\"" + data.data[i].poster + "\"/>\n" +
                 "                        <div class=\"am_listimg_info\">\n" +
                 "                            <span class=\"am-icon-heart\">" + data.data[i].priseCount + "</span>\n" +
-                "                            <span class=\"am-icon-tag\">" + getDateDiff(data.data[i].createTime) + "</span>\n" +
+                "                            <span class=\"am-icon-tag\">" + getDate(data.data[i].createTime) + "</span>\n" +
                 "                        </div>\n" +
                 "                        <div class=\"am-gallery-desc\" style=\"padding-top: 5px;\">" + data.data[i].title + "</div>\n" +
                 "                    </a>\n" +
@@ -105,6 +102,13 @@
             page++;
         },'json');
     }
+
+    function getDate(timeStamp) {
+        var d = new Date(timeStamp);
+        return d.getFullYear() + "-" + (d.getMonth() + 1) + "-" + (d.getDate());
+    }
+
+</script>
 
 </script>
 <%@ include file="footer.jsp"%>

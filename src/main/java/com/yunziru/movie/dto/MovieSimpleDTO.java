@@ -12,17 +12,19 @@ public class MovieSimpleDTO {
     private String name;
     private String poster;
     private Integer priseCount;
+    private Integer hotCount;
     private Long createTime;
 
     public MovieSimpleDTO() {
     }
 
-    public MovieSimpleDTO(Long id, String title, String name, String poster,Integer priseCount, Long createTime) {
+    public MovieSimpleDTO(Long id, String title, String name, String poster,Integer priseCount, Integer hotCount, Long createTime) {
         this.id = id;
         this.title = title;
         this.name = name;
         this.poster = poster;
         this.priseCount = priseCount;
+        this.hotCount = hotCount;
         this.createTime = createTime;
     }
 
@@ -66,6 +68,14 @@ public class MovieSimpleDTO {
         this.priseCount = priseCount;
     }
 
+    public Integer getHotCount() {
+        return hotCount;
+    }
+
+    public void setHotCount(Integer hotCount) {
+        this.hotCount = hotCount;
+    }
+
     public Long getCreateTime() {
         return createTime;
     }
@@ -74,8 +84,8 @@ public class MovieSimpleDTO {
         this.createTime = createTime;
     }
 
-    public static MovieSimpleDTO of(Long id, String title, String name, String poster,Integer priseCount, Long createTime) {
-        return new MovieSimpleDTO(id, title, name, poster, priseCount, createTime);
+    public static MovieSimpleDTO of(Long id, String title, String name, String poster,Integer priseCount, Integer hotCount, Long createTime) {
+        return new MovieSimpleDTO(id, title, name, poster, priseCount, hotCount, createTime);
     }
 
     @Override
@@ -86,6 +96,7 @@ public class MovieSimpleDTO {
                 ", name='" + name + '\'' +
                 ", poster='" + poster + '\'' +
                 ", priseCount=" + priseCount +
+                ", hotCount=" + hotCount +
                 ", createTime=" + createTime +
                 '}';
     }

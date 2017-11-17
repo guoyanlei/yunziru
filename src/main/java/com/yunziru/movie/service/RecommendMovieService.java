@@ -53,6 +53,7 @@ public class RecommendMovieService extends CommonService<RecommendMovie, Long> {
                     ,movie.getName()
                     ,movie.getPoster()
                     ,movie.getPriseCount()
+                    ,movie.getHotCount()
                     ,movie.getCreateTime()
                     );
         }).collect(Collectors.toList());

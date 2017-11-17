@@ -23,7 +23,7 @@
                 <div class="am-gallery-item">
                     <a href="movies/${movie.id}/detail" class="">
                         <img class="am_img animated" alt="${movie.title}"
-                             src="${pageContext.request.contextPath}/static/img/loading.gif"
+                             src="${pageContext.request.contextPath}/static/front/img/loading.gif"
                              data-original="${movie.poster}"/>
                         <div class="am_listimg_info">
                             <span class="am-icon-heart">${movie.priseCount}</span>
@@ -81,7 +81,7 @@
                 "                <div class=\"am-gallery-item\">\n" +
                 "                    <a href=\"movies/"+ data.data[i].id + "/detail\" class=\"\">\n" +
                 "                        <img class=\"am_img animated\" alt=\"\"\n" +
-                "                             src=\"${pageContext.request.contextPath}/static/img/loading.gif\"\n" +
+                "                             src=\"${pageContext.request.contextPath}/static/front/img/loading.gif\"\n" +
                 "                             data-original=\"" + data.data[i].poster + "\"/>\n" +
                 "                        <div class=\"am_listimg_info\">\n" +
                 "                            <span class=\"am-icon-heart\">" + data.data[i].priseCount + "</span>\n" +

@@ -42,7 +42,7 @@ public class LoginController {
 
             subject.login(token);
 
-            return "redirect:/backend/users";
+            return "redirect:/backend/movies";
 
         } catch (LockedAccountException lae) {
             modelMap.addAttribute("msg", "账号已被禁用");

@@ -17,31 +17,13 @@
                 <div class="am-u-sm-12 am-u-md-12 am-u-lg-12">
                     <div class="widget am-cf">
                         <div class="widget-head am-cf">
-                            <div class="widget-title  am-cf">电影列表</div>
+                            <div class="widget-title  am-cf">推荐电影</div>
                         </div>
 
                         <div class="widget-body  am-fr tpl-form-border-form tpl-form-border-br">
-                            <div class="am-u-sm-12 am-u-md-6 am-u-lg-6">
-                                <div class="am-form-group">
-                                    <div class="am-btn-toolbar">
-                                        <div class="am-btn-group am-btn-group-xs">
-                                            <button type="button" class="am-btn am-btn-default am-btn-success"><span class="am-icon-plus"></span> 新增</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
                            <div class="am-u-sm-12 am-u-md-6 am-u-lg-3">
                                 <div class="am-form-group tpl-table-list-select">
-                                    <input type="text" class="am-form-field tpl-form-no-bg" onchange="search(1)"  id="time" name="time" value="${time}" placeholder="发布时间" data-am-datepicker="" readonly="">
-                                </div>
-                            </div>
-
-                            <div class="am-u-sm-12 am-u-md-12 am-u-lg-3">
-                                <div class="am-input-group am-input-group-sm tpl-form-border-form cl-p">
-                                    <input type="text" class="am-form-field " id="keyword" name="keyword" value="${keyword}">
-                                    <span class="am-input-group-btn">
-                                    <button onclick="search(1)" class="am-btn am-btn-default am-btn-success tpl-table-list-field am-icon-search" type="button"></button>
-                                    </span>
+                                    <input type="text" class="am-form-field tpl-form-no-bg" onchange="search(1)" id="time" name="time" value="${time}" placeholder="推荐时间" data-am-datepicker="" readonly="">
                                 </div>
                             </div>
 
@@ -142,11 +124,10 @@
 <script type="text/javascript">
     function search(page){
 
-        var url = "${pageContext.request.contextPath}/backend/movies";
+        var url = "${pageContext.request.contextPath}/backend/movies/recommend";
         var time = $('#time').val();
-        var keyword = $('#keyword').val();
 
-        window.location.href = url + "?page=" + page + "&keyword=" + encodeURI(keyword) + "&time=" + time;
+        window.location.href = url + "?page=" + page + "&time=" + time;
     }
 </script>
 <script src="${pageContext.request.contextPath}/static/backend/js/amazeui.min.js"></script>

@@ -13,8 +13,14 @@ import com.yunziru.movie.dto.MovieSimpleDTO;
 import com.yunziru.movie.entity.Movie;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
@@ -150,5 +156,53 @@ public class MovieService extends CommonService<Movie, Long> {
             movieSimpleDTOs.remove(randomNum);
         }
         return result;
+    }
+
+    /**
+     * 分页获取，支持搜索
+     */
+    public Page<Movie> findAllByPage(int page, int size, String time, String keyword) {
+
+
+        List<Sort.Order> orders = Lists.newArrayList();
+        orders.add(new Sort.Order(Sort.Direction.DESC,"id"));
+        Sort sort = new Sort(orders);
+        PageRequest pageRequest = new PageRequest(page-1, size, sort);
+
+        return findAll((root, criteriaQuery, criteriaBuilder) -> {
+            //按关键字搜索
+            if (StringUtils.isNoneEmpty(keyword) && StringUtils.isEmpty(time)) {
+                criteriaQuery.where(
+                        criteriaBuilder.and(
+                                criteriaBuilder.like(root.get("title").as(String.class),"%" + keyword + "%")
+                        ));
+            }
+            //按关键字和时间搜索
+            if (StringUtils.isNoneEmpty(keyword) && StringUtils.isNoneEmpty(time)) {
+                LocalDateTime dateTime = LocalDateTime.parse(time + " 00:00:00", DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+                LocalDateTime dateTimePlus = dateTime.plusDays(1L);
+                long timeStamp = dateTime.atZone(ZoneId.systemDefault()).toInstant().toEpochMilli();
+                long timeStampPlusDay = dateTimePlus.atZone(ZoneId.systemDefault()).toInstant().toEpochMilli();
+                criteriaQuery.where(
+                        criteriaBuilder.and(
+                                criteriaBuilder.like(root.get("title").as(String.class),"%" + keyword + "%"),
+                                criteriaBuilder.le(root.get("createTime").as(Long.class), timeStampPlusDay),
+                                criteriaBuilder.ge(root.get("createTime").as(Long.class), timeStamp)
+                        ));
+            }
+            //按时间搜索
+            if (StringUtils.isEmpty(keyword) && StringUtils.isNoneEmpty(time)) {
+                LocalDateTime dateTime = LocalDateTime.parse(time + " 00:00:00", DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+                LocalDateTime dateTimePlus = dateTime.plusDays(1L);
+                long timeStamp = dateTime.atZone(ZoneId.systemDefault()).toInstant().toEpochMilli();
+                long timeStampPlusDay = dateTimePlus.atZone(ZoneId.systemDefault()).toInstant().toEpochMilli();
+                criteriaQuery.where(
+                        criteriaBuilder.and(
+                                criteriaBuilder.le(root.get("createTime").as(Long.class), timeStampPlusDay),
+                                criteriaBuilder.ge(root.get("createTime").as(Long.class), timeStamp)
+                        ));
+            }
+            return null;
+        }, pageRequest);
     }
 }

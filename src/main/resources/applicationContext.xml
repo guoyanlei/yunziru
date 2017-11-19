@@ -23,13 +23,13 @@
     <context:component-scan base-package="com.yunziru"/>
 
     <!-- service包 -->
-    <context:component-scan base-package="com.yunziru.movie.service" />
+    <context:component-scan base-package="com.yunziru" />
     <!-- 使用cglib进行动态代理 -->
     <aop:aspectj-autoproxy proxy-target-class="true" />
     <!-- 支持注解方式声明式事务 -->
     <tx:annotation-driven transaction-manager="transactionManager" proxy-target-class="true" />
     <!-- dao -->
-    <jpa:repositories base-package="com.yunziru.movie.dao" repository-impl-postfix="Impl" entity-manager-factory-ref="entityManagerFactory" transaction-manager-ref="transactionManager" />
+    <jpa:repositories base-package="com.yunziru" repository-impl-postfix="Impl" entity-manager-factory-ref="entityManagerFactory" transaction-manager-ref="transactionManager" />
 
 
     <!-- Jpa Entity Manager 配置 -->
@@ -37,7 +37,7 @@
         <property name="dataSource" ref="dataSource" />
         <property name="packagesToScan">
             <list>
-                <value>com.yunziru.movie.entity</value>
+                <value>com.yunziru</value>
             </list>
         </property>
         <property name="jpaProperties">

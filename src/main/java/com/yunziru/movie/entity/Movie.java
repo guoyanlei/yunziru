@@ -1,14 +1,15 @@
 package com.yunziru.movie.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import com.yunziru.tag.entity.Tag;
+
+import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Created by guoyanlei
  * Date：2017/10/23
- * Description：
+ * Description：电影
  */
 @Entity
 @Table(name = "yunziru_movie")
@@ -36,6 +37,11 @@ public class Movie {
     private Integer hotCount;   //访问热度
     private Long createTime;
     private Long updateTime;
+
+    @ManyToMany(fetch=FetchType.EAGER)
+    @JoinTable(name="yunziru_movie_tag",joinColumns=@JoinColumn(name="movieId"),
+               inverseJoinColumns=@JoinColumn(name="tagId"))
+    private Set<Tag> tags = new HashSet<Tag>();
 
     public Long getId() {
         return id;
@@ -212,17 +218,25 @@ public class Movie {
         return createTime;
     }
 
-    @Column(name = "create_time")
     public void setCreateTime(Long createTime) {
         this.createTime = createTime;
     }
 
+    @Column(name = "update_time")
     public Long getUpdateTime() {
         return updateTime;
     }
 
     public void setUpdateTime(Long updateTime) {
         this.updateTime = updateTime;
+    }
+
+    public Set<Tag> getTags() {
+        return tags;
+    }
+
+    public void setTags(Set<Tag> tags) {
+        this.tags = tags;
     }
 
     @Override

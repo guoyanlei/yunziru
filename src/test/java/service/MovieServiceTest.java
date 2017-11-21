@@ -1,6 +1,7 @@
 package service;
 
 import com.yunziru.movie.service.MovieService;
+import com.yunziru.tag.service.TagService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,9 @@ public class MovieServiceTest {
 
     @Autowired
     private MovieService movieService;
+
+    @Autowired
+    private TagService tagService;
 
     @Test
     public void baseTest() {
@@ -39,6 +43,12 @@ public class MovieServiceTest {
     @Test
     public void testUpdateHotCount() {
         System.out.println(movieService.updateHotCount(1L));
+        System.out.println(movieService.getIndexMovieList(2, 10));
+    }
+
+    @Test
+    public void baseMovieTagStatTest() {
+        System.out.println(tagService.getMovieTagStats(50L));
     }
 
 }

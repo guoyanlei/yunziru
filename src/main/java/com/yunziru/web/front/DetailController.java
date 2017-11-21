@@ -2,6 +2,7 @@ package com.yunziru.web.front;
 
 import com.yunziru.common.dto.AjaxResult;
 import com.yunziru.movie.service.MovieService;
+import com.yunziru.tag.service.TagService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
@@ -15,6 +16,9 @@ public class DetailController {
 	@Resource
 	private MovieService movieService;
 
+	@Resource
+	private TagService tagService;
+
 	@RequestMapping(value = "{id}/detail", method = RequestMethod.GET)
 	public String getDetail(@PathVariable Long id,
 							ModelMap modelMap){
@@ -22,6 +26,7 @@ public class DetailController {
 		modelMap.put("ulikeMovies", movieService.getULikeMovie());
 		modelMap.put("hotMovies", movieService.getRandomHotMovie());
 		modelMap.put("movie", movieService.getMovieDetailInfo(id));
+		modelMap.put("tagMovies", tagService.getMovieTagStats(id));
 		return "front/detail";
 	}
 

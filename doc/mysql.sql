@@ -35,16 +35,17 @@ CREATE TABLE `yunziru_recommend` (
 
 CREATE TABLE `yunziru_tag` (
   `id` int(11) NOT NULL auto_increment,
-  `tag_name` varchar(100) default NULL,
+  `tag_name` varchar(100) NOT NULL,
   `tag_desc` varchar(255) default NULL,
+  `dim_id` int(11) NOT NULL,
   `create_time` bigint(20) default NULL,
   PRIMARY KEY  (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 CREATE TABLE `yunziru_movie_tag` (
   `id` bigint(20) NOT NULL auto_increment,
-  `movie_id` bigint(20) default NULL,
-  `tag_id` int(11) default NULL,
+  `movie_id` bigint(20) NOT NULL,
+  `tag_id` int(11) NOT NULL,
   `create_time` bigint(20) default NULL,
   PRIMARY KEY  (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -56,4 +57,13 @@ CREATE TABLE `yunziru_admin_user` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+INSERT INTO `yunziru_admin_user` VALUES ('1', 'admin', '9F6128C8A07BB33F68AC8F24416A6E10');
+
+CREATE TABLE `yunziru_dimension` (
+  `id` int(11) NOT NULL auto_increment,
+  `dimension` varchar(50) NOT NULL,
+  `desc` varchar(100) default NULL,
+  `create_time` bigint(20) default NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 

@@ -82,10 +82,10 @@
             </ul>
             <ul class="am_ziyuan_tag">
                 <li><span class="am_ziyuan_tag_title">TAG</span></li>
-                <li><a href=""><span>2017</span><span>15623</span></a></li>
-                <li><a href=""><span>美国</span><span>6251</span></a></li>
-                <li><a href=""><span>剧情</span><span>3256</span></a></li>
-                <li><a href=""><span>百度云</span><span>54</span></a></li>
+                <c:forEach var="tagMovie" items="${tagMovies}">
+                    <li><a href="#"><span>${tagMovie.tagName}</span><span>${tagMovie.movieCount}</span></a></li>
+                </c:forEach>
+                <li><a href="#"><span></span><span></span></a></li>
             </ul>
             <div class="page_hot">
                 <div class="page_hot_title">人气资源</div>

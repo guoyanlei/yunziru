@@ -79,19 +79,19 @@
                             </a>
                         </li>
                         <li>
-                            <a href="recommend" title="编辑推荐" target="_self">
+                            <a href="${pageContext.request.contextPath}/recommend" title="编辑推荐" target="_self">
                                 编辑推荐
                             </a>
                         </li>
                         <li>
-                            <a href="hot" title="人气排行" target="_self">
+                            <a href="${pageContext.request.contextPath}/hot" title="人气排行" target="_self">
                                 人气排行
                             </a>
                         </li>
                     </ul>
                 </li>
                 <li>
-                    <a href="fresh" title="新鲜事" target="_blank">
+                    <a href="${pageContext.request.contextPath}/fresh" title="新鲜事" target="_blank">
                         新鲜事
                     </a>
                 </li>

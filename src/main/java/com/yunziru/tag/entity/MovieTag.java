@@ -1,4 +1,4 @@
-package com.yunziru.movie.entity;
+package com.yunziru.tag.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,17 +9,17 @@ import javax.persistence.Table;
  * Created by guoyanlei
  * date：2017/11/11
  * time：21:17
- * description：推荐电影
+ * description：电影-标签关联关系
  */
 @Entity
-@Table(name = "yunziru_recommend")
-public class RecommendMovie {
+@Table(name = "yunziru_movie_tag")
+public class MovieTag {
 
     @Id
     private Long id;
     private Long movieId;
+    private Long tagId;
     private Long createTime;
-    private Long updateTime;
 
     public Long getId() {
         return id;
@@ -38,6 +38,15 @@ public class RecommendMovie {
         this.movieId = movieId;
     }
 
+    @Column(name = "tag_id")
+    public Long getTagId() {
+        return tagId;
+    }
+
+    public void setTagId(Long tagId) {
+        this.tagId = tagId;
+    }
+
     @Column(name = "create_time")
     public Long getCreateTime() {
         return createTime;
@@ -47,22 +56,13 @@ public class RecommendMovie {
         this.createTime = createTime;
     }
 
-    @Column(name = "update_time")
-    public Long getUpdateTime() {
-        return updateTime;
-    }
-
-    public void setUpdateTime(Long updateTime) {
-        this.updateTime = updateTime;
-    }
-
     @Override
     public String toString() {
-        return "RecommendMovie{" +
+        return "MovieTag{" +
                 "id=" + id +
                 ", movieId=" + movieId +
+                ", tagId=" + tagId +
                 ", createTime=" + createTime +
-                ", updateTime=" + updateTime +
                 '}';
     }
 }

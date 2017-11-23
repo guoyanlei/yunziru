@@ -17,8 +17,8 @@
 
             <div class="font_line"><img src="${pageContext.request.contextPath}/static/front/img/font_line.png" alt=""></div>
             <p>
-                <a onclick="refresh();" title="刷新资源" class="am-btn am-btn-sm get-btn  am-radius banner_ios am-icon-refresh " rel="nofollow"> Refresh</a>
-                <a onclick="upload();" title="上传资源" class="am-btn am-btn-sm  am-radius get-btn banner_android am-icon-cloud-upload" rel="nofollow"> Upload</a>
+                <a href="search" target="_self" title="搜索资源" class="am-btn am-btn-sm get-btn  am-radius banner_ios am-icon-search "> Search</a>
+                <a onclick="upload();" title="上传资源" class="am-btn am-btn-sm  am-radius get-btn banner_android am-icon-cloud-upload"> Upload</a>
             </p>
         </div>
     </div>
@@ -36,10 +36,6 @@
     };
     var banner_num = new CountUp("banner_num", ${totalCount-50}, ${totalCount}, 0, 5, options);
     banner_num.start();
-
-    function refresh(){
-        window.location.reload();
-    }
 
     function upload(){
         alert("上传资源暂未开启，敬请期待~")

@@ -208,4 +208,12 @@ public class MovieService extends CommonService<Movie, Long> {
             return null;
         }, pageRequest);
     }
+
+    /**
+     * 删除电影
+     * @param movieId
+     */
+    public void deleteMovie(Long movieId) {
+        movieDao.delete(movieId);
+    }
 }

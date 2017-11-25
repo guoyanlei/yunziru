@@ -1,9 +1,8 @@
 package com.yunziru.movie.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import org.hibernate.annotations.GeneratorType;
+
+import javax.persistence.*;
 
 /**
  * Created by guoyanlei
@@ -16,6 +15,7 @@ import javax.persistence.Table;
 public class RecommendMovie {
 
     @Id
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
     private Long movieId;
     private Long createTime;

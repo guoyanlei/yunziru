@@ -69,8 +69,11 @@
                                                     <a href="javascript:;">
                                                         <i class="am-icon-pencil"></i>
                                                     </a>
-                                                    <a href="javascript:;">
+                                                    <a href="javascript:deleteMovie(${movie.id});">
                                                         <i class="am-icon-trash"></i>
+                                                    </a>
+                                                    <a href="javascript:rcmMovie(${movie.id});">
+                                                        <i class="am-icon-star-o"></i>
                                                     </a>
                                                 </div>
                                             </td>
@@ -147,6 +150,28 @@
         var keyword = $('#keyword').val();
 
         window.location.href = url + "?page=" + page + "&keyword=" + encodeURI(keyword) + "&time=" + time;
+    }
+
+    function deleteMovie (id) {
+        $.ajax({
+            url: '${pageContext.request.contextPath}/backend/movies/'+id,
+            type: 'DELETE',
+            success: function(result) {
+                window.location.reload();
+            }
+        });
+    }
+
+    function rcmMovie (id) {
+
+        $.post("${pageContext.request.contextPath}/backend/movies/recommend",{movieId:id},
+            function(result){
+                if (result.data) {
+                    alert("推荐成功~");
+                } else {
+                    alert("推荐失败！");
+                }
+        });
     }
 </script>
 <script src="${pageContext.request.contextPath}/static/backend/js/amazeui.min.js"></script>

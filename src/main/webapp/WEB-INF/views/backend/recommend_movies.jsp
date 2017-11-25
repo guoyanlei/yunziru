@@ -51,7 +51,7 @@
                                                     <a href="javascript:;">
                                                         <i class="am-icon-pencil"></i>
                                                     </a>
-                                                    <a href="javascript:;">
+                                                    <a href="javascript:deleteRecommend(${movie.id});">
                                                         <i class="am-icon-trash"></i>
                                                     </a>
                                                 </div>
@@ -128,6 +128,16 @@
         var time = $('#time').val();
 
         window.location.href = url + "?page=" + page + "&time=" + time;
+    }
+
+    function deleteRecommend (id) {
+        $.ajax({
+            url: '${pageContext.request.contextPath}/backend/movies/recommend/'+id,
+            type: 'DELETE',
+            success: function(result) {
+                window.location.reload();
+            }
+        });
     }
 </script>
 <script src="${pageContext.request.contextPath}/static/backend/js/amazeui.min.js"></script>

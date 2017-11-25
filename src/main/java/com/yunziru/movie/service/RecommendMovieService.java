@@ -24,7 +24,7 @@ import java.util.stream.Collectors;
 
 /**
  * @author guoyanlei
- * @desc MovieService类 
+ * @desc MovieService类
  * @date 2017-10-30
  */
 @Service
@@ -40,12 +40,13 @@ public class RecommendMovieService extends CommonService<RecommendMovie, Long> {
     private MovieService movieService;
 
     @Autowired
-    public void setMovieDao(RecommendMovieDao recommendMovieDao){
+    public void setMovieDao(RecommendMovieDao recommendMovieDao) {
         super.setCommonDao(recommendMovieDao);
     }
 
     /**
      * 获取推荐概览信息
+     *
      * @param page 当前页数
      * @param size 每页大小
      */
@@ -62,12 +63,12 @@ public class RecommendMovieService extends CommonService<RecommendMovie, Long> {
             Movie movie = movieService.find(rcm.getMovieId());
             return MovieSimpleDTO.of(
                     movie.getId()
-                    ,movie.getTitle()
-                    ,movie.getName()
-                    ,movie.getPoster()
-                    ,movie.getPriseCount()
-                    ,movie.getHotCount()
-                    ,movie.getCreateTime()
+                    , movie.getTitle()
+                    , movie.getName()
+                    , movie.getPoster()
+                    , movie.getPriseCount()
+                    , movie.getHotCount()
+                    , movie.getCreateTime()
             );
         }).collect(Collectors.toList());
     }
@@ -78,9 +79,9 @@ public class RecommendMovieService extends CommonService<RecommendMovie, Long> {
     public Page<MovieSimpleDTO> findAllByPage(int page, int size, String time) {
 
         List<Sort.Order> orders = Lists.newArrayList();
-        orders.add(new Sort.Order(Sort.Direction.DESC,"id"));
+        orders.add(new Sort.Order(Sort.Direction.DESC, "id"));
         Sort sort = new Sort(orders);
-        PageRequest pageRequest = new PageRequest(page-1, size, sort);
+        PageRequest pageRequest = new PageRequest(page - 1, size, sort);
 
         Page<RecommendMovie> recommendMovies = findAll((root, criteriaQuery, criteriaBuilder) -> {
             //按时间搜索
@@ -100,5 +101,33 @@ public class RecommendMovieService extends CommonService<RecommendMovie, Long> {
 
         return new PageImpl<>(buildSimpleMovies(recommendMovies.getContent()), pageRequest, recommendMovies.getTotalElements());
 
+    }
+
+    /**
+     * 添加推荐电影
+     *
+     * @param movieId 电影id
+     * @return 添加结果
+     */
+    public boolean addRecommend(Long movieId) {
+        List<RecommendMovie> movies = recommendMovieDao.findByMovieId(movieId);
+        if (movies != null && movies.size() > 0) {
+            return false;
+        }
+
+        RecommendMovie recommendMovie = new RecommendMovie();
+        recommendMovie.setMovieId(movieId);
+        long time = System.currentTimeMillis();
+        recommendMovie.setCreateTime(time);
+        recommendMovie.setUpdateTime(time);
+        return recommendMovieDao.save(recommendMovie) != null;
+    }
+
+    /**
+     * 删除推荐
+     * @param movieId
+     */
+    public void deleteRecommend(Long movieId) {
+        recommendMovieDao.deleteByMovieId(movieId);
     }
 }

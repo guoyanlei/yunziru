@@ -1,12 +1,12 @@
 package com.yunziru.web.backend;
 
+import com.yunziru.common.dto.AjaxResult;
+import com.yunziru.movie.entity.RecommendMovie;
 import com.yunziru.movie.service.MovieService;
 import com.yunziru.movie.service.RecommendMovieService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.io.UnsupportedEncodingException;
@@ -61,6 +61,41 @@ public class MovieController {
 
         modelMap.put("movies", recommendMovieService.findAllByPage(page, size, time));
         return "backend/recommend_movies";
+    }
+
+    @RequestMapping(value = "{id}", method = RequestMethod.DELETE)
+    @ResponseBody
+    public AjaxResult deleteMovie(@PathVariable(value = "id") Long id,
+                                  ModelMap modelMap) {
+
+        AjaxResult ajaxResult = new AjaxResult();
+        movieService.deleteMovie(id);
+        ajaxResult.setData(true);
+        ajaxResult.setSuccess(true);
+        return ajaxResult;
+    }
+
+    @RequestMapping(value = "recommend", method = RequestMethod.POST)
+    @ResponseBody
+    public AjaxResult addRecommend(@RequestParam(value = "movieId", required = true) Long movieId,
+                                   ModelMap modelMap) {
+
+        AjaxResult ajaxResult = new AjaxResult();
+        ajaxResult.setData(recommendMovieService.addRecommend(movieId));
+        ajaxResult.setSuccess(true);
+        return ajaxResult;
+    }
+
+    @RequestMapping(value = "recommend/{id}", method = RequestMethod.DELETE)
+    @ResponseBody
+    public AjaxResult deleteRecommend(@PathVariable(value = "id") Long movieId,
+                                   ModelMap modelMap) {
+
+        AjaxResult ajaxResult = new AjaxResult();
+        recommendMovieService.deleteRecommend(movieId);
+        ajaxResult.setData(true);
+        ajaxResult.setSuccess(true);
+        return ajaxResult;
     }
 
 }

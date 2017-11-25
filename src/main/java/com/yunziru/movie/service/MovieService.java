@@ -73,8 +73,11 @@ public class MovieService extends CommonService<Movie, Long> {
      * @param page 当前页数
      * @param size 每页大小
      */
-    public List<MovieSimpleDTO> getIndexMovieList(int page, int size) {
-        return movieDaoImpl.getMovielist(PageUtil.getOffset(page, size), size);
+    public List<MovieSimpleDTO> getIndexMovieList(String keyword, int page, int size) {
+        if ("".equals(keyword)) {
+            return Lists.newArrayList();
+        }
+        return movieDaoImpl.getMovielist(keyword, PageUtil.getOffset(page, size), size);
     }
 
     /**

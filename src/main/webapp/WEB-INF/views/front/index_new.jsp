@@ -103,11 +103,6 @@
         },'json');
     }
 
-    function getDate(timeStamp) {
-        var d = new Date(timeStamp);
-        return d.getFullYear() + "-" + (d.getMonth() + 1) + "-" + (d.getDate());
-    }
-
 </script>
 
 </script>

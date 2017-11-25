@@ -7,6 +7,7 @@ import org.hibernate.type.StandardBasicTypes;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.repository.query.Param;
+import org.springframework.util.StringUtils;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
@@ -29,11 +30,15 @@ public class MovieDaoImpl {
      * @param offset 偏移
      * @param limit 取的个数
      */
-    public List<MovieSimpleDTO> getMovielist(int offset, int limit) {
+    public List<MovieSimpleDTO> getMovielist(String keyword, int offset, int limit) {
 
-        String hql = "select new com.yunziru.movie.dto.MovieSimpleDTO(id,title,name,poster,priseCount,hotCount,createTime) from Movie order by id desc";
+        StringBuilder hql = new StringBuilder("select new com.yunziru.movie.dto.MovieSimpleDTO(id,title,name,poster,priseCount,hotCount,createTime) from Movie ");
+        if (!StringUtils.isEmpty(keyword)) {
+            hql.append("where title like '%" + keyword + "%' ");
+        }
+        hql.append("order by id desc");
 
-        return this.getListByHql(hql, offset, limit);
+        return this.getListByHql(hql.toString(), offset, limit);
     }
 
     /**

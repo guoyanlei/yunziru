@@ -52,6 +52,7 @@ ul.am-dropdown-content>li>a:focus, ul.am-dropdown-content>li>a:hover { backgroun
 .am_list_block { padding: 10px; background: #fff; position: relative; }
 .am_listimg_info { color: #d1d1d1; padding-top: 0px; }
 .am-icon-heart:before { font-size: 14px; margin-right: 8px;}
+.am-icon-eye:before { font-size: 14px; margin-right: 8px;}
 .am-icon-tag:before { font-size: 14px; margin-right: 8px;}
 .am_listimg_right {  float: right; margin-right: 0;}
 .am_listimg_info span { margin-left: 8px; margin-right: 13px; font-size: 12px; }

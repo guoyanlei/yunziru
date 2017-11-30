@@ -3,13 +3,9 @@ CREATE TABLE `yunziru_movie` (
   `title` varchar(100) default NULL,
   `poster` varchar(255) default NULL,
   `name` varchar(100) default NULL,
-  `trans_name` varchar(100) default NULL,
   `year` int(11) default NULL,
   `location` varchar(200) default NULL,
   `type` varchar(200) default NULL,
-  `language` varchar(100) default NULL,
-  `release_time` varchar(200) default NULL,
-  `length_mins` int(11) default NULL,
   `summary` text,
   `screenshot` text,
   `ed2k_link` text,
@@ -21,7 +17,7 @@ CREATE TABLE `yunziru_movie` (
   `create_time` bigint(20) default NULL,
   `update_time` bigint(20) default NULL,
   PRIMARY KEY  (`id`),
-  UNIQUE KEY `TID` (`tid`)
+  KEY `TID` (`tid`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 

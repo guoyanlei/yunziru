@@ -16,17 +16,14 @@ import java.util.Set;
 public class Movie {
 
     @Id
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
     private String title;
     private String poster;      //海报
     private String name;
-    private String transName;
     private Integer year;
     private String location;
     private String type;
-    private String language;
-    private String releaseTime;
-    private Integer lengthMins;
     private String summary;
     private String screenshot;
     private String ed2kLink;
@@ -78,15 +75,6 @@ public class Movie {
         this.name = name;
     }
 
-    @Column(name = "trans_name")
-    public String getTransName() {
-        return transName;
-    }
-
-    public void setTransName(String transName) {
-        this.transName = transName;
-    }
-
     @Column(name = "year")
     public Integer getYear() {
         return year;
@@ -112,33 +100,6 @@ public class Movie {
 
     public void setType(String type) {
         this.type = type;
-    }
-
-    @Column(name = "language")
-    public String getLanguage() {
-        return language;
-    }
-
-    public void setLanguage(String language) {
-        this.language = language;
-    }
-
-    @Column(name = "release_time")
-    public String getReleaseTime() {
-        return releaseTime;
-    }
-
-    public void setReleaseTime(String releaseTime) {
-        this.releaseTime = releaseTime;
-    }
-
-    @Column(name = "length_mins")
-    public Integer getLengthMins() {
-        return lengthMins;
-    }
-
-    public void setLengthMins(Integer lengthMins) {
-        this.lengthMins = lengthMins;
     }
 
     @Column(name = "summary")
@@ -246,13 +207,9 @@ public class Movie {
                 ", title='" + title + '\'' +
                 ", poster='" + poster + '\'' +
                 ", name='" + name + '\'' +
-                ", transName='" + transName + '\'' +
                 ", year=" + year +
                 ", location='" + location + '\'' +
                 ", type='" + type + '\'' +
-                ", language='" + language + '\'' +
-                ", releaseTime='" + releaseTime + '\'' +
-                ", lengthMins=" + lengthMins +
                 ", summary='" + summary + '\'' +
                 ", screenshot='" + screenshot + '\'' +
                 ", ed2kLink='" + ed2kLink + '\'' +

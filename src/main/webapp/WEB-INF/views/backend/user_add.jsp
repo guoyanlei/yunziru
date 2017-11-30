@@ -31,14 +31,14 @@
                             <form class="am-form tpl-form-border-form tpl-form-border-br" name="fileForm" method="post" action="save">
                                 <div class="am-form-group">
                                     <input type="hidden" id="id" name="id" value="${user.id}">
-                                    <label for="user-name" class="am-u-sm-3 am-form-label">用户名</label>
+                                    <label for="userName" class="am-u-sm-3 am-form-label">用户名</label>
                                     <div class="am-u-sm-9">
                                         <input type="text" class="tpl-form-input" style="width: 200px;" id="userName" name="userName" value="${user.username}">
                                     </div>
                                 </div>
 
                                 <div class="am-form-group">
-                                    <label for="user-pwd" class="am-u-sm-3 am-form-label">密码</label>
+                                    <label for="password" class="am-u-sm-3 am-form-label">密码</label>
                                     <div class="am-u-sm-9">
                                         <input type="password" class="tpl-form-input" style="width: 200px;" id="password" name="password">
                                     </div>

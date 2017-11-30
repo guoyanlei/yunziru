@@ -21,6 +21,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/backend/css/amazeui.min.css" />
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/backend/css/amazeui.datatables.min.css" />
     <link rel="stylesheet" href="${pageContext.request.contextPath}/static/backend/css/app.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/static/backend/css/upload.css">
     <script src="${pageContext.request.contextPath}/static/backend/js/jquery.min.js"></script>
 
 </head>

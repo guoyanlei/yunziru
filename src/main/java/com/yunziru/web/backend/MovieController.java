@@ -1,6 +1,7 @@
 package com.yunziru.web.backend;
 
 import com.yunziru.common.dto.AjaxResult;
+import com.yunziru.movie.dto.MovieRBodyDTO;
 import com.yunziru.movie.entity.RecommendMovie;
 import com.yunziru.movie.service.MovieService;
 import com.yunziru.movie.service.RecommendMovieService;
@@ -43,6 +44,31 @@ public class MovieController {
         }
         modelMap.put("movies", movieService.findAllByPage(page, size, time, str));
         return "backend/movie_list";
+    }
+
+    @RequestMapping(value = "add", method = RequestMethod.GET)
+    public String add(ModelMap modelMap){
+
+        return "backend/movie_add";
+    }
+
+    @RequestMapping(value = "", method = RequestMethod.POST)
+    public String addMovie(ModelMap modelMap,
+                           @RequestParam(value = "title", required = true) String title,
+                           @RequestParam(value = "name", required = true) String name,
+                           @RequestParam(value = "year", required = false) Integer year,
+                           @RequestParam(value = "location", required = false) String location,
+                           @RequestParam(value = "type", required = false) String type,
+                           @RequestParam(value = "ed2kLink", required = false) String ed2kLink,
+                           @RequestParam(value = "baiduLink", required = false) String baiduLink,
+                           @RequestParam(value = "baiduPwd", required = false) String baiduPwd,
+                           @RequestParam(value = "tid", required = false) Integer tid,
+                           @RequestParam(value = "summary", required = true) String summary,
+                           @RequestParam(value = "images", required = true) String images) {
+
+        movieService.addMovie(title,name,year,location,type,ed2kLink,baiduLink,baiduPwd,tid,summary,images);
+
+        return "redirect:/backend/movies";
     }
 
     @RequestMapping(value = "recommend", method = RequestMethod.GET)

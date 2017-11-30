@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.TypeReference;
 import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
 import com.yunziru.common.service.CommonService;
 import com.yunziru.common.util.PageUtil;
 import com.yunziru.movie.dao.MovieDao;
@@ -215,5 +216,53 @@ public class MovieService extends CommonService<Movie, Long> {
      */
     public void deleteMovie(Long movieId) {
         movieDao.delete(movieId);
+    }
+
+
+    public boolean addMovie(String title, String name,
+                         Integer year, String location,
+                         String type, String ed2kLink,
+                         String baiduLink, String baiduPwd,
+                         Integer tid, String summary,
+                         String images) {
+
+        Movie movie = new Movie();
+        movie.setTitle(title.trim());
+        movie.setName(name.trim());
+        movie.setYear(year);
+        movie.setLocation(location.trim());
+        movie.setType(type.trim());
+        movie.setBaiduLink(baiduLink.trim());
+        movie.setBaiduPwd(baiduPwd.trim());
+        movie.setTid(tid);
+        movie.setSummary(summary);
+        long time = System.currentTimeMillis();
+        movie.setCreateTime(time);
+        movie.setUpdateTime(time);
+        movie.setHotCount(0);
+        movie.setPriseCount(0);
+
+        Map<String, String> ed2kLinks = Maps.newHashMap();
+        if (StringUtils.isNotEmpty(ed2kLink)) {
+            String[] links = ed2kLink.split(";");
+            for (String s : links) {
+                String[] temp = s.split(":");
+                ed2kLinks.put(temp[0], temp[1]);
+            }
+        }
+        movie.setEd2kLink(JSON.toJSONString(ed2kLinks));
+
+        if (StringUtils.isNoneEmpty(images)) {
+            List<String> shot = Lists.newArrayList();
+            String[] imageUrls = images.split(";");
+            for (int i = 0; i < imageUrls.length; i++) {
+                if (i == 0) {
+                    movie.setPoster(imageUrls[0]);
+                }
+                shot.add(imageUrls[i]);
+            }
+            movie.setScreenshot(JSON.toJSONString(shot));
+        }
+        return this.save(movie) != null;
     }
 }

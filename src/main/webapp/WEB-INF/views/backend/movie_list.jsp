@@ -6,7 +6,7 @@
   Time: 22:51
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" pageEncoding="utf-8" language="java" %>
 <%@ include file="header.jsp"%>
 <%@ include file="side_bar.jsp"%>
 
@@ -66,7 +66,7 @@
                                             </td>
                                             <td>
                                                 <div class="tpl-table-black-operation">
-                                                    <a href="javascript:;">
+                                                    <a href="${pageContext.request.contextPath}/backend/movies/edit?id=${movie.id}">
                                                         <i class="am-icon-pencil"></i>
                                                     </a>
                                                     <a href="javascript:deleteMovie(${movie.id});">

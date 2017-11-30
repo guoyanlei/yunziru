@@ -52,8 +52,16 @@ public class MovieController {
         return "backend/movie_add";
     }
 
+    @RequestMapping(value = "edit", method = RequestMethod.GET)
+    public String edit(@RequestParam(value = "id", required = true)  Long id,
+                       ModelMap modelMap){
+        modelMap.put("movie", movieService.getMovieRBody(id));
+        return "backend/movie_add";
+    }
+
     @RequestMapping(value = "", method = RequestMethod.POST)
     public String addMovie(ModelMap modelMap,
+                           @RequestParam(value = "id", required = true) Long id,
                            @RequestParam(value = "title", required = true) String title,
                            @RequestParam(value = "name", required = true) String name,
                            @RequestParam(value = "year", required = false) Integer year,
@@ -66,7 +74,7 @@ public class MovieController {
                            @RequestParam(value = "summary", required = true) String summary,
                            @RequestParam(value = "images", required = true) String images) {
 
-        movieService.addMovie(title,name,year,location,type,ed2kLink,baiduLink,baiduPwd,tid,summary,images);
+        movieService.addMovie(id,title,name,year,location,type,ed2kLink,baiduLink,baiduPwd,tid,summary,images);
 
         return "redirect:/backend/movies";
     }

@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: acer
@@ -5,7 +6,7 @@
   Time: 22:51
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" pageEncoding="utf-8" language="java" %>
 
 <%@ include file="header.jsp"%>
 <%@ include file="side_bar.jsp"%>
@@ -29,43 +30,44 @@
                         <form class="am-form tpl-form-border-form" name="movieForm" method="post" action="${pageContext.request.contextPath}/backend/movies">
                             <div class="am-form-group">
                                 <label for="title" class="am-u-sm-12 am-form-label am-text-left">标题：</label>
+                                <input type="hidden" class="tpl-form-input am-margin-top-xs" id="id" name="id" value="${movie.id}" placeholder="">
                                 <div class="am-u-sm-12">
-                                    <input type="text" class="tpl-form-input am-margin-top-xs" id="title" name="title" placeholder="">
+                                    <input type="text" class="tpl-form-input am-margin-top-xs" id="title" name="title" value="<c:out value="${movie.title}" escapeXml="true"/>" placeholder="">
                                 </div>
                             </div>
 
                             <div class="am-form-group">
                                 <label for="name" class="am-u-sm-12 am-form-label am-text-left">电影名称：</label>
                                 <div class="am-u-sm-12">
-                                    <input type="text" class="tpl-form-input am-margin-top-xs" id="name" name="name" placeholder="">
+                                    <input type="text" class="tpl-form-input am-margin-top-xs" id="name" name="name" value="<c:out value="${movie.name}" escapeXml="true"/>" placeholder="">
                                 </div>
                             </div>
 
                             <div class="am-form-group">
                                 <label for="year" class="am-u-sm-12 am-form-label am-text-left">年份：</label>
                                 <div class="am-u-sm-12">
-                                    <input type="text" class="tpl-form-input am-margin-top-xs" id="year" name="year" placeholder="">
+                                    <input type="text" class="tpl-form-input am-margin-top-xs" id="year" name="year" value="${movie.year}" placeholder="">
                                 </div>
                             </div>
 
                             <div class="am-form-group">
                                 <label for="location" class="am-u-sm-12 am-form-label am-text-left">地区：</label>
                                 <div class="am-u-sm-12">
-                                    <input type="text" class="tpl-form-input am-margin-top-xs" id="location" name="location" placeholder="">
+                                    <input type="text" class="tpl-form-input am-margin-top-xs" id="location" name="location" value="${movie.location}" placeholder="">
                                 </div>
                             </div>
 
                             <div class="am-form-group">
                                 <label for="type" class="am-u-sm-12 am-form-label am-text-left">类型：</label>
                                 <div class="am-u-sm-12">
-                                    <input type="text" class="tpl-form-input am-margin-top-xs" id="type" name="type" placeholder="">
+                                    <input type="text" class="tpl-form-input am-margin-top-xs" id="type" name="type" value="${movie.type}" placeholder="">
                                 </div>
                             </div>
 
                             <div class="am-form-group">
                                 <label for="ed2kLink" class="am-u-sm-12 am-form-label am-text-left">迅雷链接：</label>
                                 <div class="am-u-sm-12">
-                                    <input type="text" class="tpl-form-input am-margin-top-xs" id="ed2kLink" name="ed2kLink" placeholder="">
+                                    <input type="text" class="tpl-form-input am-margin-top-xs" id="ed2kLink" name="ed2kLink" value="<c:out value="${movie.ed2kLink}" escapeXml="true"/>" placeholder="">
                                     <small>可多个，如：xxx:desc;xxx:desc</small>
                                 </div>
                             </div>
@@ -73,28 +75,29 @@
                             <div class="am-form-group">
                                 <label for="baiduLink" class="am-u-sm-12 am-form-label am-text-left">百度网盘链接：</label>
                                 <div class="am-u-sm-12">
-                                    <input type="text" class="tpl-form-input am-margin-top-xs" id="baiduLink" name="baiduLink" placeholder="">
+                                    <input type="text" class="tpl-form-input am-margin-top-xs" id="baiduLink" name="baiduLink" value="${movie.baiduLink}" placeholder="">
                                 </div>
                             </div>
 
                             <div class="am-form-group">
                                 <label for="baiduPwd" class="am-u-sm-12 am-form-label am-text-left">百度网盘密码：</label>
                                 <div class="am-u-sm-12">
-                                    <input type="text" class="tpl-form-input am-margin-top-xs" id="baiduPwd" name="baiduPwd" placeholder="">
+                                    <input type="text" class="tpl-form-input am-margin-top-xs" id="baiduPwd" name="baiduPwd"  value="${movie.baiduPwd}" placeholder="">
                                 </div>
                             </div>
 
                             <div class="am-form-group">
                                 <label for="tid" class="am-u-sm-12 am-form-label am-text-left">爬虫tid：</label>
                                 <div class="am-u-sm-12">
-                                    <input type="text" class="tpl-form-input am-margin-top-xs" id="tid" name="tid" placeholder="">
+                                    <input type="text" class="tpl-form-input am-margin-top-xs" id="tid" name="tid" value="${movie.tid}" placeholder="">
                                 </div>
                             </div>
 
                             <div class="am-form-group">
                                 <label for="summary" class="am-u-sm-12 am-form-label  am-text-left">简介：</label>
                                 <div class="am-u-sm-12 am-margin-top-xs">
-                                    <textarea class="" rows="10" id="summary" name="summary" placeholder="请输入简介"></textarea>
+                                    <textarea class="" rows="30" id="summary" name="summary" placeholder="请输入简介"><c:out value="${movie.summary}" escapeXml="true"/>
+                                    </textarea>
                                 </div>
                             </div>
 
@@ -123,7 +126,8 @@
                             <div class="am-form-group">
                                 <label for="images" class="am-u-sm-12 am-form-label  am-text-left">海报和截图url：</label>
                                 <div class="am-u-sm-12 am-margin-top-xs">
-                                    <textarea class="" rows="5" id="images" name="images" placeholder=""></textarea>
+                                    <textarea class="" rows="5" id="images" name="images" placeholder=""><c:out value="${movie.images}" escapeXml="true"/>
+                                    </textarea>
                                 </div>
                             </div>
 

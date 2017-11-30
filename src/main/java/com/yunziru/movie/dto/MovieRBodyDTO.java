@@ -8,6 +8,7 @@ package com.yunziru.movie.dto;
  */
 public class MovieRBodyDTO {
 
+    private Long id;
     private String title;
     private String name;
     private Integer year;
@@ -19,6 +20,14 @@ public class MovieRBodyDTO {
     private Integer tid;
     private String summary;
     private String images;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public String getTitle() {
         return title;

@@ -258,8 +258,9 @@ public class MovieService extends CommonService<Movie, Long> {
             for (int i = 0; i < imageUrls.length; i++) {
                 if (i == 0) {
                     movie.setPoster(imageUrls[0]);
+                } else {
+                    shot.add(imageUrls[i]);
                 }
-                shot.add(imageUrls[i]);
             }
             movie.setScreenshot(JSON.toJSONString(shot));
         }

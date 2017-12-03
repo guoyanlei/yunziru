@@ -68,7 +68,7 @@
                                 <label for="ed2kLink" class="am-u-sm-12 am-form-label am-text-left">迅雷链接：</label>
                                 <div class="am-u-sm-12">
                                     <input type="text" class="tpl-form-input am-margin-top-xs" id="ed2kLink" name="ed2kLink" value="<c:out value="${movie.ed2kLink}" escapeXml="true"/>" placeholder="">
-                                    <small>可多个，如：xxx:desc;xxx:desc</small>
+                                    <small>可多个，如：{"xxx":"desc","xxx:desc"}</small>
                                 </div>
                             </div>
 
@@ -96,7 +96,7 @@
                             <div class="am-form-group">
                                 <label for="summary" class="am-u-sm-12 am-form-label  am-text-left">简介：</label>
                                 <div class="am-u-sm-12 am-margin-top-xs">
-                                    <textarea class="" rows="30" id="summary" name="summary" placeholder="请输入简介"><c:out value="${movie.summary}" escapeXml="true"/>
+                                    <textarea rows="30" id="summary" name="summary" placeholder="请输入简介"><c:out value="${movie.summary}" escapeXml="true"/>
                                     </textarea>
                                 </div>
                             </div>
@@ -126,8 +126,7 @@
                             <div class="am-form-group">
                                 <label for="images" class="am-u-sm-12 am-form-label  am-text-left">海报和截图url：</label>
                                 <div class="am-u-sm-12 am-margin-top-xs">
-                                    <textarea class="" rows="5" id="images" name="images" placeholder=""><c:out value="${movie.images}" escapeXml="true"/>
-                                    </textarea>
+                                    <textarea class="" rows="5" id="images" name="images" placeholder=""><c:out value="${movie.images}" escapeXml="true"/></textarea>
                                 </div>
                             </div>
 
@@ -147,9 +146,13 @@
 </div>
 <script src="${pageContext.request.contextPath}/static/backend/js/amazeui.min.js"></script>
 <script src="${pageContext.request.contextPath}/static/backend/js/app.js"></script>
+<script src="${pageContext.request.contextPath}/static/backend/ckeditor/ckeditor.js"></script>
 
 
 <script type="text/javascript">
+
+    CKEDITOR.replace( 'summary' );
+
     // 添加全局站点信息
     var BASE_URL = '${pageContext.request.contextPath}/static/backend/webuploader';
 
@@ -166,5 +169,7 @@
 
 <script type="text/javascript" src="${pageContext.request.contextPath}/static/backend/webuploader/js/webuploader.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/static/backend/webuploader/js/demo.js"></script>
+
+
 </body>
 </html>

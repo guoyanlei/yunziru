@@ -143,7 +143,7 @@ public class Movie {
         return baiduPwd;
     }
 
-    public void setBaiduPwd(String baiduLinkPwd) {
+    public void setBaiduPwd(String baiduPwd) {
         this.baiduPwd = baiduPwd;
     }
 

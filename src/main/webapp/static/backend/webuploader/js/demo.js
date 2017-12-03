@@ -414,7 +414,11 @@ jQuery(function() {
         if (images == "") {
             images += imgurl;
         } else {
-            images += ";" + imgurl;
+            if (images.indexOf(";") != -1) {
+                images += ";" + imgurl;
+            } else {
+                images = imgurl + ";" + images;
+            }
         }
         $("#images").val(images);
     });

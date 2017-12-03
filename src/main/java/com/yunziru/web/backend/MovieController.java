@@ -5,11 +5,14 @@ import com.yunziru.movie.dto.MovieRBodyDTO;
 import com.yunziru.movie.entity.RecommendMovie;
 import com.yunziru.movie.service.MovieService;
 import com.yunziru.movie.service.RecommendMovieService;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.util.NumberUtils;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import java.io.UnsupportedEncodingException;
 
 @Controller
@@ -60,19 +63,26 @@ public class MovieController {
     }
 
     @RequestMapping(value = "", method = RequestMethod.POST)
-    public String addMovie(ModelMap modelMap,
-                           @RequestParam(value = "id", required = true) Long id,
-                           @RequestParam(value = "title", required = true) String title,
-                           @RequestParam(value = "name", required = true) String name,
-                           @RequestParam(value = "year", required = false) Integer year,
-                           @RequestParam(value = "location", required = false) String location,
-                           @RequestParam(value = "type", required = false) String type,
-                           @RequestParam(value = "ed2kLink", required = false) String ed2kLink,
-                           @RequestParam(value = "baiduLink", required = false) String baiduLink,
-                           @RequestParam(value = "baiduPwd", required = false) String baiduPwd,
-                           @RequestParam(value = "tid", required = false) Integer tid,
-                           @RequestParam(value = "summary", required = true) String summary,
-                           @RequestParam(value = "images", required = true) String images) {
+    public String addMovie(HttpServletRequest request,
+                           ModelMap modelMap) throws UnsupportedEncodingException {
+
+        request.setCharacterEncoding("utf-8");
+
+        Long id = null;
+        if (StringUtils.isNoneEmpty(request.getParameter("id"))) {
+            id = NumberUtils.parseNumber(request.getParameter("id"), Long.class);
+        }
+        String title = new String(request.getParameter("title").getBytes("iso8859-1"), "UTF-8");
+        String name = new String(request.getParameter("name").getBytes("iso8859-1"), "UTF-8");
+        Integer year = NumberUtils.parseNumber(request.getParameter("year"), Integer.class);
+        String location = new String(request.getParameter("location").getBytes("iso8859-1"), "UTF-8");
+        String type = new String(request.getParameter("type").getBytes("iso8859-1"), "UTF-8");
+        String ed2kLink = new String(request.getParameter("ed2kLink").getBytes("iso8859-1"), "UTF-8");
+        String baiduLink = new String(request.getParameter("baiduLink").getBytes("iso8859-1"), "UTF-8");
+        String baiduPwd = new String(request.getParameter("baiduPwd").getBytes("iso8859-1"), "UTF-8");
+        Integer tid = NumberUtils.parseNumber(request.getParameter("tid"), Integer.class);
+        String summary = new String(request.getParameter("summary").getBytes("iso8859-1"), "UTF-8");
+        String images = new String(request.getParameter("images").getBytes("iso8859-1"), "UTF-8");
 
         movieService.addMovie(id,title,name,year,location,type,ed2kLink,baiduLink,baiduPwd,tid,summary,images);
 

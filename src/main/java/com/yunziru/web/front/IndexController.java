@@ -36,13 +36,8 @@ public class IndexController {
 								   @RequestParam(defaultValue = "1", required = true) int page,
 								   @RequestParam(defaultValue = "20", required = true) int size) throws UnsupportedEncodingException {
 
-        String search = null;
-        if (keyword != null) {
-            search = new String(keyword.getBytes("iso8859-1"), "UTF-8");
-        }
-
-        AjaxResult ajaxResult = new AjaxResult();
-		ajaxResult.setData(this.movieService.getIndexMovieList(search, page, size));
+		AjaxResult ajaxResult = new AjaxResult();
+		ajaxResult.setData(this.movieService.getIndexMovieList(keyword, page, size));
 		ajaxResult.setSuccess(true);
 		return ajaxResult;
 	}

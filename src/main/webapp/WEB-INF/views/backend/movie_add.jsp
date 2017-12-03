@@ -68,7 +68,7 @@
                                 <label for="ed2kLink" class="am-u-sm-12 am-form-label am-text-left">迅雷链接：</label>
                                 <div class="am-u-sm-12">
                                     <input type="text" class="tpl-form-input am-margin-top-xs" id="ed2kLink" name="ed2kLink" value="<c:out value="${movie.ed2kLink}" escapeXml="true"/>" placeholder="">
-                                    <small>可多个，如：{"xxx":"desc","xxx:desc"}</small>
+                                    <small>可多个，如：{"xxx":"desc","xxx":"desc"}</small>
                                 </div>
                             </div>
 

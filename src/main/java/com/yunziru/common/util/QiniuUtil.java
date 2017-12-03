@@ -32,6 +32,10 @@ public class QiniuUtil {
         return storeQiniuAndGetUrlByInputStream(QiniuConf.MOVIE_FOlDER, inputStream, fileName);
     }
 
+    public static String storeMovieImage(String imgUrl) {
+        return storeQiniuAndGetUrlByImgUrl(QiniuConf.MOVIE_FOlDER, imgUrl);
+    }
+
 
     /**
      * 读取inputStream并将图片存储到七牛云

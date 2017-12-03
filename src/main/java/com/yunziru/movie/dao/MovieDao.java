@@ -6,6 +6,8 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 
 /**
  * Created by guoyanlei
@@ -24,4 +26,7 @@ public interface MovieDao extends CommonDao<Movie, Long> {
     @Modifying(clearAutomatically = true)
     @Query(value = "update Movie m set m.hotCount = m.hotCount+1 where m.id = ?1")
     int updateHotCountById(Long id);
+
+    @Query("select m from Movie m where m.tid = ?1 ")
+    List<Movie> findMovieByTid(Integer tid);
 }

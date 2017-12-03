@@ -43,7 +43,7 @@ public class MovieServiceTest {
     @Test
     public void testUpdateHotCount() {
         System.out.println(movieService.updateHotCount(1L));
-        System.out.println(movieService.getIndexMovieList(2, 10));
+        System.out.println(movieService.getIndexMovieList("", 2, 10));
     }
 
     @Test

@@ -71,6 +71,19 @@ public class MovieService extends CommonService<Movie, Long> {
     }
 
     /**
+     * 根据tid获取电影
+     * @param tid 爬取电影网站的id
+     */
+    public Movie getMovieByTid(Integer tid){
+        Movie movie = null;
+        List<Movie> movieList = this.movieDao.findMovieByTid(tid);
+        if(movieList != null && movieList.size() > 0){
+            movie = movieList.get(0);
+        }
+        return movie;
+    }
+
+    /**
      * 获取电影概览信息
      * @param page 当前页数
      * @param size 每页大小
@@ -106,7 +119,7 @@ public class MovieService extends CommonService<Movie, Long> {
         detailDTO.setPoster(movie.getPoster());
         detailDTO.setPriseCount(movie.getPriseCount());
         detailDTO.setCreateTime(movie.getCreateTime());
-        if (movie.getYear() > 0) {
+        if (movie.getYear() != null && movie.getYear() > 0) {
             detailDTO.setYear(movie.getYear());
         }
         detailDTO.setHotCount(movie.getHotCount());
@@ -256,8 +269,8 @@ public class MovieService extends CommonService<Movie, Long> {
             List<String> shot = Lists.newArrayList();
             String[] imageUrls = images.split(";");
             for (int i = 0; i < imageUrls.length; i++) {
-                if (i == 0) {
-                    movie.setPoster(imageUrls[0]);
+                if (i == imageUrls.length - 1) {
+                    movie.setPoster(imageUrls[i]);
                 } else {
                     shot.add(imageUrls[i]);
                 }
@@ -284,9 +297,9 @@ public class MovieService extends CommonService<Movie, Long> {
         movieRBody.setSummary(movie.getSummary());
 
         List<String> images = Lists.newArrayList();
-        images.add(movie.getPoster());
         List<String> shot = JSON.parseArray(movie.getScreenshot(), String.class);
         images.addAll(shot);
+        images.add(movie.getPoster());
 
         movieRBody.setImages(StringUtils.join(images, ";"));
 

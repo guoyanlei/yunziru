@@ -29,7 +29,7 @@ public class Movie {
     private String ed2kLink;
     private String baiduLink;
     private String baiduPwd;
-    private Integer tid;
+    private Integer tid;        //爬取电影网站的id
     private Integer priseCount; //点赞数
     private Integer hotCount;   //访问热度
     private Long createTime;

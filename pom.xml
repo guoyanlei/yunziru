@@ -18,6 +18,8 @@
         <hibernate.annotations.version>4.0.4.Final</hibernate.annotations.version>
         <mysql.driver.version>5.1.22</mysql.driver.version>
         <shiro.version>1.3.2</shiro.version>
+        <jpa.version>1.5.2.RELEASE</jpa.version>
+        <quartz.version>2.2.3</quartz.version>
         <jackson.version>1.9.2</jackson.version>
         <fastjson.version>1.2.20</fastjson.version>
         <log4j2.version>2.7</log4j2.version>
@@ -35,70 +37,75 @@
         <!-- Spring相关项目依赖 start -->
         <!-- Spring核心依赖 start -->
         <dependency>
-          <groupId>org.springframework</groupId>
-          <artifactId>spring-core</artifactId><!-- 包含Spring框架基本的核心工具类 -->
-          <version>${spring.version}</version>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-core</artifactId><!-- 包含Spring框架基本的核心工具类 -->
+            <version>${spring.version}</version>
         </dependency>
         <dependency>
-          <groupId>org.springframework</groupId>
-          <artifactId>spring-beans</artifactId><!-- springIoC（依赖注入）的基础工具类-->
-          <version>${spring.version}</version>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-beans</artifactId><!-- springIoC（依赖注入）的基础工具类-->
+            <version>${spring.version}</version>
         </dependency>
         <dependency>
-          <groupId>org.springframework</groupId>
-          <artifactId>spring-context</artifactId><!-- spring 提供在基于IoC 功能上的扩展服务 -->
-          <version>${spring.version}</version>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId><!-- spring 提供在基于IoC 功能上的扩展服务 -->
+            <version>${spring.version}</version>
         </dependency>
         <!-- Spring核心依赖 end -->
         <!-- spring 持久层依赖start -->
         <dependency>
-          <groupId>org.springframework</groupId>
-          <artifactId>spring-tx</artifactId><!-- 封装了spring对于事物的控制 -->
-          <version>${spring.version}</version>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-tx</artifactId><!-- 封装了spring对于事物的控制 -->
+            <version>${spring.version}</version>
         </dependency>
         <dependency>
-          <groupId>org.springframework</groupId>
-          <artifactId>spring-jdbc</artifactId><!-- 包含对Spring对JDBC数据访问进行封装的所有类  -->
-          <version>${spring.version}</version>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-jdbc</artifactId><!-- 包含对Spring对JDBC数据访问进行封装的所有类  -->
+            <version>${spring.version}</version>
         </dependency>
         <!-- spring 持久层依赖end -->
         <!-- Spring web相关依赖 start -->
         <dependency>
-          <groupId>org.springframework</groupId>
-          <artifactId>spring-web</artifactId>
-          <version>${spring.version}</version>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-web</artifactId>
+            <version>${spring.version}</version>
         </dependency>
         <dependency>
-          <groupId>org.springframework</groupId>
-          <artifactId>spring-webmvc</artifactId><!-- Spring Web MVC是一种基于Java的实现了Web MVC设计模式的请求驱动类型的轻量级Web框架 -->
-          <version>${spring.version}</version>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-webmvc</artifactId><!-- Spring Web MVC是一种基于Java的实现了Web MVC设计模式的请求驱动类型的轻量级Web框架 -->
+            <version>${spring.version}</version>
         </dependency>
         <!-- Spring web相关依赖 end -->
         <!-- Spring 其它依赖 -->
         <dependency>
-          <groupId>org.springframework</groupId><!-- spring面向切面编程，提供AOP（面向切面编程） -->
-          <artifactId>spring-aop</artifactId>
-          <version>${spring.version}</version>
+            <groupId>org.springframework</groupId><!-- spring面向切面编程，提供AOP（面向切面编程） -->
+            <artifactId>spring-aop</artifactId>
+            <version>${spring.version}</version>
         </dependency>
         <dependency>
-          <groupId>org.springframework</groupId>
-          <artifactId>spring-context-support</artifactId>
-          <version>${spring.version}</version>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context-support</artifactId>
+            <version>${spring.version}</version>
         </dependency>
         <dependency>
-          <groupId>org.springframework</groupId>
-          <artifactId>spring-oxm</artifactId>
-          <version>${spring.version}</version>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-oxm</artifactId>
+            <version>${spring.version}</version>
         </dependency>
         <dependency>
-          <groupId>org.aspectj</groupId>
-          <artifactId>aspectjweaver</artifactId>
-          <version>1.8.10</version>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjweaver</artifactId>
+            <version>1.8.10</version>
         </dependency>
         <dependency>
-          <groupId>org.springframework.data</groupId>
-          <artifactId>spring-data-jpa</artifactId>
-          <version>1.5.2.RELEASE</version>
+            <groupId>org.springframework.data</groupId>
+            <artifactId>spring-data-jpa</artifactId>
+            <version>${jpa.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.quartz-scheduler</groupId>
+            <artifactId>quartz</artifactId>
+            <version>${quartz.version}</version>
         </dependency>
         <!-- Spring其他依赖  end-->
         <!-- Spring相关项目依赖 end -->

@@ -63,3 +63,43 @@ CREATE TABLE `yunziru_dimension` (
   PRIMARY KEY  (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
+
+INSERT into yunziru_tag
+SELECT null
+      ,type
+			,tag_desc
+			,1
+			,1510582833000
+  from (
+				SELECT DISTINCT type
+							,type as tag_desc
+					FROM
+							(
+								SELECT  TRIM(
+													SUBSTRING_INDEX(
+															SUBSTRING_INDEX(type, '/', seq),
+															'/' ,-1
+													)
+												) type
+									FROM
+											(
+											 SELECT @rownum:=@rownum+1 AS seq
+												 FROM
+														 (
+															SELECT
+															@rownum:=0
+														 ) r
+												 , yunziru_movie
+											) b
+									CROSS JOIN yunziru_movie
+									WHERE
+											seq BETWEEN 1
+									AND (
+											SELECT
+													1 + LENGTH(type) - LENGTH(REPLACE(type, '/', ''))
+											)
+							) a
+				WHERE LENGTH(type) = 6
+) a
+
+

@@ -1,19 +1,29 @@
 package service;
 
+import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
 import com.yunziru.common.dto.PageModel;
 import com.yunziru.common.util.PageUtil;
 import com.yunziru.movie.entity.Movie;
+import com.yunziru.movie.service.MovieService;
 import com.yunziru.tag.dao.DimensionDao;
 import com.yunziru.tag.dao.MovieTagDao;
 import com.yunziru.tag.dao.TagDao;
 import com.yunziru.tag.dao.impl.TagDaoImpl;
 import com.yunziru.tag.entity.Dimension;
+import com.yunziru.tag.entity.MovieTag;
 import com.yunziru.tag.entity.Tag;
+import com.yunziru.tag.service.MovieTagService;
+import com.yunziru.tag.service.TagService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+
+import javax.annotation.Resource;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Created by guoyanlei
@@ -36,6 +46,15 @@ public class TagServiceTest {
 
     @Autowired
     private TagDao tagDao;
+
+    @Resource
+    private TagService tagService;
+
+    @Resource
+    private MovieService movieService;
+
+    @Resource
+    private MovieTagService movieTagService;
 
     @Test
     public void baseTest() {
@@ -79,5 +98,35 @@ public class TagServiceTest {
     @Test
     public void baseTagsTest() {
         System.out.println(tagDao.findTagById(1L));
+    }
+
+    @Test
+    public void getAllTest() {
+
+        List<MovieTag> movieTags = Lists.newArrayList();
+
+        List<Tag> tagList = tagService.getAll();
+        List<Movie> movieList = movieService.getAll();
+        movieList.forEach(movie -> {
+            System.out.println(movie.getId());
+            String year = String.valueOf(movie.getYear());
+            String location = movie.getLocation() == null ? "" :movie.getLocation();
+            String type = movie.getType() == null ? "" : movie.getType();
+
+            for (Tag tag : tagList) {
+                if (year.contains(tag.getTagName())) {
+                    movieTags.add(new MovieTag(movie.getId(), tag.getId(), System.currentTimeMillis()));
+                }
+                if (location.contains(tag.getTagName())) {
+                    movieTags.add(new MovieTag(movie.getId(), tag.getId(), System.currentTimeMillis()));
+                }
+                if (type.contains(tag.getTagName())) {
+                    movieTags.add(new MovieTag(movie.getId(), tag.getId(), System.currentTimeMillis()));
+                }
+            }
+        });
+
+        movieTags.forEach(movieTag -> movieTagService.save(movieTag));
+
     }
 }

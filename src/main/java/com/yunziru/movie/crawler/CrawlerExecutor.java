@@ -6,6 +6,10 @@ import com.qiniu.util.StringUtils;
 import com.yunziru.common.util.QiniuUtil;
 import com.yunziru.movie.entity.Movie;
 import com.yunziru.movie.service.MovieService;
+import com.yunziru.tag.entity.MovieTag;
+import com.yunziru.tag.entity.Tag;
+import com.yunziru.tag.service.MovieTagService;
+import com.yunziru.tag.service.TagService;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Service;
 
@@ -32,7 +36,16 @@ public class CrawlerExecutor {
     @Resource
     private MovieService movieService;
 
+    @Resource
+    private TagService tagService;
+
+    @Resource
+    private MovieTagService movieTagService;
+
     public void execute() {
+
+        //获取所以标签
+        List<Tag> tagList = tagService.getAll();
 
         //获取要爬取的电影类别
         String movieListContent = movieCrawler.getResponseContent(MOVIE_LIST);
@@ -62,9 +75,33 @@ public class CrawlerExecutor {
                     }
                 }
                 movie.setScreenshot(JSON.toJSONString(newScrenshot));
-                System.out.println(movie);
                 movieService.save(movie);
+                addMovieTag(tagList, movie);
             }
         }
+    }
+
+    /**
+     * 添加标签
+     */
+    private void addMovieTag(List<Tag> tags, Movie movie) {
+
+        List<MovieTag> movieTags = Lists.newArrayList();
+        String year = String.valueOf(movie.getYear());
+        String location = movie.getLocation() == null ? "" :movie.getLocation();
+        String type = movie.getType() == null ? "" : movie.getType();
+
+        for (Tag tag : tags) {
+            if (year.contains(tag.getTagName())) {
+                movieTags.add(new MovieTag(movie.getId(), tag.getId(), System.currentTimeMillis()));
+            }
+            if (location.contains(tag.getTagName())) {
+                movieTags.add(new MovieTag(movie.getId(), tag.getId(), System.currentTimeMillis()));
+            }
+            if (type.contains(tag.getTagName())) {
+                movieTags.add(new MovieTag(movie.getId(), tag.getId(), System.currentTimeMillis()));
+            }
+        }
+        movieTags.forEach(movieTag -> movieTagService.save(movieTag));
     }
 }

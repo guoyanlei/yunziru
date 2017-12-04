@@ -73,6 +73,6 @@ public class TagMovieStat implements Comparable<TagMovieStat>{
 
     @Override
     public int compareTo(TagMovieStat o) {
-        return this.movieCount.compareTo(o.movieCount);
+        return o.movieCount.compareTo(this.movieCount);
     }
 }

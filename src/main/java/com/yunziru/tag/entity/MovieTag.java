@@ -1,9 +1,6 @@
 package com.yunziru.tag.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 /**
  * Created by guoyanlei
@@ -16,10 +13,17 @@ import javax.persistence.Table;
 public class MovieTag {
 
     @Id
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
     private Long movieId;
     private Long tagId;
     private Long createTime;
+
+    public MovieTag(Long movieId, Long tagId, Long createTime) {
+        this.movieId = movieId;
+        this.tagId = tagId;
+        this.createTime = createTime;
+    }
 
     public Long getId() {
         return id;

@@ -22,7 +22,6 @@ public class MovieCrawlerTest {
     @Autowired
     private CrawlerExecutor crawlerExecutor;
 
-
     @Test
     public void exeTest() {
         crawlerExecutor.execute();

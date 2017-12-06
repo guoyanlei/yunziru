@@ -43,7 +43,7 @@
 <header class="am-topbar am-topbar-inverse">
     <div class="amz-container">
         <h1 class="am-topbar-brand">
-            <a href="${pageContext.request.contextPath}" class="am-topbar-logo">
+            <a href="${pageContext.request.contextPath}/" class="am-topbar-logo">
                 <img src="${pageContext.request.contextPath}/static/front/img/logo.png?1" alt="云自如">
             </a>
         </h1>
@@ -62,7 +62,7 @@
         <div class="am-collapse am-topbar-collapse" id="doc-topbar-collapse-5">
             <ul class="am-nav am-nav-pills am-topbar-nav pet_filter">
                 <li class="am-active">
-                    <a href="${pageContext.request.contextPath}" title="云自如" target="_self">
+                    <a href="${pageContext.request.contextPath}/" title="云自如" target="_self">
                         首页
                     </a>
                 </li>
@@ -74,7 +74,7 @@
                     </a>
                     <ul class="am-dropdown-content">
                         <li>
-                            <a href="${pageContext.request.contextPath}" title="最新发布" target="_self">
+                            <a href="${pageContext.request.contextPath}/" title="最新发布" target="_self">
                                 最新发布
                             </a>
                         </li>

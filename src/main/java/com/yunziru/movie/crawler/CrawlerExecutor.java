@@ -10,7 +10,8 @@ import com.yunziru.tag.entity.MovieTag;
 import com.yunziru.tag.entity.Tag;
 import com.yunziru.tag.service.MovieTagService;
 import com.yunziru.tag.service.TagService;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -26,7 +27,7 @@ import java.util.Objects;
 @Service
 public class CrawlerExecutor {
 
-    private static Logger LOG = Logger.getLogger(CrawlerExecutor.class);
+    private static final Logger LOG = LoggerFactory.getLogger(CrawlerExecutor.class);
 
     public final static String MOVIE_LIST = "http://www.mxroom.com/forum-36-1.html";
 
@@ -53,15 +54,13 @@ public class CrawlerExecutor {
 
         //分别爬取
         for (Integer key : maps.keySet()) {
-            System.out.println(maps.get(key));
-            //LOG.info(maps.get(key));
+            LOG.info(maps.get(key));
             if (Objects.isNull(movieService.getMovieByTid(key))) {
                 Movie movie = movieCrawler.parseMovie(movieCrawler.getResponseContent(maps.get(key)));
                 movie.setTid(key);
                 if (!StringUtils.isNullOrEmpty(movie.getPoster())) {
                     String qiniuUrl = QiniuUtil.storeMovieImage(movie.getPoster());
-                    System.out.println(qiniuUrl);
-                    //LOG.info(qiniuUrl);
+                    LOG.info(qiniuUrl);
                     movie.setPoster(qiniuUrl);
                 }
                 List<String> newScrenshot = Lists.newArrayList();
@@ -69,12 +68,15 @@ public class CrawlerExecutor {
                 if (screenshot != null) {
                     for (String s : screenshot) {
                         String qiniuUrl = QiniuUtil.storeMovieImage(s);
-                        System.out.println(qiniuUrl);
                         LOG.info(qiniuUrl);
                         newScrenshot.add(qiniuUrl);
                     }
                 }
                 movie.setScreenshot(JSON.toJSONString(newScrenshot));
+                movie.setHotCount(0);
+                movie.setPriseCount(0);
+                movie.setCreateTime(System.currentTimeMillis());
+                movie.setUpdateTime(System.currentTimeMillis());
                 movieService.save(movie);
                 addMovieTag(tagList, movie);
             }

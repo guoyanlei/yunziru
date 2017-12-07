@@ -1,6 +1,12 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <title>云自如-自如分享,分享自如 百度云 云资源 百度网盘资源 bt种子分享</title>
+    <meta name="description" content="是拥有超级丰富的云资源分享平台,自如分享最新电影,经典电影与电视剧资源云链接,是云资源爱好者最好的分享平台之一。想更自如的获得更多云资源,就上云自如,因为有你所以更精彩!">
+    <meta name="keywords" content="云自如,云资源,百度云盘,百度云,百度云搜索,百度云资源,百度云下载,百度云网盘,bt下载,bt种子,bt天堂">
 <%@ include file="header.jsp"%>
 <%@ include file="banner.jsp"%>
 
@@ -25,13 +31,8 @@
                          src="${pageContext.request.contextPath}/static/front/img/loading.gif"
                          data-original="${movie.poster}"/>
                         <div class="am_listimg_info">
-                            <span class="am-icon-heart">${movie.priseCount}</span>
-                            <span class="am-icon-tag">
-                                <script>
-                                    var d = new Date(${movie.createTime});
-                                    document.write((d.getFullYear()) + "-" + (d.getMonth() + 1) + "-" + (d.getDate()));
-                                </script>
-                            </span>
+                            <span class="am-icon-cloud-download">${movie.hotCount}</span>
+                            <span class="am-icon-share-square-o">${movie.createTime}</span>
                         </div>
                         <div class="am-gallery-desc" style="padding-top: 5px;">${movie.title}</div>
                     </a>
@@ -67,8 +68,7 @@
 
             $('.am-icon-spinner').hide();
             // 数据异常
-            if(!data.success)
-            {
+            if(!data.success){
                 console.log(data.msg);
                 return false;
             }
@@ -80,8 +80,8 @@
                 "                             src=\"${pageContext.request.contextPath}/static/front/img/loading.gif\"\n" +
                 "                             data-original=\"" + data.data[i].poster + "\"/>\n" +
                 "                        <div class=\"am_listimg_info\">\n" +
-                "                            <span class=\"am-icon-heart\">" + data.data[i].priseCount + "</span>\n" +
-                "                            <span class=\"am-icon-tag\">" + getDate(data.data[i].createTime) + "</span>\n" +
+                "                            <span class=\"am-icon-cloud-download\">" + data.data[i].hotCount + "</span>\n" +
+                "                            <span class=\"am-icon-share-square-o\">" + data.data[i].createTime + "</span>\n" +
                 "                        </div>\n" +
                 "                        <div class=\"am-gallery-desc\" style=\"padding-top: 5px;\">" + data.data[i].title + "</div>\n" +
                 "                    </a>\n" +

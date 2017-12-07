@@ -1,6 +1,14 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ include file="header.jsp"%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <title>云自如-自如搜索 百度云 云资源 百度网盘资源 bt种子分享</title>
+    <meta name="description" content="是拥有超级丰富的云资源分享平台,自如分享最新电影,经典电影与电视剧资源云链接,是云资源爱好者最好的分享平台之一。想更自如的获得更多云资源,就上云自如,因为有你所以更精彩!">
+    <meta name="keywords" content="云自如,云资源,百度云盘,百度云,百度云搜索,百度云资源,百度云下载,百度云网盘,bt下载,bt种子,bt天堂" />
+
+<%@ include file="header.jsp"%>
 
 <div class="am-list-news-bd am_news_list_all" >
     <div class="am-input-group am-input-group-success" style="padding-top: 50px; width: 80%;margin:0 auto; text-align: center">

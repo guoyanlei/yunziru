@@ -26,8 +26,16 @@ public class DetailController {
 		modelMap.put("ulikeMovies", movieService.getULikeMovie());
 		modelMap.put("hotMovies", movieService.getRandomHotMovie());
 		modelMap.put("movie", movieService.getMovieDetailInfo(id));
-		modelMap.put("tagMovies", tagService.getMovieTagStats(id));
 		return "front/detail";
+	}
+
+	@RequestMapping(value = "{id}/tagMovies", method = RequestMethod.GET, headers = "Accept=application/json")
+	@ResponseBody
+	public AjaxResult getTagMovies(@PathVariable Long id){
+		AjaxResult ajaxResult = new AjaxResult();
+		ajaxResult.setData(tagService.getMovieTagStats(id));
+		ajaxResult.setSuccess(true);
+		return ajaxResult;
 	}
 
 	@RequestMapping(value = "{id}/hot", method = RequestMethod.POST, headers = "Accept=application/json")

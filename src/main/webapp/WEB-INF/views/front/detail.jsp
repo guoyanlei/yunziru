@@ -1,6 +1,13 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ include file="header.jsp"%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <title>${movie.title} 百度云网盘下载 百度云资源 云自如</title>
+    <meta name="description" content="${movie.title} 百度云 百度网盘 云自如">
+    <meta name="keywords" content="${movie.title} 百度云 百度网盘 云自如" />
+<%@ include file="header.jsp"%>
 
 <div class="am_ziyuan">
     <div class="am_ziyuan_user">
@@ -63,14 +70,7 @@
             <ul class="am_ziyuan_r_info">
                 <li><i class="am-icon-heart"></i><span> ${movie.priseCount} 人喜欢</span></li>
                 <li><i class="am-icon-eye"></i><span> ${movie.hotCount} 次查看</span></li>
-                <li><i class="am-icon-clock-o"></i><span>发布
-                    <script>
-                        var d = new Date(${movie.createTime});
-                        var date = (d.getFullYear()) + "-" +
-                                (d.getMonth() + 1) + "-" +
-                                (d.getDate());
-                        document.write(date);
-                    </script></span></li>
+                <li><i class="am-icon-clock-o"></i><span>发布 ${movie.createTime}</span></li>
             </ul>
             <ul class="am_ziyuan_share">
                 <div class="opera">
@@ -82,9 +82,11 @@
             </ul>
             <ul class="am_ziyuan_tag">
                 <li><span class="am_ziyuan_tag_title">TAG</span></li>
-                <c:forEach var="tagMovie" items="${tagMovies}">
-                    <li><a href="#"><span>${tagMovie.tagName}</span><span>${tagMovie.movieCount}</span></a></li>
-                </c:forEach>
+                <div id = "tag_movies">
+                    <c:forEach var="tagMovie" items="${tagMovies}">
+                        <li><a href="#"><span>${tagMovie.tagName}</span><span>${tagMovie.movieCount}</span></a></li>
+                    </c:forEach>
+                </div>
                 <li><a href="#"><span></span><span></span></a></li>
             </ul>
             <div class="page_hot">
@@ -97,22 +99,14 @@
                                 <a href="${pageContext.request.contextPath}/movies/${hotMovie.id}/detail">
                                 <img src="${hotMovie.poster}" alt=""></a></dt>
                             <dd>
-                                <i>
+                                <i style="font-size: 14px;color: #a1a1a1;">
                                     <a href="${pageContext.request.contextPath}/movies/${hotMovie.id}/detail">
                                     ${hotMovie.name}</a>
                                 </i>
-                                <em>
-                                    <script>
-                                        var d = new Date(${movie.createTime});
-                                        var date = (d.getFullYear()) + "-" +
-                                                (d.getMonth() + 1) + "-" +
-                                                (d.getDate());
-                                        document.write(date);
-                                    </script>
+                                <em>${movie.createTime}
                                 </em>
                                 <div class="hot_block_info">
-                                    <div class="hot_info_l am-icon-heart">${hotMovie.priseCount}</div>
-                                    <div class="hot_info_l am-icon-eye">&nbsp;&nbsp;${hotMovie.hotCount}</div>
+                                    <div class="hot_info_l am-icon-cloud-download">${hotMovie.hotCount}</div>
                                 </div>
                             </dd>
                         </dl>
@@ -136,16 +130,8 @@
                                  src="${pageContext.request.contextPath}/static/front/img/loading.gif"
                                  data-original="${movie.poster}"/>
                             <div class="am_listimg_info">
-                                <span class="am-icon-heart">${movie.priseCount}</span>
-                            <span class="am-icon-tag">
-                                <script>
-                                    var d = new Date(${movie.createTime});
-                                    var date = (d.getFullYear()) + "-" +
-                                            (d.getMonth() + 1) + "-" +
-                                            (d.getDate());
-                                    document.write(date);
-                                </script>
-                            </span>
+                                <span class="am-icon-cloud-download">${movie.hotCount}</span>
+                                <span class="am-icon-share-square-o">${movie.createTime}</span>
                             </div>
                             <div class="am-gallery-desc" style="padding-top: 5px;">${movie.title}</div>
                         </a>
@@ -199,5 +185,19 @@
             }
         },'json');
     }
+
+    var tagMoviesHtml = '';
+    $.get('tagMovies',function(data){
+        if(!data.success){
+            console.log(data.msg);
+            return false;
+        }
+        for( var i = 0 ; i < data.data.length ; i++ ){
+            tagMoviesHtml += "<li><a href=\"#\"><span>" + data.data[i].tagName +"</span><span>" + data.data[i].movieCount +"</span></a></li>\n";
+        }
+        $('#tag_movies').append(tagMoviesHtml);
+        page++;
+    },'json');
+
 </script>
 <%@ include file="footer.jsp"%>

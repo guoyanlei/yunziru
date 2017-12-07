@@ -29,7 +29,7 @@
 <header class="am-topbar am-topbar-inverse">
     <div class="amz-container">
         <h1 class="am-topbar-brand">
-            <a href="${pageContext.request.contextPath}/" class="am-topbar-logo">
+            <a href="${pageContext.request.contextPath}/" target="_self" class="am-topbar-logo">
                 <img src="${pageContext.request.contextPath}/static/front/img/logo.png?1" alt="云自如">
             </a>
         </h1>

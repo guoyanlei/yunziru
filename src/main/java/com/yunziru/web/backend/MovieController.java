@@ -39,13 +39,9 @@ public class MovieController {
 
         //搜索参数
         modelMap.put("time", time);
+        modelMap.put("keyword", keyword);
 
-        String str = null;
-        if (keyword != null) {
-            str = new String(keyword.getBytes("iso8859-1"), "UTF-8");
-            modelMap.put("keyword", str);
-        }
-        modelMap.put("movies", movieService.findAllByPage(page, size, time, str));
+        modelMap.put("movies", movieService.findAllByPage(page, size, time, keyword));
         return "backend/movie_list";
     }
 

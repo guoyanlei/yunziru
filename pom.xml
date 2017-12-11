@@ -318,6 +318,13 @@
             <artifactId>httpmime</artifactId>
             <version>4.5.3</version>
         </dependency>
+
+        <dependency>
+            <groupId>com.github.dfabulich</groupId>
+            <artifactId>sitemapgen4j</artifactId>
+            <version>1.0.6</version>
+        </dependency>
+
     </dependencies>
 
     <build>

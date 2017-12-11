@@ -1,5 +1,6 @@
 package com.yunziru.web.front;
 
+import com.yunziru.cloud.resource.service.MenuService;
 import com.yunziru.common.dto.AjaxResult;
 import com.yunziru.movie.MovieConfig;
 import com.yunziru.movie.service.MovieService;
@@ -28,6 +29,7 @@ public class RecommendController {
 
 		modelMap.put("movies", recommendMovieService.getRCMMovielist(1, MovieConfig.RCM_DEFAULT_SIZE));
 		modelMap.put("totalCount", movieService.getTotalCount());
+		modelMap.put("menus", MenuService.menusCache);
 		return "front/recommend";
 	}
 

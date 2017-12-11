@@ -48,7 +48,6 @@
 <script>
     var page     = 2;
     var pageSize = 24;
-    var datalist = 'hotlist';
 
     $(function(){
         load_more();

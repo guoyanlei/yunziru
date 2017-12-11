@@ -13,8 +13,7 @@
 <div class="banner_navbg">
     <div class="am-g">
         <div class="banner_nav"><span class="am-icon-caret-right">  筛选：</span>
-            <a href="${pageContext.request.contextPath}/" title="最新发布" target="_self" class="click_bjtj banner_hover">最新发布</a>
-            <a href="recommend" title="编辑推荐" target="_self" class="click_rqzg" >编辑推荐</a>
+            <a href="${pageContext.request.contextPath}/resource" title="最新发布" target="_self" class="click_bjtj banner_hover">最新发布</a>
             <a href="hot" title="人气最高" target="_self"  class="click_rqzg">人气最高</a>
         </div>
     </div>
@@ -23,18 +22,18 @@
 <div class="am-g am-imglist">
     <ul data-am-widget="gallery" class="am-gallery am-avg-sm-2
   am-avg-md-3 am-avg-lg-6 am-gallery-imgbordered am_index_addimglist" data-am-gallery="{  }" >
-        <c:forEach var="movie" items="${movies}">
+        <c:forEach var="resource" items="${resources}">
             <li>
                 <div class="am-gallery-item">
-                    <a href="movies/${movie.id}/detail" class="">
-                    <img class="am_img animated" alt="${movie.title}"
+                    <a href="movies/${resource.id}/detail" class="">
+                    <img class="am_img animated" alt="${resource.title}"
                          src="${pageContext.request.contextPath}/static/front/img/loading.gif"
-                         data-original="${movie.poster}"/>
+                         data-original="${resource.poster}"/>
                         <div class="am_listimg_info">
-                            <span class="am-icon-cloud-download">${movie.hotCount}</span>
-                            <span class="am-icon-share-square-o">${movie.createTime}</span>
+                            <span class="am-icon-cloud-download">${resource.hotCount}</span>
+                            <span class="am-icon-share-square-o">${resource.createTime}</span>
                         </div>
-                        <div class="am-gallery-desc" style="padding-top: 5px;">${movie.title}</div>
+                        <div class="am-gallery-desc" style="padding-top: 5px;">${resource.title}</div>
                     </a>
                 </div>
             </li>
@@ -47,11 +46,7 @@
 </div>
 <script>
     var page     = 2;
-    var pageSize = 24;
-
-    $(function(){
-        load_more();
-    });
+    var pageSize = 1;
 
     $('.am-icon-spinner').hide();
     $('.am_news_load_index').on('click',function(){
@@ -63,7 +58,7 @@
 
         var indexListImgHtml = '';
         $('.am_news_load_index').unbind('click');
-        $.get('movies/list?page='+ page + '&size=' + pageSize,function(data){
+        $.get('${menuName}/list?page='+ page + '&size=' + pageSize,function(data){
 
             $('.am-icon-spinner').hide();
             // 数据异常

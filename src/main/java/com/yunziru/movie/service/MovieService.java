@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.TypeReference;
 import com.google.common.collect.Lists;
+import com.yunziru.cloud.resource.service.CloudResourceService;
 import com.yunziru.common.service.CommonService;
 import com.yunziru.common.util.PageUtil;
 import com.yunziru.movie.dao.MovieDao;
@@ -45,6 +46,9 @@ public class MovieService extends CommonService<Movie, Long> {
     private MovieDaoImpl movieDaoImpl;
 
     @Autowired
+    private CloudResourceService cloudResourceService;
+
+    @Autowired
     public void setMovieDao(MovieDao movieDao){
         super.setCommonDao(movieDao);
     }
@@ -67,7 +71,7 @@ public class MovieService extends CommonService<Movie, Long> {
      * 获取资源总数
      */
     public Long getTotalCount() {
-        return movieDao.count();
+        return movieDao.count() + cloudResourceService.getTotalCount();
     }
 
     /**

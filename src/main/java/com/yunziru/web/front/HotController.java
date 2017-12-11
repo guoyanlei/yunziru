@@ -1,5 +1,6 @@
 package com.yunziru.web.front;
 
+import com.yunziru.cloud.resource.service.MenuService;
 import com.yunziru.common.dto.AjaxResult;
 import com.yunziru.movie.MovieConfig;
 import com.yunziru.movie.service.MovieService;
@@ -24,6 +25,7 @@ public class HotController {
 
 		modelMap.put("movies", movieService.getHotMovieList(1, MovieConfig.HOT_DEFAULT_SIZE));
 		modelMap.put("totalCount", movieService.getTotalCount());
+		modelMap.put("menus", MenuService.menusCache);
 		return "front/hot";
 	}
 

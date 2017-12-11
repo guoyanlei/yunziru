@@ -1,5 +1,6 @@
 package com.yunziru.web.front;
 
+import com.yunziru.cloud.resource.service.MenuService;
 import com.yunziru.common.dto.AjaxResult;
 import com.yunziru.movie.service.MovieService;
 import com.yunziru.tag.service.TagService;
@@ -26,6 +27,7 @@ public class DetailController {
 		modelMap.put("ulikeMovies", movieService.getULikeMovie());
 		modelMap.put("hotMovies", movieService.getRandomHotMovie());
 		modelMap.put("movie", movieService.getMovieDetailInfo(id));
+		modelMap.put("menus", MenuService.menusCache);
 		return "front/detail";
 	}
 

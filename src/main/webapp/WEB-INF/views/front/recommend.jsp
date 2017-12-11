@@ -49,7 +49,6 @@
 <script>
     var page     = 2;
     var pageSize = 20;
-    var datalist = 'indexrecommendlist';
 
     $(function(){
         load_more();

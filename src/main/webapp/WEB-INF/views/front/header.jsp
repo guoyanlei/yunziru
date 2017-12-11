@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -76,11 +77,13 @@
                         </li>
                     </ul>
                 </li>
-                <%--<li>--%>
-                    <%--<a href="${pageContext.request.contextPath}/fresh" title="新鲜事" target="_blank">--%>
-                        <%--新鲜事--%>
-                    <%--</a>--%>
-                <%--</li>--%>
+                <c:forEach var="menu" items="${menus}">
+                <li>
+                    <a href="${pageContext.request.contextPath}/resource/${menu.url}" title="${menu.name}" target="_blank">
+                            ${menu.name}
+                    </a>
+                </li>
+                </c:forEach>
             </ul>
         </div>
     </div>

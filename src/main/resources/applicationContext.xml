@@ -2,7 +2,6 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:aop="http://www.springframework.org/schema/aop"
-       default-lazy-init="true"
        xmlns:tx="http://www.springframework.org/schema/tx"
        xmlns:context="http://www.springframework.org/schema/context"
        xmlns:jpa="http://www.springframework.org/schema/data/jpa"
@@ -52,7 +51,7 @@
                 <property name="generateDdl" value="false" />
                 <property name="database" value="MYSQL" />
                 <property name="databasePlatform" value="org.hibernate.dialect.MySQL5InnoDBDialect" />
-                <property name="showSql" value="false" />
+                <property name="showSql" value="true" />
             </bean>
         </property>
         <property name="jpaDialect">

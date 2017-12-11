@@ -1,5 +1,6 @@
 package com.yunziru.web.front;
 
+import com.yunziru.cloud.resource.service.MenuService;
 import com.yunziru.movie.service.MovieService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -17,6 +18,7 @@ public class SearchController {
 	public String search(ModelMap modelMap){
 
 		modelMap.put("ulikeMovies", movieService.getULikeMovie());
+		modelMap.put("menus", MenuService.menusCache);
 		return "front/search";
 	}
 

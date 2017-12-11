@@ -1,5 +1,6 @@
 package com.yunziru.web.front;
 
+import com.yunziru.cloud.resource.service.MenuService;
 import com.yunziru.common.dto.AjaxResult;
 import com.yunziru.movie.MovieConfig;
 import com.yunziru.movie.service.MovieService;
@@ -11,13 +12,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
-import java.io.UnsupportedEncodingException;
 
 @Controller
 @RequestMapping("")
 public class IndexController {
-
-
 
 	@Resource
 	private MovieService movieService;
@@ -27,6 +25,7 @@ public class IndexController {
 
 		modelMap.put("movies", movieService.getIndexMovieList(null, 1, MovieConfig.INDEX_DEFAULT_SIZE));
 		modelMap.put("totalCount", movieService.getTotalCount());
+        modelMap.put("menus", MenuService.menusCache);
 		return "front/index_new";
 	}
 
@@ -34,7 +33,7 @@ public class IndexController {
 	@ResponseBody
 	public AjaxResult getMovieList(@RequestParam(value = "keyword", required = false) String keyword,
 								   @RequestParam(defaultValue = "1", required = true) int page,
-								   @RequestParam(defaultValue = "20", required = true) int size) throws UnsupportedEncodingException {
+								   @RequestParam(defaultValue = "20", required = true) int size) {
 
 		AjaxResult ajaxResult = new AjaxResult();
 		ajaxResult.setData(this.movieService.getIndexMovieList(keyword, page, size));

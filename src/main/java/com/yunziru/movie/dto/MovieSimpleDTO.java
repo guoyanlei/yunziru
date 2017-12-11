@@ -1,5 +1,7 @@
 package com.yunziru.movie.dto;
 
+import org.joda.time.DateTime;
+
 /**
  * Created by guoyanlei
  * Date：2017/11/6
@@ -76,8 +78,8 @@ public class MovieSimpleDTO {
         this.hotCount = hotCount;
     }
 
-    public Long getCreateTime() {
-        return createTime;
+    public String getCreateTime() {
+        return new DateTime(createTime).toString("yyyy-MM-dd");
     }
 
     public void setCreateTime(Long createTime) {

@@ -1,18 +1,4 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: acer
-  Date: 2017/10/27
-  Time: 22:51
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-
-<!DOCTYPE html>
-<html lang="zh">
-<head>
-    <title>云自如 自如分享,分享自如,自如上传下载你想要的云资源吧</title>
-    <meta name="description" content=是拥有超级丰富的云资源分享平台,自如分享最新电影,经典电影与电视剧资源云链接,是云资源爱好者最好的分享平台之一。想更自如的获得更多云资源,就上云自如,因为有你所以更精彩。>
-    <meta name="keywords" content="云自如，云资源，百度云资源,百度云平台,百度云搜索,百度云bt" />
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -43,7 +29,7 @@
 <header class="am-topbar am-topbar-inverse">
     <div class="amz-container">
         <h1 class="am-topbar-brand">
-            <a href="${pageContext.request.contextPath}/" class="am-topbar-logo">
+            <a href="${pageContext.request.contextPath}/" target="_self" class="am-topbar-logo">
                 <img src="${pageContext.request.contextPath}/static/front/img/logo.png?1" alt="云自如">
             </a>
         </h1>

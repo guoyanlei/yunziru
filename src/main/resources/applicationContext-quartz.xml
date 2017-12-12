@@ -10,15 +10,12 @@
 
 	<!-- 配置JobDetail -->
 	<bean id="crawlerMethod" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
-		<!-- 执行目标job -->
 		<property name="targetObject" ref="crawlerExecutor"/>
-		<!-- 要执行的方法 -->
 		<property name="targetMethod" value="execute"/>
 	</bean>
 
 	<!-- 配置trigger触发器 -->
 	<bean id="crawlerFactoryBean" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
-		<!-- jobDetail -->
 		<property name="jobDetail" ref="crawlerMethod"/>
 		<!-- cron表达式，执行时间  每5秒执行一次 -->
 		<property name="cronExpression" value="0 0 0/6 * * ?"/>
@@ -26,18 +23,15 @@
 
 	<!-- 配置JobDetail -->
 	<bean id="siteMapMethod" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
-		<!-- 执行目标job -->
 		<property name="targetObject" ref="siteMapExecutor"/>
-		<!-- 要执行的方法 -->
 		<property name="targetMethod" value="execute"/>
 	</bean>
 
 	<!-- 配置trigger触发器 -->
 	<bean id="siteMapFactoryBean" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
-		<!-- jobDetail -->
 		<property name="jobDetail" ref="siteMapMethod"/>
-		<!-- cron表达式，执行时间  每5秒执行一次 -->
-		<property name="cronExpression" value="0 0 0/6 * * ?"/>
+		<!-- cron表达式，执行时间  每5分钟执行一次 -->
+		<property name="cronExpression" value="0/60 * * * * ?"/>
 	</bean>
 
 	<!-- 配置调度工厂 -->

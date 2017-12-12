@@ -102,4 +102,32 @@ SELECT null
 				WHERE LENGTH(type) = 6
 ) a
 
+CREATE TABLE `yunziru_menu` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `name` varchar(100) DEFAULT NULL,
+  `desc` varchar(100) DEFAULT NULL,
+  `url` varchar(255) DEFAULT NULL,
+  `rank` int(11) DEFAULT NULL,
+  `use_status` int(11) DEFAULT NULL,
+  `create_time` bigint(20) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `yunziru_resource` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `title` varchar(100) DEFAULT NULL,
+  `name` varchar(100) DEFAULT NULL,
+  `poster` varchar(255) DEFAULT NULL,
+  `summary` text,
+  `screenshot` text,
+  `ed2k_link` text,
+  `baidu_link` text,
+  `prise_count` int(255) DEFAULT NULL,
+  `hot_count` int(255) DEFAULT NULL,
+  `create_time` bigint(20) DEFAULT NULL,
+  `update_time` bigint(20) DEFAULT NULL,
+  `menu` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `MENU` (`menu`) USING BTREE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 

@@ -13,18 +13,11 @@
     <script src="${pageContext.request.contextPath}/static/front/js/jquery.min.js"></script>
     <script src="${pageContext.request.contextPath}/static/front/js/amazeui.min.js"></script>
     <script src="${pageContext.request.contextPath}/static/front/js/yunziru.js"></script>
+    <script src="${pageContext.request.contextPath}/static/front/js/push.js"></script>
     <base target="_blank" />
     <script src="${pageContext.request.contextPath}/static/front/js/countUp.min.js"></script>
     <script src="${pageContext.request.contextPath}/static/front/js/amazeui.lazyload.min.js"></script>
-    <script>
-        var _hmt = _hmt || [];
-        (function() {
-            var hm = document.createElement("script");
-            hm.src = "https://hm.baidu.com/hm.js?fe42b49c11a22004b71d818e77633f3d";
-            var s = document.getElementsByTagName("script")[0];
-            s.parentNode.insertBefore(hm, s);
-        })();
-    </script>
+
 </head>
 <body>
 <header class="am-topbar am-topbar-inverse">

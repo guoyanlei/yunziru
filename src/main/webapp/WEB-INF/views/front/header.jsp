@@ -70,6 +70,30 @@
                         </li>
                     </ul>
                 </li>
+                <li class="am-dropdown" data-am-dropdown="">
+                    <a class="am-dropdown-toggle" data-am-dropdown-toggle="" href="javascript:;" target="_self">
+                        美剧资源
+                        <span class="am-icon-caret-down">
+                        </span>
+                    </a>
+                    <ul class="am-dropdown-content">
+                        <li>
+                            <a href="${pageContext.request.contextPath}/meijus" title="最新美剧" target="_self">
+                                最新美剧
+                            </a>
+                        </li>
+                        <li>
+                            <a href="${pageContext.request.contextPath}/recommend" title="编辑推荐" target="_self">
+                                编辑推荐
+                            </a>
+                        </li>
+                        <li>
+                            <a href="${pageContext.request.contextPath}/hot" title="人气排行" target="_self">
+                                人气排行
+                            </a>
+                        </li>
+                    </ul>
+                </li>
                 <c:forEach var="menu" items="${menus}">
                 <li>
                     <a href="${pageContext.request.contextPath}/resource/${menu.url}" title="${menu.name}" target="_blank">

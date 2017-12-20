@@ -13,5 +13,6 @@ public interface QiniuConf {
     String domain = "http://oyqte78ri.bkt.clouddn.com/";
 
     String MOVIE_FOlDER = "movie";
+    String MEIJU_FOlDER = "meiju";
 
 }

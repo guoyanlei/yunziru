@@ -131,3 +131,24 @@ CREATE TABLE `yunziru_resource` (
   KEY `MENU` (`menu`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+
+CREATE TABLE `yunziru_meiju` (
+  `id` bigint(20) NOT NULL auto_increment,
+  `title` varchar(100) default NULL,
+  `date` varchar(50) default NULL,
+  `image` varchar(255) default NULL,
+  `summary` text,
+  `down_links` text,
+  `update_status` varchar(100) default NULL,
+  `tag_ch` varchar(50) default NULL,
+  `tag_en` varchar(50) default NULL,
+  `category_ch` varchar(50) default NULL,
+  `category_en` varchar(50) default NULL,
+  `is_end` int(1) default NULL,
+  `tid` bigint(20) default NULL,
+  `prise_count` int(11) default NULL,
+  `hot_count` int(11) default NULL,
+  `create_time` bigint(20) default NULL,
+  `update_time` bigint(20) default NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;

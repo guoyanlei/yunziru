@@ -18,6 +18,7 @@ import org.apache.log4j.Logger;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Random;
 
 /**
  * Created by guoyanlei
@@ -36,6 +37,24 @@ public class QiniuUtil {
         return storeQiniuAndGetUrlByImgUrl(QiniuConf.MOVIE_FOlDER, imgUrl);
     }
 
+    public static String storeMeiJuImage(String imgUrl) {
+        return storeQiniuAndGetUrlByImgUrl(QiniuConf.MEIJU_FOlDER, imgUrl);
+    }
+
+    public static String storeRandomImage(String imgUrl) {
+        return storeQiniuAndGetUrlByImgUrl(QiniuUtil.getRandomString(5), imgUrl);
+    }
+
+    public static String getRandomString(int length) { //length表示生成字符串的长度
+        String base = "abcdefghijklmnopqrstuvwxyz0123456789";
+        Random random = new Random();
+        StringBuffer sb = new StringBuffer();
+        for (int i = 0; i < length; i++) {
+            int number = random.nextInt(base.length());
+            sb.append(base.charAt(number));
+        }
+        return sb.toString();
+    }
 
     /**
      * 读取inputStream并将图片存储到七牛云

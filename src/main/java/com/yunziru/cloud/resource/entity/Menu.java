@@ -22,6 +22,7 @@ public class Menu {
     private String url;
     private Integer rank;
     private Integer useStatus;
+    private Long parent;
     private Long createTime;
 
     public Long getId() {
@@ -75,6 +76,15 @@ public class Menu {
 
     public void setUseStatus(Integer useStatus) {
         this.useStatus = useStatus;
+    }
+
+    @Column(name = "parent")
+    public Long getParent() {
+        return parent;
+    }
+
+    public void setParent(Long parent) {
+        this.parent = parent;
     }
 
     @Column(name = "create_time")

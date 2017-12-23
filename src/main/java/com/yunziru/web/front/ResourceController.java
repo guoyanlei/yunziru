@@ -17,7 +17,7 @@ import javax.annotation.Resource;
  * Description：云资源Controller
  */
 @Controller
-@RequestMapping("resource")
+@RequestMapping("")
 public class ResourceController {
 
     @Resource

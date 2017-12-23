@@ -7,6 +7,7 @@ import com.google.common.collect.Lists;
 import com.yunziru.cloud.resource.service.CloudResourceService;
 import com.yunziru.common.service.CommonService;
 import com.yunziru.common.util.PageUtil;
+import com.yunziru.meiju.service.MeiJuService;
 import com.yunziru.movie.dao.MovieDao;
 import com.yunziru.movie.dao.impl.MovieDaoImpl;
 import com.yunziru.movie.dto.MovieDetailDTO;
@@ -49,6 +50,9 @@ public class MovieService extends CommonService<Movie, Long> {
     private CloudResourceService cloudResourceService;
 
     @Autowired
+    private MeiJuService meiJuService;
+
+    @Autowired
     public void setMovieDao(MovieDao movieDao){
         super.setCommonDao(movieDao);
     }
@@ -71,7 +75,7 @@ public class MovieService extends CommonService<Movie, Long> {
      * 获取资源总数
      */
     public Long getTotalCount() {
-        return movieDao.count() + cloudResourceService.getTotalCount();
+        return movieDao.count() + cloudResourceService.getTotalCount() + meiJuService.getTotalCount();
     }
 
     /**

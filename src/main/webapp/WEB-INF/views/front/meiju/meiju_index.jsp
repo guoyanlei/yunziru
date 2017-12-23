@@ -26,15 +26,15 @@
         <c:forEach var="meiju" items="${meijus}">
             <li>
                 <div class="am-gallery-item">
-                    <a href="meijus/${meiju.id}/detail" class="">
-                    <img class="am_img animated" alt="${meiju.title}"
+                    <a href="${meiju.id}/detail" class="">
+                    <img class="am_img animated" alt="【${meiju.updateStatus}】${meiju.title}"
                          src="${pageContext.request.contextPath}/static/front/img/loading.gif"
                          data-original="${meiju.poster}"/>
                         <div class="am_listimg_info">
                             <span class="am-icon-cloud-download">${meiju.hotCount}</span>
                             <span class="am-icon-share-square-o">${meiju.date}</span>
                         </div>
-                        <div class="am-gallery-desc" style="padding-top: 5px;">${meiju.title}</div>
+                        <div class="am-gallery-desc" style="padding-top: 5px;">【${meiju.updateStatus}】${meiju.title}</div>
                     </a>
                 </div>
             </li>
@@ -63,7 +63,7 @@
 
         var indexListImgHtml = '';
         $('.am_news_load_index').unbind('click');
-        $.get('meijus/list?page='+ page + '&size=' + pageSize,function(data){
+        $.get('${category}/list?page='+ page + '&size=' + pageSize,function(data){
 
             $('.am-icon-spinner').hide();
             // 数据异常
@@ -74,7 +74,7 @@
             for( var i = 0 ; i < data.data.length ; i++ ){
                 indexListImgHtml += "<li>\n" +
                 "                <div class=\"am-gallery-item\">\n" +
-                "                    <a href=\"meijus/"+ data.data[i].id + "/detail\" class=\"\">\n" +
+                "                    <a href=\""+ data.data[i].id + "/detail\" class=\"\">\n" +
                 "                        <img class=\"am_img animated\" alt=\"\"\n" +
                 "                             src=\"${pageContext.request.contextPath}/static/front/img/loading.gif\"\n" +
                 "                             data-original=\"" + data.data[i].poster + "\"/>\n" +

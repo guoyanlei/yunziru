@@ -24,13 +24,17 @@ public class MeiJuDaoImpl {
      * @param offset 偏移
      * @param limit 取的个数
      */
-    public List<MeiJuSimpleDTO> getMeiJulist(String keyword, int offset, int limit) {
+    public List<MeiJuSimpleDTO> getMeiJulist(String keyword, String category, int offset, int limit) {
 
-        StringBuilder hql = new StringBuilder("select new com.yunziru.meiju.dto.MeiJuSimpleDTO(id,title,image,priseCount,hotCount,date) from MeiJu ");
-        if (!StringUtils.isEmpty(keyword)) {
-            hql.append("where title like '%" + keyword + "%' ");
+        StringBuilder hql = new StringBuilder("select new com.yunziru.meiju.dto.MeiJuSimpleDTO(id,title,image,updateStatus,priseCount,hotCount,date) from MeiJu ");
+        hql.append("where 1 = 1 ");
+        if (!StringUtils.isEmpty(category)) {
+            hql.append("and category_en = '" + category + "' ");
         }
-        hql.append("order by id desc");
+        if (!StringUtils.isEmpty(keyword)) {
+            hql.append("and title like '%" + keyword + "%' ");
+        }
+        hql.append("order by updateTime desc");
 
         return this.getListByHql(hql.toString(), offset, limit);
     }
@@ -42,7 +46,7 @@ public class MeiJuDaoImpl {
      */
     public List<MeiJuSimpleDTO> getHotMeiJuelist(int offset, int limit) {
 
-        String hql = "select new com.yunziru.meiju.dto.MeiJuSimpleDTO(id,title,image,priseCount,hotCount,date) from MeiJu order by hotCount desc";
+        String hql = "select new com.yunziru.meiju.dto.MeiJuSimpleDTO(id,title,image,updateStatus,priseCount,hotCount,date) from MeiJu order by hotCount desc";
 
         return this.getListByHql(hql, offset, limit);
 
@@ -55,7 +59,7 @@ public class MeiJuDaoImpl {
      */
     public List<MeiJuSimpleDTO> getULikeMeiJulist(int offset, int limit) {
 
-        String hql = "select new com.yunziru.meiju.dto.MeiJuSimpleDTO(id,title,image,priseCount,hotCount,date) from MeiJu order by createTime desc";
+        String hql = "select new com.yunziru.meiju.dto.MeiJuSimpleDTO(id,title,image,updateStatus,priseCount,hotCount,date) from MeiJu order by createTime desc";
 
         return this.getListByHql(hql, offset, limit);
 

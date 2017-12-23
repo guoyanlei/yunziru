@@ -15,6 +15,6 @@ import java.util.List;
  */
 public interface MenuDao extends CommonDao<Menu, Long> {
 
-    @Query("select m from Menu m where m.useStatus = 1 order by rank")
-    List<Menu> findAllMenu();
+    @Query("select m from Menu m where m.useStatus = 1 and m.parent = ?1 order by rank")
+    List<Menu> findMenuByParent(Long parent);
 }

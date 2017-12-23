@@ -10,6 +10,7 @@ public class MeiJuSimpleDTO {
     private Long id;
     private String title;
     private String poster;
+    private String updateStatus;
     private Integer priseCount;
     private Integer hotCount;
     private String date;
@@ -17,10 +18,11 @@ public class MeiJuSimpleDTO {
     public MeiJuSimpleDTO() {
     }
 
-    public MeiJuSimpleDTO(Long id, String title, String poster, Integer priseCount, Integer hotCount, String date) {
+    public MeiJuSimpleDTO(Long id, String title, String poster, String updateStatus, Integer priseCount, Integer hotCount, String date) {
         this.id = id;
         this.title = title;
         this.poster = poster;
+        this.updateStatus = updateStatus;
         this.priseCount = priseCount;
         this.hotCount = hotCount;
         this.date = date;
@@ -35,7 +37,7 @@ public class MeiJuSimpleDTO {
     }
 
     public String getDate() {
-        return date;
+        return date.replaceAll("年|月","-").replaceAll("日","");
     }
 
     public void setDate(String date) {
@@ -74,8 +76,16 @@ public class MeiJuSimpleDTO {
         this.hotCount = hotCount;
     }
 
-    public static MeiJuSimpleDTO of(Long id, String title, String poster, Integer priseCount, Integer hotCount, String date) {
-        return new MeiJuSimpleDTO(id, title, poster, priseCount, hotCount, date);
+    public String getUpdateStatus() {
+        return updateStatus;
+    }
+
+    public void setUpdateStatus(String updateStatus) {
+        this.updateStatus = updateStatus;
+    }
+
+    public static MeiJuSimpleDTO of(Long id, String title, String poster, String updateStatus, Integer priseCount, Integer hotCount, String date) {
+        return new MeiJuSimpleDTO(id, title, poster, updateStatus, priseCount, hotCount, date);
     }
 
     @Override
@@ -84,6 +94,7 @@ public class MeiJuSimpleDTO {
                 "id=" + id +
                 ", title='" + title + '\'' +
                 ", poster='" + poster + '\'' +
+                ", updateStatus='" + updateStatus + '\'' +
                 ", priseCount=" + priseCount +
                 ", hotCount=" + hotCount +
                 ", date='" + date + '\'' +

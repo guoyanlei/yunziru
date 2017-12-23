@@ -1,6 +1,7 @@
 package com.yunziru.cloud.resource.service;
 
 import com.yunziru.cloud.resource.dao.MenuDao;
+import com.yunziru.cloud.resource.dto.MenuDTO;
 import com.yunziru.cloud.resource.entity.Menu;
 import com.yunziru.common.service.CommonService;
 import org.slf4j.Logger;
@@ -30,16 +31,16 @@ public class MenuService  extends CommonService<Menu, Long> {
         super.setCommonDao(menuDao);
     }
 
-    public static ArrayList<Menu> menusCache = new ArrayList<>();
+    public static ArrayList<MenuDTO> menusCache = new ArrayList<>();
 
-    public List<Menu> getAllMenu() {
-        return menuDao.findAllMenu();
+    public List<Menu> getAllTopMenu() {
+        return menuDao.findMenuByParent(0L);
     }
 
     public void initCache() {
-        List<Menu> menuList = this.getAllMenu();
+        List<Menu> menuList = this.getAllTopMenu();
         menuList.forEach(menu -> {
-            menusCache.add(menu);
+            menusCache.add(new MenuDTO(menu.getName(), menu.getUrl(), menuDao.findMenuByParent(menu.getId())));
         });
     }
 

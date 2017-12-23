@@ -35,7 +35,7 @@ public class Movie {
     private Long createTime;
     private Long updateTime;
 
-    @ManyToMany(fetch=FetchType.LAZY)
+    @ManyToMany(fetch=FetchType.EAGER)
     @JoinTable(name="yunziru_movie_tag",joinColumns=@JoinColumn(name="movieId"),
                inverseJoinColumns=@JoinColumn(name="tagId"))
     private Set<Tag> tags = new HashSet<Tag>();

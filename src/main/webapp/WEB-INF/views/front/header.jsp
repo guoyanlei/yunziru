@@ -70,35 +70,32 @@
                         </li>
                     </ul>
                 </li>
+                <c:forEach var="menu" items="${menus}">
+                    <c:choose>
+                        <c:when test="${menu.subMenus.size() == 0}">
+                <li>
+                    <a href="${pageContext.request.contextPath}/${menu.url}" title="${menu.name}" target="_blank">
+                        ${menu.name}
+                    </a>
+                    </c:when>
+                    <c:otherwise>
                 <li class="am-dropdown" data-am-dropdown="">
                     <a class="am-dropdown-toggle" data-am-dropdown-toggle="" href="javascript:;" target="_self">
-                        美剧资源
+                        ${menu.name}
                         <span class="am-icon-caret-down">
                         </span>
                     </a>
                     <ul class="am-dropdown-content">
-                        <li>
-                            <a href="${pageContext.request.contextPath}/meijus" title="最新美剧" target="_self">
-                                最新美剧
-                            </a>
-                        </li>
-                        <li>
-                            <a href="${pageContext.request.contextPath}/recommend" title="编辑推荐" target="_self">
-                                编辑推荐
-                            </a>
-                        </li>
-                        <li>
-                            <a href="${pageContext.request.contextPath}/hot" title="人气排行" target="_self">
-                                人气排行
-                            </a>
-                        </li>
+                        <c:forEach var="subMenu" items="${menu.subMenus}">
+                            <li>
+                                <a href="${pageContext.request.contextPath}/${menu.url}/${subMenu.url}" title="${subMenu.name}" target="_self">
+                                        ${subMenu.name}
+                                </a>
+                            </li>
+                        </c:forEach>
                     </ul>
-                </li>
-                <c:forEach var="menu" items="${menus}">
-                <li>
-                    <a href="${pageContext.request.contextPath}/resource/${menu.url}" title="${menu.name}" target="_blank">
-                            ${menu.name}
-                    </a>
+                    </c:otherwise>
+                    </c:choose>
                 </li>
                 </c:forEach>
             </ul>

@@ -3,6 +3,11 @@ package com.yunziru.sitemap;
 import com.redfin.sitemapgenerator.ChangeFreq;
 import com.redfin.sitemapgenerator.WebSitemapGenerator;
 import com.redfin.sitemapgenerator.WebSitemapUrl;
+import com.yunziru.cloud.resource.dto.MenuDTO;
+import com.yunziru.cloud.resource.entity.Menu;
+import com.yunziru.cloud.resource.service.MenuService;
+import com.yunziru.meiju.entity.MeiJu;
+import com.yunziru.meiju.service.MeiJuService;
 import com.yunziru.movie.entity.Movie;
 import com.yunziru.movie.service.MovieService;
 import org.apache.log4j.Logger;
@@ -29,6 +34,9 @@ public class SiteMapCreater {
     @Resource
     private MovieService movieService;
 
+    @Resource
+    private MeiJuService meiJuService;
+
     public void execute() throws MalformedURLException {
 
         String path = getClass().getProtectionDomain().getCodeSource().getLocation().toString();
@@ -54,11 +62,38 @@ public class SiteMapCreater {
                 .lastMod(new Date()).priority(0.8).changeFreq(ChangeFreq.MONTHLY).build();
         wsg.addUrl(url);
 
+        List<MenuDTO> menuDTOs = MenuService.menusCache;
+        for (MenuDTO menuDTO : menuDTOs) {
+            List<Menu> menuList = menuDTO.getSubMenus();
+            if (menuDTO.getSubMenus() != null && menuDTO.getSubMenus().size() > 0) {
+                for (Menu menu : menuList) {
+                    url = new WebSitemapUrl.Options("http://yunziru.com.cn/" + menuDTO.getUrl() + "/" + menu.getUrl())
+                            .lastMod(new Date()).priority(0.8).changeFreq(ChangeFreq.MONTHLY).build();
+                    wsg.addUrl(url);
+                }
+            } else {
+                url = new WebSitemapUrl.Options("http://yunziru.com.cn/" + menuDTO.getUrl())
+                        .lastMod(new Date()).priority(0.8).changeFreq(ChangeFreq.MONTHLY).build();
+                wsg.addUrl(url);
+            }
+        }
+
         List<Movie> movieList = movieService.getAll();
         movieList.forEach(movie -> {
             try {
                 WebSitemapUrl sitemapUrl = new WebSitemapUrl.Options("http://yunziru.com.cn/movies/" + movie.getId() + "/detail")
                         .lastMod(new Date(movie.getCreateTime())).priority(0.6).changeFreq(ChangeFreq.MONTHLY).build();
+                wsg.addUrl(sitemapUrl);
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            }
+        });
+
+        List<MeiJu> meiJuList = meiJuService.getAll();
+        meiJuList.forEach(meiJu -> {
+            try {
+                WebSitemapUrl sitemapUrl = new WebSitemapUrl.Options("http://yunziru.com.cn/meijus/" + meiJu.getId() + "/detail")
+                        .lastMod(new Date(meiJu.getCreateTime())).priority(0.6).changeFreq(ChangeFreq.MONTHLY).build();
                 wsg.addUrl(sitemapUrl);
             } catch (MalformedURLException e) {
                 e.printStackTrace();

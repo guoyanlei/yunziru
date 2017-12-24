@@ -40,6 +40,25 @@ public class MeiJuDaoImpl {
     }
 
     /**
+     * 获取N正在热更的概览信息
+     * @param offset 偏移
+     * @param limit 取的个数
+     */
+    public List<MeiJuSimpleDTO> getMeiJuListByIsEnd(String category, int isEnd, int offset, int limit) {
+
+        StringBuilder hql = new StringBuilder("select new com.yunziru.meiju.dto.MeiJuSimpleDTO(id,title,image,updateStatus,priseCount,hotCount,date) from MeiJu ");
+        hql.append("where 1 = 1 ");
+        if (!StringUtils.isEmpty(category)) {
+            hql.append("and category_en = '" + category + "' ");
+        }
+        hql.append("and is_end = " + isEnd + " ");
+        hql.append("order by updateTime desc");
+
+        return this.getListByHql(hql.toString(), offset, limit);
+
+    }
+
+    /**
      * 获取N热门美剧概览信息
      * @param offset 偏移
      * @param limit 取的个数

@@ -49,6 +49,9 @@ public class MeiJuCrawlerExecutor {
     //动漫/卡通
     public final static String MEIJU_dmkt_URL = "http://www.msj1.com/c/dmkt/page/";
     public final static int MEIJU_dmkt_SIZE = 9;
+    //纪录片
+    public final static String MEIJU_jlp_URL = "http://www.msj1.com/c/jlp/page/";
+    public final static int MEIJU_jlp_SIZE = 3;
 
     @Resource
     private MeijuCrawler crawlerWorker;
@@ -58,8 +61,8 @@ public class MeiJuCrawlerExecutor {
 
     public void execute() {
 
-        for (int i = MEIJU_lzyw_SIZE; i >= 1; i--) {
-            String content = crawlerWorker.getResponseContent(MEIJU_lzyw_URL + i);
+        for (int i = MEIJU_dmkt_SIZE; i >= 1; i--) {
+            String content = crawlerWorker.getResponseContent(MEIJU_dmkt_URL + i);
             List<MeiJuSimple> meiJuSimples = crawlerWorker.parseMeijuList(content);
             meiJuSimples.forEach(meiJuSimple -> {
                 String meijuContent = crawlerWorker.getResponseContent(meiJuSimple.getUrl());

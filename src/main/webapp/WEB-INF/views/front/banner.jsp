@@ -17,7 +17,7 @@
 
             <div class="font_line"><img src="${pageContext.request.contextPath}/static/front/img/font_line.png" alt=""></div>
             <p>
-                <a href="search" target="_self" title="搜索资源" class="am-btn am-btn-sm get-btn  am-radius banner_ios am-icon-search "> Search</a>
+                <a href="${pageContext.request.contextPath}/search" target="_self" title="搜索资源" class="am-btn am-btn-sm get-btn  am-radius banner_ios am-icon-search "> Search</a>
                 <a onclick="upload();" title="上传资源" class="am-btn am-btn-sm  am-radius get-btn banner_android am-icon-cloud-upload"> Upload</a>
             </p>
         </div>

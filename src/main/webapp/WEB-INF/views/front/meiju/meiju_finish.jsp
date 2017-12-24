@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html lang="zh">
 <head>
-    <title>云自如-${categoryCH}美剧 百度云 云资源 百度网盘资源 bt种子分享</title>
+    <title>云自如-${categoryCH}已经完结美剧 百度云 云资源 百度网盘资源 bt种子分享</title>
     <meta name="description" content="是拥有超级丰富的云资源分享平台,自如分享最新电影,经典电影与电视剧资源云链接,是云资源爱好者最好的分享平台之一。想更自如的获得更多云资源,就上云自如,因为有你所以更精彩!">
     <meta name="keywords" content="云自如,云资源,百度云盘,百度云,百度云搜索,百度云资源,百度云下载,百度云网盘,bt下载,bt种子,bt天堂">
 <%@ include file="../header.jsp"%>
@@ -13,9 +13,9 @@
 <div class="banner_navbg">
     <div class="am-g">
         <div class="banner_nav"><span class="am-icon-caret-right">  筛选：</span>
-            <a href="${pageContext.request.contextPath}/meijus/${category}" title="最新发布" target="_self" class="click_bjtj banner_hover">最新发布</a>
-            <a href="${category}/hot" title="正在热更" target="_self" class="click_rqzg" >正在热更</a>
-            <a href="${category}/finish" title="已经完结" target="_self"  class="click_rqzg">已经完结</a>
+            <a href="${pageContext.request.contextPath}/meijus/${category}" title="最新发布" target="_self" class="click_bjtj">最新发布</a>
+            <a href="${pageContext.request.contextPath}/meijus/${category}/hot" title="正在热更" target="_self" class="click_rqzg" >正在热更</a>
+            <a href="${pageContext.request.contextPath}/meijus/${category}/finish" title="已经完结" target="_self"  class="click_rqzg banner_hover">已经完结</a>
         </div>
     </div>
 </div>
@@ -26,7 +26,7 @@
         <c:forEach var="meiju" items="${meijus}">
             <li>
                 <div class="am-gallery-item">
-                    <a href="${meiju.id}/detail" class="">
+                    <a href="${pageContext.request.contextPath}/meijus/${meiju.id}/detail" class="">
                     <img class="am_img animated" alt="【${meiju.updateStatus}】${meiju.title}"
                          src="${pageContext.request.contextPath}/static/front/img/loading.gif"
                          data-original="${meiju.poster}"/>
@@ -63,7 +63,7 @@
 
         var indexListImgHtml = '';
         $('.am_news_load_index').unbind('click');
-        $.get('${category}/list?page='+ page + '&size=' + pageSize,function(data){
+        $.get('finish/list?page='+ page + '&size=' + pageSize,function(data){
 
             $('.am-icon-spinner').hide();
             // 数据异常
@@ -74,7 +74,7 @@
             for( var i = 0 ; i < data.data.length ; i++ ){
                 indexListImgHtml += "<li>\n" +
                 "                <div class=\"am-gallery-item\">\n" +
-                "                    <a href=\""+ data.data[i].id + "/detail\" class=\"\">\n" +
+                "                    <a href=\"${pageContext.request.contextPath}/meijus/"+ data.data[i].id + "/detail\" class=\"\">\n" +
                 "                        <img class=\"am_img animated\" alt=\"\"\n" +
                 "                             src=\"${pageContext.request.contextPath}/static/front/img/loading.gif\"\n" +
                 "                             data-original=\"" + data.data[i].poster + "\"/>\n" +

@@ -79,6 +79,24 @@ public class MeiJuService extends CommonService<MeiJu, Long> {
     }
 
     /**
+     * 获取正在热更的美剧概览信息
+     * @param page 当前页数
+     * @param size 每页大小
+     */
+    public List<MeiJuSimpleDTO> getHotUpdateMeiJuList(String category, int page, int size) {
+        return meiJuDaoImpl.getMeiJuListByIsEnd(category, 0, PageUtil.getOffset(page, size), size);
+    }
+
+    /**
+     * 获取正在热更的美剧概览信息
+     * @param page 当前页数
+     * @param size 每页大小
+     */
+    public List<MeiJuSimpleDTO> getFinishMeiJuList(String category, int page, int size) {
+        return meiJuDaoImpl.getMeiJuListByIsEnd(category, 1, PageUtil.getOffset(page, size), size);
+    }
+
+    /**
      * 获取热门美剧概览信息
      * @param page 当前页数
      * @param size 每页大小
@@ -106,9 +124,14 @@ public class MeiJuService extends CommonService<MeiJu, Long> {
         detailDTO.setDate(meiJu.getDate());
         detailDTO.setTagCh(meiJu.getTagCh());
         detailDTO.setCategoryCh(meiJu.getCategoryCh());
-        detailDTO.setSummaryBase(meiJu.getSummary().substring(0, meiJu.getSummary().indexOf("<h")));
-        String summaryDesc = meiJu.getSummary().substring(meiJu.getSummary().indexOf("<h"), meiJu.getSummary().length());
-        detailDTO.setSummaryDesc(summaryDesc.replaceAll("<a href=(.+?)>", "").replaceAll("</a>",""));
+        if (meiJu.getSummary().contains("<h")) {
+            detailDTO.setSummaryBase(meiJu.getSummary().substring(0, meiJu.getSummary().indexOf("<h")));
+            String summaryDesc = meiJu.getSummary().substring(meiJu.getSummary().indexOf("<h"), meiJu.getSummary().length());
+            detailDTO.setSummaryDesc(summaryDesc.replaceAll("<a (.+?)>", "").replaceAll("</a>",""));
+        } else {
+            detailDTO.setSummaryDesc(meiJu.getSummary().replaceAll("<a (.+?)>", "").replaceAll("</a>",""));
+        }
+
         detailDTO.setDownLinks(JSON.parseArray(meiJu.getDownLinks()));
 
         return detailDTO;
@@ -149,4 +172,5 @@ public class MeiJuService extends CommonService<MeiJu, Long> {
         }
         return result;
     }
+
 }

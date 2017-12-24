@@ -29,6 +29,7 @@ public class MeiJuIndexController {
 		modelMap.put("totalCount", movieService.getTotalCount());
         modelMap.put("menus", MenuService.menusCache);
         modelMap.put("category", category);
+        modelMap.put("categoryCH", MenuService.getNameByUrl(category));
 		return "front/meiju/meiju_index";
 	}
 
@@ -41,6 +42,18 @@ public class MeiJuIndexController {
 
 		AjaxResult ajaxResult = new AjaxResult();
 		ajaxResult.setData(this.meiJuService.getIndexMeiJuList(keyword, category, page, size));
+		ajaxResult.setSuccess(true);
+		return ajaxResult;
+	}
+
+	@RequestMapping(value = "list", method = RequestMethod.GET, headers = "Accept=application/json")
+	@ResponseBody
+	public AjaxResult getMeiJuList(@RequestParam(value = "keyword", required = false) String keyword,
+								   @RequestParam(defaultValue = "1", required = true) int page,
+								   @RequestParam(defaultValue = "20", required = true) int size) {
+
+		AjaxResult ajaxResult = new AjaxResult();
+		ajaxResult.setData(this.meiJuService.getIndexMeiJuList(keyword, null, page, size));
 		ajaxResult.setSuccess(true);
 		return ajaxResult;
 	}

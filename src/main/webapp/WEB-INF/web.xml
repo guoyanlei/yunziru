@@ -43,6 +43,11 @@
         <url-pattern>/*</url-pattern>
     </filter-mapping>
 
+    <servlet-mapping>
+         <servlet-name>default</servlet-name>
+         <url-pattern>*.xml</url-pattern>
+     </servlet-mapping>
+
     <!-- 配置Shiro filter -->
     <!-- 配置Shiro过滤器,先让Shiro过滤系统接收到的请求 -->
     <!-- 这里filter-name必须对应applicationContext-shiro.xml中定义的<bean id="shiroFilter"/> -->

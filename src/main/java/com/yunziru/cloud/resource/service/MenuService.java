@@ -37,6 +37,10 @@ public class MenuService  extends CommonService<Menu, Long> {
         return menuDao.findMenuByParent(0L);
     }
 
+    public List<Menu> getMeiJuMenu() {
+        return menuDao.findMenuByParent(1L);
+    }
+
     public static String getNameByUrl(String url) {
 
         for (MenuDTO menuDTO : menusCache) {

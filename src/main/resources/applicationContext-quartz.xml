@@ -5,22 +5,39 @@
                            http://www.springframework.org/schema/beans/spring-beans.xsd">
 
 	<!-- 配置Job类 -->
-	<bean id="crawlerExecutor" class="com.yunziru.movie.crawler.CrawlerExecutor"/>
+	<bean id="movieCrawlerExecutor" class="com.yunziru.movie.crawler.CrawlerExecutor"/>
+	<bean id="meijuCrawlerExecutor" class="com.yunziru.meiju.crawler.MeiJuCrawlerExecutor"/>
 	<bean id="siteMapExecutor" class="com.yunziru.sitemap.SiteMapCreater"/>
 
+	<!-- movie crawler -->
 	<!-- 配置JobDetail -->
-	<bean id="crawlerMethod" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
-		<property name="targetObject" ref="crawlerExecutor"/>
+	<bean id="movieCrawlerMethod" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject" ref="movieCrawlerExecutor"/>
 		<property name="targetMethod" value="execute"/>
 	</bean>
 
 	<!-- 配置trigger触发器 -->
-	<bean id="crawlerFactoryBean" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
-		<property name="jobDetail" ref="crawlerMethod"/>
+	<bean id="movieCrawlerFactoryBean" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="jobDetail" ref="movieCrawlerMethod"/>
 		<!-- cron表达式，执行时间  每6小时执行一次 -->
 		<property name="cronExpression" value="0 0 0/6 * * ?"/>
 	</bean>
 
+	<!-- meiju crawler -->
+	<!-- 配置JobDetail -->
+	<bean id="meijuCrawlerMethod" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject" ref="meijuCrawlerExecutor"/>
+		<property name="targetMethod" value="execute"/>
+	</bean>
+
+	<!-- 配置trigger触发器 -->
+	<bean id="meijuCrawlerFactoryBean" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="jobDetail" ref="meijuCrawlerMethod"/>
+		<!-- cron表达式，执行时间  每6小时执行一次 -->
+		<property name="cronExpression" value="0 0 0/6 * * ?"/>
+	</bean>
+
+	<!-- sitemap create -->
 	<!-- 配置JobDetail -->
 	<bean id="siteMapMethod" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
 		<property name="targetObject" ref="siteMapExecutor"/>
@@ -38,7 +55,8 @@
 	<bean id="springJobSchedulerFactoryBean" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
 		<property name="triggers">
 			<list>
-				<ref bean="crawlerFactoryBean"/>
+				<ref bean="movieCrawlerFactoryBean"/>
+				<ref bean="meijuCrawlerFactoryBean"/>
 				<ref bean="siteMapFactoryBean"/>
 			</list>
 		</property>

@@ -160,7 +160,7 @@ public class MovieCrawler {
         matcher = Pattern.compile("年　　代　(.+?)<br />", Pattern.DOTALL).matcher(content);
         if (matcher.find()) {
             String tmp = matcher.group(1);
-            movie.setYear(Integer.parseInt(tmp.replaceAll("</font>","").trim().substring(0, 4)));
+            movie.setYear(Integer.parseInt(tmp.replaceAll("</font>","").trim().substring(0, 4).replaceAll("　","").trim()));
         }
 
         //解析产地

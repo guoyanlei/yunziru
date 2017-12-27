@@ -48,6 +48,9 @@ public class SiteMapCreater {
         } else {
             String newPath = path.split(":")[1];
             siteMapFile = new File(newPath.substring(0, newPath.indexOf("WEB-INF")));
+            if(siteMapFile.exists()) {
+                siteMapFile.deleteOnExit();
+            }
         }
 
         WebSitemapGenerator wsg = new WebSitemapGenerator("http://yunziru.com.cn", siteMapFile);

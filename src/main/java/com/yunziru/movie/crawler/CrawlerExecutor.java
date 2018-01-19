@@ -18,6 +18,8 @@ import javax.annotation.Resource;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Created by guoyanlei
@@ -57,30 +59,42 @@ public class CrawlerExecutor {
             LOG.info(maps.get(key));
             if (Objects.isNull(movieService.getMovieByTid(key))) {
                 Movie movie = movieCrawler.parseMovie(movieCrawler.getResponseContent(maps.get(key)));
-                movie.setTid(key);
-                if (!StringUtils.isNullOrEmpty(movie.getPoster())) {
+                if (!StringUtils.isNullOrEmpty(movie.getPoster()) && !isContainChinese(movie.getPoster())) {
+                    movie.setTid(key);
                     String qiniuUrl = QiniuUtil.storeMovieImage(movie.getPoster());
                     LOG.info(qiniuUrl);
                     movie.setPoster(qiniuUrl);
-                }
-                List<String> newScrenshot = Lists.newArrayList();
-                List<String> screenshot = JSON.parseArray(movie.getScreenshot(), String.class);
-                if (screenshot != null) {
-                    for (String s : screenshot) {
-                        String qiniuUrl = QiniuUtil.storeMovieImage(s);
-                        LOG.info(qiniuUrl);
-                        newScrenshot.add(qiniuUrl);
+
+                    List<String> newScrenshot = Lists.newArrayList();
+                    List<String> screenshot = JSON.parseArray(movie.getScreenshot(), String.class);
+                    if (screenshot != null) {
+                        for (String s : screenshot) {
+                            if (!isContainChinese(s)) {
+                                String url = QiniuUtil.storeMovieImage(s);
+                                LOG.info(url);
+                                newScrenshot.add(url);
+                            }
+                        }
                     }
+                    movie.setScreenshot(JSON.toJSONString(newScrenshot));
+                    movie.setHotCount(0);
+                    movie.setPriseCount(0);
+                    movie.setCreateTime(System.currentTimeMillis());
+                    movie.setUpdateTime(System.currentTimeMillis());
+                    movieService.save(movie);
+                    addMovieTag(tagList, movie);
                 }
-                movie.setScreenshot(JSON.toJSONString(newScrenshot));
-                movie.setHotCount(0);
-                movie.setPriseCount(0);
-                movie.setCreateTime(System.currentTimeMillis());
-                movie.setUpdateTime(System.currentTimeMillis());
-                movieService.save(movie);
-                addMovieTag(tagList, movie);
             }
         }
+    }
+
+    public boolean isContainChinese(String str) {
+        Pattern p = Pattern.compile("[\u4e00-\u9fa5]");
+        Matcher m = p.matcher(str);
+        if (m.find()) {
+            return true;
+        }
+        return false;
     }
 
     /**
